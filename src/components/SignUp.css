@@ -1,0 +1,105 @@
+.signUpPage {
+    min-height: 100vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signUpPageWelcome-header {
+    text-align: center;
+    font-size: 20px;
+    color: #22579F;
+    font-weight: 400;
+    margin-bottom: 4px;
+    margin-top: 20px;
+}
+
+.signUpPage-header {
+    text-align: center;
+    font-size: 20px;
+    color: #22579F;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.studentIT-header {
+    text-align: center;
+    font-size: 35px;
+    color: #22579F;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.createAccount-header {
+    text-align: left;
+    margin-left: 20px;
+    font-size: 25px;
+    color: #22579F;
+    font-weight: 700;
+    width: 100%;
+}
+
+.box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
+    height: 570px;
+    width: 50%;
+    margin-top: 46px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 0px 60px;
+}
+
+.boxInput input {
+    background-color: #fff;
+    padding: 8px;
+    color: #000;
+    font-family: 'Lato';
+    border-radius: 10px;
+    border: 1px solid #E6E6E6;
+    width: 100%;
+
+}
+
+.boxButton button {
+    background-color: #22579F;
+    padding: 10px 30px 10px 30px;
+    min-width: 25%;
+    border-radius: 10px;
+    border: 0.2px solid #22579F;
+}
+
+.label {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: medium;
+    color: #22579F;
+}
+
+button span {
+    color: #fff;
+}
+
+h2 span {
+    color: #22579F;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Nunito';
+}
+
+body {
+    font-family: "Lato";
+}

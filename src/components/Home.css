@@ -1,0 +1,15 @@
+.Home {
+    text-align: center;
+}
+
+.Home-header {
+    font-size: 35px;
+    color: #22579F;
+    font-weight: 700;
+    margin-bottom: 4px;
+    margin-top: 20px;
+}
+
+.Home-link {
+    color: #22579F;
+}
