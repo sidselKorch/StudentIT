@@ -10,11 +10,11 @@ function App() {
         {/* FONT */}
         <div className="card-container">    
             <h1>Font Styles</h1>
-            <h1>Chat</h1>
-            <h2>#Current post</h2>
-            <h3>User Lastname</h3>
-            <h4>Teacher</h4>
-            <p>Here goes some nice text</p>
+            <h1>h1: Chat</h1>
+            <h2>h2: #Current post</h2>
+            <h3>h3: User Lastname</h3>
+            <h4>h4: Teacher</h4>
+            <p>p: Here goes some nice text</p>
         </div>
         
         {/* BUTTONS */}
@@ -94,6 +94,39 @@ function App() {
             </form> 
         </div>
 
+        {/* DROP DOWNS */}
+        <div className="card-container">
+          <h1>Drop downs</h1>
+
+          <div className="dropdown">
+            <div className="top-bar">
+              <h3>Settings</h3>
+              <button className='btn btn-close'>x</button>
+            </div>
+            <ul>
+              <li>+ Add User</li>
+              <li>• Mute notification</li>
+              <li>+ Add repository</li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* POST FLAGS */}
+        <div className="card-container">
+          <h1>Post Flags</h1>
+
+          <div className='post-flags'>
+            <div class="post-flag post-flag-large">
+              <h2>#Current Post</h2>
+            </div>
+
+            <div class="post-flag post-flag-small">
+              <h3>#Old Post</h3>
+            </div>
+          </div>
+
+        </div>
 
 
       </div>
