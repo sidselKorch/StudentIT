@@ -60,7 +60,7 @@ function App() {
                     <p>Student Lastname</p>
                     <p>Last message here...</p>
                 </div>
-                <div className="dot"></div>
+                <div className="notification-dot"></div>
             </div>
             
             <div className="chat">
@@ -71,7 +71,7 @@ function App() {
                     <p>Student Lastname</p>
                     <p>Last message here...</p>
                 </div>
-                <div className="dot"></div>
+                <div className="notification-dot"></div>
             </div>
         </div>
 
@@ -93,6 +93,8 @@ function App() {
                 <input type="submit" className="btn btn-send" value="Send"></input>
             </form> 
         </div>
+
+
 
       </div>
     </div>
