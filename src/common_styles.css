@@ -49,8 +49,10 @@
     --tertiary-blue: hsl(206, 80%, 96%);
     --tertiary-gray: hsl(0, 0%, 95%);
 
-    --box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.10);
-    --box-shadow-tab: 3px 0px 4px rgba(0, 0, 0, 0.05);
+    --box-shadow: 0px 0px 25px hsla(0, 0%, 0%, 0.1);
+    --box-shadow-tab: 3px 0px 4px hsla(0, 0%, 0%, 0.05);
+
+    --transition: 300ms ease-in-out;
 }
 
 /* GENERAL */
@@ -155,10 +157,13 @@ ul{
     font-size: 15px;
     border-radius: 10px 100px 10px 10px;
     box-shadow: var(--box-shadow-tab);
+    transition: var(--transition);
+    width: fit-content;
 }
 
 .tab:hover{
     cursor: pointer;
+    padding: 20px 95px;
 }
 
 .tab-blue{
@@ -207,11 +212,22 @@ ul{
     margin-right: 40px;
 }
 
-.notification-dot{
-    width: 6px;
-    height: 6px;
+.dot{
+    width: 5px;
+    height: 5px;
     border-radius: 100px;
+}
+
+.dot-chat-notification{
     background-color: var(--primary-blue);
+}
+
+.dot-course-notification{
+    background-color: var(--primary-red);
+}
+
+.dot-settings{
+    background-color: var(--secondary-gray);
 }
 
 .small{
@@ -238,6 +254,10 @@ ul{
 
 .input-field input:focus{
     outline: none;
+}
+
+.input-field input:focus{
+
 }
 
 .anonymous{
@@ -270,6 +290,13 @@ ul{
     cursor: pointer;
 }
 
+/* SETTINGS ICON */
+
+.settings-icon{
+    display: flex;
+    gap: 3px;
+}
+
 /* POST FLAG */
 .post-flags{
     display: flex;
@@ -283,7 +310,7 @@ ul{
     background-color: #fff;
     box-shadow: var(--box-shadow);
     width: fit-content;
-    transition: 300ms;
+    transition: var(--transition);
     cursor: pointer;
 }
 

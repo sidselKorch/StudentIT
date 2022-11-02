@@ -60,7 +60,7 @@ function App() {
                     <p>Student Lastname</p>
                     <p>Last message here...</p>
                 </div>
-                <div className="notification-dot"></div>
+                <div className="dot dot-chat-notification"></div>
             </div>
             
             <div className="chat">
@@ -71,7 +71,7 @@ function App() {
                     <p>Student Lastname</p>
                     <p>Last message here...</p>
                 </div>
-                <div className="notification-dot"></div>
+                <div className="dot dot-chat-notification"></div>
             </div>
         </div>
 
@@ -112,6 +112,18 @@ function App() {
 
         </div>
 
+        {/* SETTINGS ICON */}
+        <div className="card-container">
+          <h1>Settings Icon</h1>
+
+          <div className='settings-icon'>
+            <div className='dot dot-settings'></div>
+            <div className='dot dot-settings'></div>
+            <div className='dot dot-settings'></div>
+          </div>
+
+        </div>
+
         {/* POST FLAGS */}
         <div className="card-container">
           <h1>Post Flags</h1>
@@ -127,7 +139,6 @@ function App() {
           </div>
 
         </div>
-
 
       </div>
     </div>
