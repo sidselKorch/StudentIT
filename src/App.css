@@ -1,38 +1,230 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+*{
+    font-family: 'Nunito', sans-serif;
+    margin: 0px 0px; 
+    padding: 0px 0px;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* IGNORE */
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card-container{
+    display: grid;
+    gap: 20px;
+    margin: 50px 100px;
+    height: fit-content;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card-container h1:first-child{
+    font-size: 25px;
+    border-bottom: 1px solid var(--secondary-gray);
 }
 
-.App-link {
-  color: #61dafb;
+
+:root{
+    /* COLORS */
+    --primary-yellow: hsl(35, 90%, 63%);
+    --primary-red: hsl(350, 71%, 43%);
+    --primary-green: hwb(153 27% 59%);
+    --primary-blue: hsl(215, 65%, 38%);
+    --tertiary-gray: hsl(0, 0%, 95%);
+
+    --secondary-yellow: hsl(35, 89%, 86%);
+    --secondary-red: hsl(349, 55%, 80%);
+    --secondary-green: hsl(150, 10%, 65%);
+    --secondary-blue: hsl(214, 85%, 81%);
+    --secondary-gray: hsl(0, 0%, 70%);
+
+    --tertiary-yellow: hsl(37, 80%, 98%);
+    --tertiary-red: hsl(351, 47%, 97%);
+    --tertiary-green: hsl(156, 10%, 90%);
+    --tertiary-blue: hsl(206, 80%, 96%);
+    --tertiary-gray: hsl(0, 0%, 95%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* FONTS */
+h1{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+h2{
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary-blue);
+}
+
+h3{
+    font-weight: 700;
+    font-size: 15px;
+}
+
+h4{
+    font-weight: 700;
+    font-size: 12px;
+    font-size: 15px;
+}
+
+p{
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    font-size: 15px;
+}
+
+/* BUTTONS */
+.btn{
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 15px;
+    background-color: var(--primary-blue);
+    color: #fff;
+    width: min-content;
+    height: min-content;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+.btn-send{
+    border-radius: 10px;
+}
+
+.btn-reply{
+    border-radius: 10px 0 0 10px;
+}
+
+.btn-react{
+    border-radius: 0 10px 10px 0;
+}
+
+/* USER ICONS */
+.user-icon{
+    /* USER ICON SIZE */
+    --size: 40px;
+
+    width: var(--size);
+    height: var(--size);
+    line-height: var(--size);
+
+    background-color: var(--tertiary-gray);
+    
+    display: flex;
+    border-radius: 10000px;
+}
+
+.user-icon p {
+    font-size: calc(var(--size)/3);
+    margin: auto;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+
+/* TABS */
+
+.tab{
+    padding: 20px 75px;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 10px 100px 10px 10px;
+    box-shadow: 3px 0px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tab:hover{
+    cursor: pointer;
+}
+
+.tab-blue{
+    background-color: var(--tertiary-blue);
+    color: var(--primary-blue);
+}
+.tab-red{
+    background-color: var(--tertiary-red);
+    color: var(--primary-red);
+}
+.tab-yellow{
+    background-color: var(--tertiary-yellow);
+    color: var(--primary-yellow);
+}
+.tab-green{
+    background-color: var(--tertiary-green);
+    color: var(--primary-green);
+}
+
+/* CHAT USERS */
+
+.chat{
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 20px;
+}
+
+.chat:hover{
+    cursor: pointer;
+    background-color: var(--tertiary-blue);
+}
+
+.chat-active{
+    background-color: var(--tertiary-blue);
+    font-weight: 700;
+}
+
+.chat-active p:nth-child(1){
+    font-weight: 700;
+}
+
+.chat-text p:nth-child(2){
+    color: var(--secondary-gray);
+    margin-right: 40px;
+}
+
+.dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 100px;
+    background-color: var(--primary-blue);
+}
+
+.small{
+    /* --size: 30px; */
+}
+
+/* INPUT FIELDS */
+.input-field{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+    border: 1px solid var(--tertiary-gray);
+    border-radius: 10px;
+}
+
+.input-field input[type="text"]{
+    border: none;
+    line-height: 3;
+    font-size: 15px;
+}
+
+
+.input-field input:focus{
+    outline: none;
+}
+
+.anonymous{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
