@@ -1,6 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { useState } from "react";
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
@@ -13,11 +12,8 @@ import {
 } from "react-bootstrap";
 import { render } from "react-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-
-export function Login() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,13 +23,13 @@ export function Login() {
       id: email,
     };
     try {
-      let response = await axios.put(baseURL, user);
-      let userInfo = await axios.get(baseURL + "/" + email);
-      console.log(userInfo.data.userInformation.email);
-      localStorage.setItem(
-        "user",
-        JSON.stringify(userInfo.data.userInformation)
-      );
+      //let response = await axios.put(baseURL, user);
+      //let userInfo = await axios.get(baseURL + "/" + email);
+      //console.log(userInfo.data.userInformation.email);
+      //localStorage.setItem(
+      //  "user",
+      //  JSON.stringify(userInfo.data.userInformation)
+      //);
       alert("Successfully logged in");
       //change to home path
       window.location.href = "/";
@@ -89,14 +85,14 @@ export function Register() {
       password: password,
       id: email,
     };
-    let response = await axios.post(baseURL, user);
-    if (response.status === 200) {
-      window.location.href = "/";
-    } else {
-      alert("Email already exists");
-    }
-    response = await response;
-    localStorage.setItem("user", JSON.stringify(user));
+    //let response = await axios.post(baseURL, user);
+    //if (response.status === 200) {
+    //  window.location.href = "/";
+    //} else {
+    //  alert("Email already exists");
+    //}
+    //response = await response;
+    //localStorage.setItem("user", JSON.stringify(user));
     console.log(localStorage.getItem("user"));
     window.location.href = "/";
   }
@@ -184,4 +180,3 @@ export function Register() {
     </Form>
   );
 }
-      
