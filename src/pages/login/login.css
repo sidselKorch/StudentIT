@@ -1,0 +1,26 @@
+.hero-text{
+    color: var(--primary-blue);
+}
+
+.hero-text h1{
+    font-size: 35px;
+}
+
+.hero-text h3{
+    font-size: 20px;
+    font-weight: 200;
+}
+
+a{
+    color: var(--primary-blue);
+}
+
+.login-container{
+    display: grid;
+    gap: 20px;
+}
+
+.sign-up-btns{
+    display: grid;
+    gap: 10px;
+}
