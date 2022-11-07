@@ -1,6 +1,6 @@
 import React, { useState, Component } from "react";
 import { Link } from "react-router-dom";
-import "./signup.css";
+import "../signup/signup.css";
 
 import "../../common.css"
 
@@ -9,7 +9,7 @@ const initialValues = {
   password: "",
 };
 
-function SignUp() {
+function AccountSettings() {
   const [component, setComponent] = useState("signup");
 
   // States for registration
@@ -53,13 +53,11 @@ function SignUp() {
   return (
     <div className="content-container">
       <div className="hero-text">
-          <h3>Sign up to</h3>
-          <h1>StudentIT</h1>
-          <h3>Live chat platform for ITU students</h3>
+          <h3>Edit your account</h3>
       </div>
 
       <div className="input-wrapper">
-        <h1 className="input-header">Create account</h1>
+        <h1 className="input-header">Account settings</h1>
 
         <div className="box-input-container sign-up-container">
 
@@ -97,7 +95,7 @@ function SignUp() {
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
-          <Link to="/"><button className="btn">Create Account</button></Link>
+          <Link to="/"><button className="btn">Save changes</button></Link>
         </div>
 
       </div>
@@ -110,4 +108,4 @@ function SignUp() {
     </div>
   );
 }
-export default SignUp;
+export default AccountSettings;
