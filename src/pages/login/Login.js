@@ -64,7 +64,6 @@ function Login() {
         );
   
     return (
-        <>
         <div className="content-container">
             <div className="hero-text">
                 <h3>Welcome to</h3>
@@ -72,36 +71,41 @@ function Login() {
                 <h3>Live chat platform for ITU students</h3>
             </div>
 
-            <div className="login-container">
-                <div className="input-container">
-                    <h3>Email address</h3>
-                    {/* Changes state of userName */}
-                    <input type="text" placeholder="Type here..." onChange={(event) => {
-                        setUserName(event.target.value)
-                    }}/>
-                    {renderErrorMessage("uname")}
-                </div>
+            <div className="input-wrapper">
+                <h1 className="input-header">Login to account</h1>
                 
-                <div className="input-container">
-                    <h3>Password</h3>
-                    {/* Changes state of password */}
-                    <input type="password" placeholder="Type here..." onChange={(event) => {
-                        setPassword(event.target.value)
-                    }}/>
-                    {renderErrorMessage("pass")}
+                <div className="login-container">
+                    <div className="input-container">
+                        <h3>Email address</h3>
+                        {/* Changes state of userName */}
+                        <input type="text" placeholder="Type here..." onChange={(event) => {
+                            setUserName(event.target.value)
+                        }}/>
+                        {renderErrorMessage("uname")}
+                    </div>
+                    
+                    <div className="input-container">
+                        <h3>Password</h3>
+                        {/* Changes state of password */}
+                        <input type="password" placeholder="Type here..." onChange={(event) => {
+                            setPassword(event.target.value)
+                        }}/>
+                        {renderErrorMessage("pass")}
+                    </div>
                 </div>
 
-                <button type="submit" onClick={() => handleSubmit()
-                } className="btn sign-in-btn">Login</button>
-                <Link to="/signup">Sign Up</Link>
+                <div className="sign-up-btns">
+                    <button type="submit" onClick={() => handleSubmit()
+                    } className="btn margin-0-auto">Login</button>
+                    <Link to="/signup" className='sign-in-btn'>Sign Up</Link>
+                </div>
             </div>
             <div className="bottom-text">
-                <li><Link to="/forgot-password">Forgot password</Link></li>
-                <li><Link to="#">Privacy policy</Link></li>
-                <li><Link to="#">© StudentIT 2022</Link></li>
+                <Link to="/forgot-password">Forgot password</Link>
+                <Link to="#">Privacy policy</Link>
+                <Link to="#">© StudentIT 2022</Link>
             </div>
         </div>
-        </>
     )
 }
 

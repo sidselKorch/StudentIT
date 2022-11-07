@@ -51,85 +51,61 @@ function SignUp() {
   };
 
   return (
-    <div className="signUpPage sign-up-page">
-      <div>
-        <div className="signUpPageWelcome-header">Sign up to</div>
-        <div className="studentIT-header">StudentIT</div>
-        <div className="signUpPage-header">
-          Live chat platform for ITU students
-        </div>
+    <div className="content-container">
+      <div className="hero-text">
+          <h3>Welcome to</h3>
+          <h1>StudentIT</h1>
+          <h3>Live chat platform for ITU students</h3>
       </div>
-      <div className="box">
-        <div className="createAccount-header">Create account</div>
-        <div className="box-input-container">
-          <div className="boxInput">
-            <label className="label">Full name</label>
-            <input
-              placeholder="Type here..."
-              onChange={handleName}
-              value={name}
-            ></input>
+
+      <div className="input-wrapper">
+        <h1 className="input-header">Create account</h1>
+
+        <div className="box-input-container sign-up-container">
+
+          <div className="input-container">
+            <h3>Full Name</h3>
+            <input placeholder="Type here..." onChange={handleName} value={name}></input>
           </div>
-          <div className="boxInput">
-            <label className="label">E-mail</label>
-            <input
-              placeholder="Type here..."
-              onChange={handleEmail}
-              value={email}
-            ></input>
+
+          <div className="input-container">
+            <h3>Email</h3>
+            <input placeholder="Type here..." onChange={handleEmail} value={email}></input>
           </div>
+
+          <div className="input-container">
+            <h3>User Name</h3>
+            <input placeholder="Type here..." onChange={handleUserName} value={name}></input>
           </div>
-          <div className="box-input-container">
-          <div className="boxInput">
-            <label className="label">Username</label>
-            <input
-              placeholder="Type here..."
-              onChange={handleUserName}
-              value={username}
-            ></input>
+
+          <div className="input-container">
+            <h3>Phone Number</h3>
+            <input placeholder="Type here..." onChange={handlePhoneNumber} value={email}></input>
           </div>
-          <div className="boxInput">
-            <label className="label">Phonenumber</label>
-            <input
-              placeholder="Type here..."
-              onChange={handlePhoneNumber}
-              value={phonenumber}
-            ></input>
+
+          <div className="input-container">
+            <h3>Password</h3>
+            <input placeholder="Type here..." onChange={handlePassword} value={email}></input>
           </div>
+
+          <div className="input-container">
+            <h3>Repeat password</h3>
+            <input placeholder="Type here..." onChange={handleRepeatPassword} value={email}></input>
           </div>
-          <div className="box-input-container">
-          <div className="boxInput">
-            <label className="label">Password</label>
-            <input
-              placeholder="Type here..."
-              type={"password"}
-              onChange={handlePassword}
-              value={password}
-            ></input>
-          </div>
-          <div className="boxInput">
-            <label className="label">Repeat password</label>
-            <input
-              placeholder="Type here..."
-              type={"password"}
-              onChange={handleRepeatPassword}
-              value={repeatPassword}
-            ></input>
-          </div>
+
         </div>
-        <div className="boxButton">
-            <Link to="/" >Back</Link>
-            <Link to="/course1">
-              <button className="btn">Create Account</button>
-            </Link>
+
+        <div className="input-btn">
+          <Link to="/" >Back</Link>
+          <Link to="/course1"><button className="btn">Create Account</button></Link>
         </div>
+
       </div>
+
       <div className="bottom-text">
-          <Link className="link" style={{textDecoration: 'none'}} to="/home" replace>
-            Welcome page
-          </Link>
-          <Link className="link" style={{textDecoration: 'none'}} to="/home">Privacy policy</Link>
-          <Link className="link" style={{textDecoration: 'none'}} to="/home">© StudentIT 2022</Link>
+          <Link to="/" replace>Welcome page</Link>
+          <Link to="#">Privacy policy</Link>
+          <Link to="#">© StudentIT 2022</Link>
       </div>
     </div>
   );
