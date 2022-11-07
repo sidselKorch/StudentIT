@@ -1,6 +1,6 @@
 import React, { useState, Component } from "react";
 import { Link } from "react-router-dom";
-import "../signup/signup.css";
+// import "../signup/signup.css";
 
 import "../../common.css"
 
@@ -53,6 +53,7 @@ function AccountSettings() {
   return (
     <div className="content-container">
       <div className="hero-text">
+          <h1>StudentIT</h1>
           <h3>Edit your account</h3>
       </div>
 
