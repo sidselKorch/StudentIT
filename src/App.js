@@ -8,6 +8,7 @@ import SignUp from './pages/signup/SignUp';
 import Home from './pages/home/Home';
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import Course1 from "./pages/courses/Course1";
+import AccountSettings from "./pages/accountsettings/AccountSettings";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/course1" element={<Course1 />} />
         <Route exact path="/forgot-password" element={<ForgotPassword />}/>
+        <Route path="/accountsettings" element={<AccountSettings />} />
       </Routes>
     </BrowserRouter>
   );

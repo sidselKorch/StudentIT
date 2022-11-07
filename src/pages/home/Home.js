@@ -37,12 +37,12 @@ function LandingPage() {
                 <Link style={{textDecoration: 'none'}} to="/course1"><h4 className="tab tab-green" onClick={() => {setBgColor("green")}}>Course1</h4></Link>
                 </div>
                 <div className='profile'>
-                    <div className="user-profile">
+                <Link style={{textDecoration: 'none'}} to="/accountsettings"><div className="user-profile">
                         <p>{userName}</p>
                         <div className="user-icon">
                             <p className="name-initials" id="name_initials">{initials}</p>
                         </div>
-                    </div>
+                    </div></Link>
                     <button className="btn btn-logout" onClick={
                         // Sets the state of showProfile to false
                         () => {setShowProfile(false); setUserName(""); setPassword("")}
