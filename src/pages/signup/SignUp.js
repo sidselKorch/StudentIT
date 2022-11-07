@@ -15,8 +15,8 @@ function SignUp() {
   // States for registration
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phonenumber, setPhoneNumber] = useState("");
-  const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
@@ -75,22 +75,22 @@ function SignUp() {
 
           <div className="input-container">
             <h3>User Name</h3>
-            <input placeholder="Type here..." onChange={handleUserName} value={name}></input>
+            <input placeholder="Type here..." onChange={handleUserName} value={userName}></input>
           </div>
 
           <div className="input-container">
             <h3>Phone Number</h3>
-            <input placeholder="Type here..." onChange={handlePhoneNumber} value={email}></input>
+            <input placeholder="Type here..." onChange={handlePhoneNumber} value={phoneNumber}></input>
           </div>
 
           <div className="input-container">
             <h3>Password</h3>
-            <input placeholder="Type here..." onChange={handlePassword} value={email}></input>
+            <input placeholder="Type here..." onChange={handlePassword} value={password}></input>
           </div>
 
           <div className="input-container">
             <h3>Repeat password</h3>
-            <input placeholder="Type here..." onChange={handleRepeatPassword} value={email}></input>
+            <input placeholder="Type here..." onChange={handleRepeatPassword} value={repeatPassword}></input>
           </div>
 
         </div>
