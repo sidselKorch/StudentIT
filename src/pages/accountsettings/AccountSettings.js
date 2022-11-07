@@ -1,6 +1,6 @@
 import React, { useState, Component } from "react";
 import { Link } from "react-router-dom";
-import "./signup.css";
+import "../signup/signup.css";
 
 import "../../common.css"
 
@@ -9,8 +9,8 @@ const initialValues = {
   password: "",
 };
 
-function SignUp() {
-  const [component, setComponent] = useState("signup");
+function AccountSettings() {
+  const [component, setComponent] = useState("accountSettings");
 
   // States for registration
   const [name, setName] = useState("");
@@ -53,14 +53,10 @@ function SignUp() {
   return (
     <div className="signUpPage sign-up-page">
       <div>
-        <div className="signUpPageWelcome-header">Sign up to</div>
-        <div className="studentIT-header">StudentIT</div>
-        <div className="signUpPage-header">
-          Live chat platform for ITU students
-        </div>
+        <div className="signUpPageWelcome-header">Edit your account</div>
       </div>
       <div className="box">
-        <div className="createAccount-header">Create account</div>
+        <div className="createAccount-header">Account settings</div>
         <div className="box-input-container">
           <div className="boxInput">
             <label className="label">Full name</label>
@@ -120,18 +116,18 @@ function SignUp() {
         <div className="boxButton">
             <Link to="/" >Back</Link>
             <Link to="/">
-              <button className="btn">Create Account</button>
+              <button className="btn">Save changes</button>
             </Link>
         </div>
       </div>
       <div className="bottom-text">
-          <Link className="link" style={{textDecoration: 'none'}} to="/home" replace>
+          <Link className="link" style={{textDecoration: 'none'}} to="/" replace>
             Welcome page
           </Link>
-          <Link className="link" style={{textDecoration: 'none'}} to="/home">Privacy policy</Link>
-          <Link className="link" style={{textDecoration: 'none'}} to="/home">© StudentIT 2022</Link>
+          <Link className="link" style={{textDecoration: 'none'}} to="#">Privacy policy</Link>
+          <Link className="link" style={{textDecoration: 'none'}} to="#">© StudentIT 2022</Link>
       </div>
     </div>
   );
 }
-export default SignUp;
+export default AccountSettings;

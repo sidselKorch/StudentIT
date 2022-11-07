@@ -18,7 +18,7 @@ function LoginChecker() {
         
         {/* CHANGE BACK! */}
         {showProfile ? <Home /> : <Login />}
-        {/* <Home /> */}
+        {/* {<Home />} */}
     </LoginContext.Provider>
             
     )
