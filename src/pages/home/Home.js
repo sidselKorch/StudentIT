@@ -44,7 +44,6 @@ function LandingPage() {
                     <button className="btn btn-logout" onClick={
                         // Sets the state of showProfile to false
                         () => {setShowProfile(false)}
-                        // () => {setShowProfile(false); setUserName(""); setPassword("")}
                     }><FontAwesomeIcon icon={faSignOutAlt} />
                     </button>
                 </div>
