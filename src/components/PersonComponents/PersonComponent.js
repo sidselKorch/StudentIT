@@ -11,7 +11,7 @@ export const PersonComponent = () => {
       // create a new Parse Object instance
       const Person = new Parse.Object('Person');
       // define the attributes you want for your Object
-      Person.set('name', 'John');
+      Person.set('name', 'Morten');
       Person.set('email', 'john@back4app.com');
       // save it on Back4App Data Store
       await Person.save();

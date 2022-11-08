@@ -87,8 +87,7 @@ function Login() {
                 </div>
 
                 <div className="sign-up-btns">
-                    <button type="submit" onClick={() => handleSubmit()
-                    } className="btn margin-0-auto">Login</button>
+                    <button type="submit" onClick={() => handleSubmit()} className="btn margin-0-auto">Login</button>
                     <Link to="/signup" className='sign-in-btn'>Sign Up</Link>
                 </div>
             </div>
