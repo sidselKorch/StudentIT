@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { LoginContext } from '../../contexts/LoginContext'
-
 import Parse from 'parse/dist/parse.min.js';
-
 
 import '../../common.css';
 import './login.css';
@@ -26,34 +24,33 @@ function Login() {
     // Handles the submit from the login button
     const handleSubmit = async function() {
 
-    const usernameValue = userName;
-    const passwordValue = password;
+        try{
+            const loggedInUser = await Parse.User.logIn(userName, password);
+            // logIn returns the corresponding ParseUser object
+            console.log(`Success! User ${loggedInUser.get('username')} has successfully signed in!`);
+            
+            // To verify that this is in fact the current user, `current` can be used
+            const currentUser = await Parse.User.current();
+            console.log(loggedInUser === currentUser);
 
-    try{
-        const loggedInUser = await Parse.User.logIn(usernameValue, passwordValue);
-        // logIn returns the corresponding ParseUser object
-        console.log(`Success! User ${loggedInUser.get('username')} has successfully signed in!`);
-        
-        // To verify that this is in fact the current user, `current` can be used
-        const currentUser = await Parse.User.current();
-        console.log(loggedInUser === currentUser);
+            // Clear input fields
+            setUserName('');
+            setPassword('');
 
-        
-        // Clear input fields
-        setUserName('');
-        setPassword('');
-        // Update state variable holding current user
-        getCurrentUser();
-        setShowProfile(true)
-        return true;
-        
-  
-      } catch (error) {
-        // Error can be caused by wrong parameters or lack of Internet connection
-        setErrorMessages(`Error, ${error.message}`)
-        // console.log(`Error! ${error.message}`);
-        return false;
-      }
+            // Update state variable holding current user
+            getCurrentUser();
+
+            // Changes state to login
+            setShowProfile(true)
+            return true;
+            
+    
+        } catch (error) {
+            // Error can be caused by wrong parameters or lack of Internet connection
+            setErrorMessages(`Error, ${error.message}`)
+            // console.log(`Error! ${error.message}`);
+            return false;
+        }
     }
 
     const renderErrorMessage = () =>(
