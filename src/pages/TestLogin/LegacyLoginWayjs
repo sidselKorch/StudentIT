@@ -1,9 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { LoginContext } from '../../contexts/LoginContext'
 
-import Parse from 'parse/dist/parse.min.js';
-
-
 import '../../common.css';
 import './login.css';
 
@@ -13,52 +10,58 @@ function Login() {
 
     // Imports the states using context from the parent component App.js
     const { userName, setUserName, password, setPassword, setShowProfile }  = useContext(LoginContext);
-    const [ errorMessages, setErrorMessages ] = useState("");
-    const [currentUser, setCurrentUser] = useState(null);
+    const [ errorMessages, setErrorMessages ] = useState({});
 
-    const getCurrentUser = async function () {
-        const currentUser = await Parse.User.current();
-        // Update state variable holding current user
-        setCurrentUser(currentUser);
-        return currentUser;
-      };
+    // User Login database
+    const database = [
+      {
+        username: "user1",
+        password: "pass1"
+      },
+      {
+        username: "Wim Sørensen",
+        password: "pass"
+      },
+      {
+        username: "Sidsel Lysholm",
+        password: "pass"
+      },
+      {
+        username: "Yuni Song",
+        password: "pass"
+      }
+    ];
+
+    const errors = {
+        uname: "Invalid username",
+        pass: "Invalid password"
+    };
 
     // Handles the submit from the login button
-    const handleSubmit = async function() {
+    function handleSubmit() {
 
-    const usernameValue = userName;
-    const passwordValue = password;
-
-    try{
-        const loggedInUser = await Parse.User.logIn(usernameValue, passwordValue);
-        // logIn returns the corresponding ParseUser object
-        console.log(`Success! User ${loggedInUser.get('username')} has successfully signed in!`);
-        
-        // To verify that this is in fact the current user, `current` can be used
-        const currentUser = await Parse.User.current();
-        console.log(loggedInUser === currentUser);
-
-        
-        // Clear input fields
-        setUserName('');
-        setPassword('');
-        // Update state variable holding current user
-        getCurrentUser();
-        setShowProfile(true)
-        return true;
-        
-  
-      } catch (error) {
-        // Error can be caused by wrong parameters or lack of Internet connection
-        setErrorMessages(`Error, ${error.message}`)
-        // console.log(`Error! ${error.message}`);
-        return false;
-      }
+        // Check the database to find a match with the state userName
+        const userData = database.find((user) => user.username === userName);
+        console.log(userData)
+        if(userData){
+            // Check the database to find a match with the state password
+            if(userData.password !== password){
+                // Invalid password
+                setErrorMessages({ name: "pass", message: errors.pass });
+            }
+            else {
+                // Sets the state of showProfile to true
+                setShowProfile(true)
+            }
+        } else {
+            setErrorMessages({ name: "uname", message: errors.uname });
+        }
     }
 
-    const renderErrorMessage = () =>(
-        <div className="error">{errorMessages}</div>
-    );
+    const renderErrorMessage = (name) =>
+        name === errorMessages.name && (
+            <div className="error">{errorMessages.message}</div>
+        );
   
     return (
         <div className="content-container">
@@ -78,15 +81,17 @@ function Login() {
                         <input type="text" placeholder="Type here..." onChange={(event) => {
                             setUserName(event.target.value)
                         }}/>
+                        {renderErrorMessage("uname")}
                     </div>
+                    
                     <div className="input-container">
                         <h3>Password</h3>
                         {/* Changes state of password */}
                         <input type="password" placeholder="Type here..." onChange={(event) => {
                             setPassword(event.target.value)
                         }}/>
+                        {renderErrorMessage("pass")}
                     </div>
-                    {renderErrorMessage()}
                 </div>
 
                 <div className="sign-up-btns">

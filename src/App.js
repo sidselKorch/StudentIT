@@ -9,6 +9,7 @@ import Home from './pages/home/Home';
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import Course1 from "./pages/courses/Course1";
 import AccountSettings from "./pages/accountsettings/AccountSettings";
+import { UserLogin } from "./pages/TestLogin/UserLogin";
 
 // Import Parse minified version
 import Parse from 'parse/dist/parse.min.js';
@@ -25,9 +26,10 @@ function App() {
 
   return (
     <BrowserRouter>
-    <PersonComponent />
+    {/* <PersonComponent /> */}
       <Routes>
         <Route index path="/" element={<LoginChecker />}/>
+        <Route index path="/userlogin" element={<UserLogin />}/>
         <Route path="login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />

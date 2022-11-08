@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { LoginContext } from '../../contexts/LoginContext'
 import { Link } from "react-router-dom";
+import Parse from 'parse/dist/parse.min.js';
+
 
 import "../../common.css"
 import "./home.css"
@@ -14,15 +16,11 @@ function LandingPage() {
     const [bgColor, setBgColor] = useState("blue");
 
     // Initials
+    const currentUser = Parse.User.current();
     let initials = "";
-    if(userName.split(" ").length > 1){
-        const nameArr = userName.split(" ")
-        const FIRST_NAME = nameArr[0].slice(0,1);
-        const LAST_NAME = nameArr[nameArr.length - 1].slice(0,1);
-        initials = FIRST_NAME + LAST_NAME; 
-    } else (
-        initials = userName[0]
-    )
+    const FIRST_NAME = currentUser.get("firstName").slice(0,1);
+    const LAST_NAME = currentUser.get("lastName").slice(0,1);
+    initials = FIRST_NAME + LAST_NAME; 
     
     return (
         <>
@@ -38,7 +36,7 @@ function LandingPage() {
                 </div>
                 <div className='profile'>
                 <Link style={{textDecoration: 'none'}} to="/accountsettings"><div className="user-profile">
-                        <p>{userName}</p>
+                        <p>{currentUser.get("firstName")} {currentUser.get("lastName")}</p>
                         <div className="user-icon">
                             <p className="name-initials" id="name_initials">{initials}</p>
                         </div>
