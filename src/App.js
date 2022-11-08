@@ -10,10 +10,22 @@ import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import Course1 from "./pages/courses/Course1";
 import AccountSettings from "./pages/accountsettings/AccountSettings";
 
+// Import Parse minified version
+import Parse from 'parse/dist/parse.min.js';
+import { PersonComponent } from "./components/PersonComponents/PersonComponent";
+
+// Your Parse initialization configuration goes here
+const PARSE_APPLICATION_ID = 'yMx7C3P5brk5tkEwXX47ibiGyRdc9KZnOi9q9g74';
+const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
+const PARSE_JAVASCRIPT_KEY = 'HvRnRMjxFDstboXIWFLD0rWzUA3FV5VIfU6H04h4';
+Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
+Parse.serverURL = PARSE_HOST_URL;
+
 function App() {
 
   return (
     <BrowserRouter>
+    <PersonComponent />
       <Routes>
         <Route index path="/" element={<LoginChecker />}/>
         <Route path="login" element={<Login />} />
