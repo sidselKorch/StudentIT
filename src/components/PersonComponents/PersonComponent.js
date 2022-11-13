@@ -11,7 +11,7 @@ export const PersonComponent = () => {
       // create a new Parse Object instance
       const Person = new Parse.Object('Person');
       // define the attributes you want for your Object
-      Person.set('name', 'Morten');
+      Person.set('name', 'Søren');
       Person.set('email', 'john@back4app.com');
       // save it on Back4App Data Store
       await Person.save();
@@ -25,7 +25,7 @@ export const PersonComponent = () => {
     // create your Parse Query using the Person Class you've created
     const query = new Parse.Query('Person');
     // use the equalTo filter to look for user which the name is John. this filter can be used in any data type
-    query.equalTo('name', 'John');
+    query.equalTo('name', 'Søren');
     // run the query
     const Person = await query.first();
     // access the Parse Object attributes

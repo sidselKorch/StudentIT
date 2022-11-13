@@ -1,6 +1,8 @@
-import React, { useState, Component } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Parse from 'parse/dist/parse.min.js';
+import { LoginContext } from '../../contexts/LoginContext'
+
 
 
 import "./signup.css";
@@ -12,30 +14,26 @@ const initialValues = {
 };
 
 
+
 function SignUp() {
   const [component, setComponent] = useState("signup");
+  const { setShowProfile }  = useContext(LoginContext);
 
   // States for registration
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  // const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
-  // Handling the name change
+  // Handling the first name change
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
   };
-
+  
+  // Handling the last name change
   const handleLastName = (e) => {
     setLastName(e.target.value);
-  };
-
-  // Handling the phone number change
-  const handlePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
   };
 
   // Handling the email change
@@ -54,28 +52,46 @@ function SignUp() {
   };
 
 
-  async function handleSubmit() {
+  // Functions used by the screen components
+  const handleSignup = async function () {
+    // Note that these values come from state variables that we've declared before
+    const usernameValue = email.split("@")[0];
+    const passwordValue = password;
+    
     try {
-      // create a new Parse Object instance
-      const User = new Parse.Object('NewUser');
-      // define the attributes you want for your Object
-      if (password == repeatPassword){
-        User.set('firstName', firstName);
-        User.set('lastName', lastName);
-        User.set('email', email);
-        User.set('phoneNumber', phoneNumber);
-        User.set('password', password);
+      // Since the signUp method returns a Promise, we need to call it using await
+      if (password === repeatPassword){
+        // Creates user in database
+        const createdUser = await Parse.User.signUp(usernameValue, passwordValue);
+        
+        // Fill out data for user
+        createdUser.set("firstName", firstName)
+        createdUser.set("lastName", lastName)
+        createdUser.set("email", email)
+        await createdUser.save();
+
+        // Reset forms
+        setFirstName("")
+        setLastName("")
+        setEmail("")
+        setPassword("")
+        setRepeatPassword("")
+
+        alert(
+          `Success! User ${createdUser.getUsername()} was successfully created!`
+        );
+        
+        // setShowProfile(true);
+        return true;
       } else {
         alert("Need same password")
       }
-      
-      // save it on Back4App Data Store
-      await User.save();
-      alert('Person saved!');
     } catch (error) {
-      console.log('Error saving new person: ', error);
+      // signUp can fail if any parameter is blank or failed an uniqueness check on the server
+      alert(`Error! ${error}`);
+      return false;
     }
-  }
+  };
 
   return (
     <div className="content-container">
@@ -106,27 +122,22 @@ function SignUp() {
           </div>
 
           <div className="input-container">
-            <h3>Phone Number</h3>
-            <input placeholder="Type here..." onChange={handlePhoneNumber} value={phoneNumber}></input>
-          </div>
-
-          <div className="input-container">
             <h3>Password</h3>
-            <input placeholder="Type here..." onChange={handlePassword} value={password}></input>
+            <input placeholder="Type here..." onChange={handlePassword} type="password" value={password}></input>
           </div>
 
           <div className="input-container">
             <h3>Repeat password</h3>
-            <input placeholder="Type here..." onChange={handleRepeatPassword} value={repeatPassword}></input>
+            <input placeholder="Type here..." onChange={handleRepeatPassword} type="password" value={repeatPassword}></input>
           </div>
 
         </div>
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
-          {/* <Link to="/"><button className="btn">Create Account</button></Link> */}
-          <button className="btn" type="submit" onClick={() => handleSubmit()} >Create Account</button>
+          <button className="btn" type="submit" onClick={() => handleSignup()} >Create Account</button>
         </div>
+  
 
       </div>
 

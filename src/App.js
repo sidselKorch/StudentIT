@@ -1,43 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import Parse from 'parse/dist/parse.min.js';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { LoginContext } from "./contexts/LoginContext";
+
 import "./App.css";
 
 import Login from './pages/login/Login';
-import LoginChecker from "./pages/loginchecker/LoginChecker";
 import SignUp from './pages/signup/SignUp';
 import Home from './pages/home/Home';
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import Course1 from "./pages/courses/Course1";
 import AccountSettings from "./pages/accountsettings/AccountSettings";
-import { UserLogin } from "./pages/TestLogin/UserLogin";
 
-// Import Parse minified version
-import Parse from 'parse/dist/parse.min.js';
-import { PersonComponent } from "./components/PersonComponents/PersonComponent";
 
 // Your Parse initialization configuration goes here
-const PARSE_APPLICATION_ID = 'yMx7C3P5brk5tkEwXX47ibiGyRdc9KZnOi9q9g74';
+const PARSE_APPLICATION_ID = 'SdXFoGj5bqBlkIoppkDvKvFXD30UPSnLKuln3c2w';
 const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
-const PARSE_JAVASCRIPT_KEY = 'HvRnRMjxFDstboXIWFLD0rWzUA3FV5VIfU6H04h4';
+const PARSE_JAVASCRIPT_KEY = 'EFwT6nfGKmEjFyfeGdwimXED1kc44EAP0oj1razX';
 Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
 Parse.serverURL = PARSE_HOST_URL;
 
 function App() {
 
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const checkCurrentUser = async () => {
+      try {
+        const user = await Parse.User.currentAsync();
+        if (user === null || user === undefined) {
+          //   history.push("/");
+        } else {
+          if (currentUser === null) {
+            setCurrentUser(user);
+            console.log(user)
+          }
+        }
+        return true;
+      } catch (_error) {}
+      return false;
+    };
+    checkCurrentUser();
+  });
+
+
   return (
     <BrowserRouter>
-    {/* <PersonComponent /> */}
-      <Routes>
-        <Route index path="/" element={<LoginChecker />}/>
-        <Route index path="/userlogin" element={<UserLogin />}/>
-        <Route path="login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/course1" element={<Course1 />} />
-        <Route exact path="/forgot-password" element={<ForgotPassword />}/>
-        <Route path="/accountsettings" element={<AccountSettings />} />
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route index path="/" element={<Login />}/>
+          {/* <Route path="login" element={<Login />} /> */}
+          <Route path="/home" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/course1" element={<Course1 />} />
+          <Route exact path="/forgot-password" element={<ForgotPassword />}/>
+          <Route path="/accountsettings" element={<AccountSettings />} />
+        </Routes>
+
+        <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
+          {currentUser != null ? <Home /> : <Login />}
+        </LoginContext.Provider>
+
+      </BrowserRouter>
   );
 }
 

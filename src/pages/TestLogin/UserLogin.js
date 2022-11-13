@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
+import { LoginContext } from '../../contexts/LoginContext';
+
 
 
 export const UserLogin = () => {
@@ -8,14 +10,35 @@ export const UserLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
+  const { setShowProfile }  = useContext(LoginContext);
 
   // Function that will return current user and also update current username
   const getCurrentUser = async function () {
     const currentUser = await Parse.User.current();
     // Update state variable holding current user
     setCurrentUser(currentUser);
+    console.log("hej" + (currentUser != null))
     return currentUser;
   };
+
+  useEffect(() => {
+    const checkCurrentUser = async () => {
+      try {
+        const user = await Parse.User.currentAsync();
+        if (user === null || user === undefined) {
+        //   history.push("/");
+        } else {
+          if (currentUser === null) {
+            setCurrentUser(user);
+            console.log(user)
+          }
+        }
+        return true;
+      } catch (_error) {}
+      return false;
+    };
+    checkCurrentUser();
+  });
 
 
   const doUserLogIn = async function () {
@@ -70,7 +93,8 @@ export const UserLogin = () => {
     <div>
       <div className="container">
         <div className="input-wrapper">
-            <h1 className="input-header">{currentUser ? "Hello, " + currentUser.get('username') : "Login to account"}</h1>
+            <h1 className="input-header">{currentUser ? "Hello, " + currentUser.get('firstName') : "Login to account"}</h1>
+            <h2>{currentUser ? "True" : "False"}</h2>
             
             <div className="login-container">
                 <div className="input-container">
