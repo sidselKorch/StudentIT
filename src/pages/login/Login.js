@@ -69,7 +69,7 @@ export function Login() {
                     <div className="input-container">
                         <h3>Password</h3>
                         {/* Changes state of password */}
-                        <input value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Type here..."/>
+                        <input type ="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Type here..."/>
                     </div>
                     {renderErrorMessage("satans")}
                 </div>

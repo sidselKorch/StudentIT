@@ -1,30 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Parse from 'parse/dist/parse.min.js';
-import { LoginContext } from '../../contexts/LoginContext'
-
-
 
 import "./signup.css";
 import "../../common.css"
 
-const initialValues = {
-  email: "",
-  password: "",
-};
-
-
-
 function SignUp() {
-  const [component, setComponent] = useState("signup");
-  const { setShowProfile }  = useContext(LoginContext);
-
   // States for registration
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [test, setTest] = useState("");
 
   // Handling the first name change
   const handleFirstName = (e) => {
@@ -80,8 +68,6 @@ function SignUp() {
         alert(
           `Success! User ${createdUser.getUsername()} was successfully created!`
         );
-        
-        // setShowProfile(true);
         return true;
       } else {
         alert("Need same password")
@@ -92,6 +78,8 @@ function SignUp() {
       return false;
     }
   };
+
+  // Parse.User.logOut();
 
   return (
     <div className="content-container">
