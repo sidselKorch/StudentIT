@@ -42,18 +42,31 @@ function App() {
   });
 
 
-  return (
-<LoginContext.Provider value={{ currentUser, setCurrentUser }}>
-  <BrowserRouter>
-    <Routes>
-      {currentUser != null ? <Home /> : <Login />}
-      <Route index path="/" element={<Login />}/>
-      <Route path="/home" element={<Home />} />
-      <Route path="/signup" element={<SignUp />} />
-    </Routes>
-  </BrowserRouter>
-    </LoginContext.Provider>
-  )
+  if(currentUser != null){
+    return(
+      <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes>
+        </BrowserRouter>
+      </LoginContext.Provider>
+    )
+  } else{
+    return(
+      <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes>
+        </BrowserRouter>
+      </LoginContext.Provider>
+    )
+  }
 }
 
 export default App;
