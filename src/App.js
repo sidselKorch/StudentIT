@@ -41,17 +41,17 @@ function App() {
     checkCurrentUser();
   });
 
+
+  return (
+<LoginContext.Provider value={{ currentUser, setCurrentUser }}>
   <BrowserRouter>
     <Routes>
+      {currentUser != null ? <Home /> : <Login />}
       <Route index path="/" element={<Login />}/>
       <Route path="/home" element={<Home />} />
       <Route path="/signup" element={<SignUp />} />
     </Routes>
   </BrowserRouter>
-
-  return (
-    <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
-      {currentUser != null ? <Home /> : <Login />}
     </LoginContext.Provider>
   )
 }
