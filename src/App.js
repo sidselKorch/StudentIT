@@ -5,6 +5,7 @@ import { LoginContext } from "./contexts/LoginContext";
 
 import Home from './pages/home/Home';
 import { Login } from "./pages/login/Login";
+import SignUp from "./pages/signup/SignUp";
 
 
 import "./App.css";
@@ -44,6 +45,7 @@ function App() {
     <Routes>
       <Route index path="/" element={<Login />}/>
       <Route path="/home" element={<Home />} />
+      <Route path="/signup" element={<SignUp />} />
     </Routes>
   </BrowserRouter>
 
