@@ -70,13 +70,13 @@ export function Login() {
 
                 <div className="sign-up-btns">
                     <button type="submit" onClick={() => doUserLogIn()} className="btn margin-0-auto">Login</button>
-                    {/* <Link to="/signup" className='sign-in-btn'>Sign Up</Link> */}
+                    <Link to="/signup" className='sign-in-btn'>Sign Up</Link>
                 </div>
             </div>
             <div className="bottom-text">
-                {/* <Link to="/forgot-password">Forgot password</Link>
+                <Link to="/forgot-password">Forgot password</Link>
                 <Link to="#">Privacy policy</Link>
-                <Link to="#">© StudentIT 2022</Link> */}
+                <Link to="#">© StudentIT 2022</Link>
             </div>
         </div>
     )  
