@@ -12,6 +12,7 @@ export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { currentUser, setCurrentUser }  = useContext(LoginContext);
+    const [ errorMessage, setErrorMessages ] = useState("");
 
     // Function that will return current user and also update current username
     const getCurrentUser = async function () {
@@ -38,10 +39,15 @@ export function Login() {
         return true;
         } catch (error) {
         // Error can be caused by wrong parameters or lack of Internet connection
-        alert(`Error! ${error.message}`);
-        return false;
+            // alert(`Error! ${error.message}`);
+            setErrorMessages(error.message)
+            return false;
         }
     };
+
+    const renderErrorMessage = () =>(
+        <div className="error">{errorMessage}</div>
+    );
 
     return (
         <div className="content-container">
@@ -65,7 +71,7 @@ export function Login() {
                         {/* Changes state of password */}
                         <input value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Type here..."/>
                     </div>
-                    {/* {renderErrorMessage()} */}
+                    {renderErrorMessage("satans")}
                 </div>
 
                 <div className="sign-up-btns">
