@@ -36,11 +36,10 @@ function Home() {
     let initials = "";
     const FIRST_NAME = currentUser.get("firstName")[0]
     const LAST_NAME = currentUser.get("lastName")[0]
-
-    if(!isNaN(FIRST_NAME) && !isNaN(LAST_NAME)){
+    if(typeof FIRST_NAME !== 'undefined' && typeof LAST_NAME !== 'undefined'){
         initials = FIRST_NAME + LAST_NAME;
     } else {
-        initials = "YE"
+        initials = "NaN"
     }
 
     return (

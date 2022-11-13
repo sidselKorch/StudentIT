@@ -12,8 +12,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [test, setTest] = useState("");
-
+  
   // Handling the first name change
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
