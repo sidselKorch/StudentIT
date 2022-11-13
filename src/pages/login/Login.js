@@ -5,14 +5,13 @@ import { LoginContext } from '../../contexts/LoginContext'
 // import '../../common.css';
 import './login.css';
 
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function Login() {
     // State variables
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { setCurrentUser }  = useContext(LoginContext);
-    // const { currentUser, setCurrentUser }  = useContext(LoginContext);
+    const { currentUser, setCurrentUser }  = useContext(LoginContext);
 
     // Function that will return current user and also update current username
     const getCurrentUser = async function () {
@@ -83,4 +82,4 @@ export function Login() {
     )  
 }
 
-export default Login;
+// export default Login;

@@ -3,15 +3,12 @@ import Parse from 'parse/dist/parse.min.js';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginContext } from "./contexts/LoginContext";
 
-import "./App.css";
-
-import Login from './pages/login/Login';
-import SignUp from './pages/signup/SignUp';
 import Home from './pages/home/Home';
-import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
-import Course1 from "./pages/courses/Course1";
-import AccountSettings from "./pages/accountsettings/AccountSettings";
+import { Login } from "./pages/login/Login";
 
+
+import "./App.css";
+import "./common.css"
 
 // Your Parse initialization configuration goes here
 const PARSE_APPLICATION_ID = 'SdXFoGj5bqBlkIoppkDvKvFXD30UPSnLKuln3c2w';
@@ -43,25 +40,18 @@ function App() {
     checkCurrentUser();
   });
 
+  <BrowserRouter>
+    <Routes>
+      <Route index path="/" element={<Login />}/>
+      <Route path="/home" element={<Home />} />
+    </Routes>
+  </BrowserRouter>
 
   return (
-    <BrowserRouter>
-        <Routes>
-          <Route index path="/" element={<Login />}/>
-          {/* <Route path="login" element={<Login />} /> */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/course1" element={<Course1 />} />
-          <Route exact path="/forgot-password" element={<ForgotPassword />}/>
-          <Route path="/accountsettings" element={<AccountSettings />} />
-        </Routes>
-
-        <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
-          {currentUser != null ? <Home /> : <Login />}
-        </LoginContext.Provider>
-
-      </BrowserRouter>
-  );
+    <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
+      {currentUser != null ? <Home /> : <Login />}
+    </LoginContext.Provider>
+  )
 }
 
 export default App;
