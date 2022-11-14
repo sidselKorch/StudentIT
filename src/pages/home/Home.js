@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { LoginContext } from '../../contexts/LoginContext'
 import { Link } from "react-router-dom";
+import { MessageApi } from '../../api/MessageApi'
 
 import "../../common.css"
 import "./home.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import Chat from '../../components/chat/Chat';
 
 function LandingPage() {
     // Imports the states using context from the parent component App.js
@@ -29,6 +31,7 @@ function LandingPage() {
         <div className="landing-page-wrapper" style={{backgroundColor: "var(--tertiary-" + bgColor + ")"}}>
             <div className='sidebar'>
                 <h1>StudentIT</h1>
+                <MessageApi />
             </div>
             <nav className="nav">
                 <div className='tab-container'>

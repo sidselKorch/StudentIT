@@ -411,3 +411,20 @@ a:hover{
     margin: 0 auto;
     width: fit-content;
 }
+
+.chat-name-container{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.chat-name{
+    margin-left: -80px;
+    padding: 10px 40px 10px 100px;
+
+    font-weight: 400;
+    /* font-size: 12px; */
+    border-radius: 0px 0px 100px 0px;
+    box-shadow: var(--box-shadow-tab);
+    transition: var(--transition);
+    width: fit-content;
+}

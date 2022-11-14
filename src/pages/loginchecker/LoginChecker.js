@@ -17,8 +17,8 @@ function LoginChecker() {
         {/* Uf else statement - if showProfile state is true goes to landing page otherwise login */}
         
         {/* CHANGE BACK! */}
-        {showProfile ? <Home /> : <Login />}
-        {/* <Home /> */}
+        {/* {showProfile ? <Home /> : <Login />} */}
+        <Home />
     </LoginContext.Provider>
             
     )
