@@ -1,7 +1,12 @@
+.main{
+    grid-area: main;
+}
+
 .landing-page-wrapper{
     display: grid;
     grid-template:
-            "sidebar navigationbar" auto
-            "sidebar main" 2fr
-    / auto 1fr;
+        "sidebar navigationbar navigationbar"
+        "sidebar chat-component course-component" 
+        
+        1fr / auto 1fr 1fr;
 }

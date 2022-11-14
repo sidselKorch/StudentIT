@@ -27,6 +27,7 @@ function AccountSettings() {
   // Handling the first name change
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
+    console.log(e.target.value)
   };
 
   // Handling the last name change
@@ -55,6 +56,14 @@ function AccountSettings() {
     currentUser.set("email", email)
     currentUser.save();
   }
+
+  const handleDeletion = async function () {
+    try {
+      await Parse.User.delete();
+      alert("Succesfull deletion")
+    } catch{
+    }
+  }
   
 
   return (
@@ -71,17 +80,17 @@ function AccountSettings() {
 
           <div className="input-container">
             <h3>First Name</h3>
-            <input onChange={handleFirstName} editable={true} value={Parse.User.current().get("firstName")}></input>
+            <input onChange={handleFirstName} defaultValue={Parse.User.current().get("firstName")}></input>
           </div>
 
           <div className="input-container">
             <h3>Last Name</h3>
-            <input placeholder={Parse.User.current().get("lastName")} onChange={handleLastName} value={lastName}></input>
+            <input onChange={handleLastName} defaultValue={Parse.User.current().get("lastName")}></input>
           </div>
 
           <div className="input-container">
             <h3>Email</h3>
-            <input placeholder={Parse.User.current().getEmail()} onChange={handleEmail} value={email}></input>
+            <input onChange={handleEmail} defaultValue={Parse.User.current().getEmail()}></input>
           </div>
 
           <div className="input-container">
@@ -99,6 +108,7 @@ function AccountSettings() {
         <div className="input-btn">
           <Link to="/" >Back</Link>
           <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
+          <button className="btn" type="submit" onClick={() => handleDeletion()} >Delete Account</button>
 
         </div>
 

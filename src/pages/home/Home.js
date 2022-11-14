@@ -5,6 +5,8 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Navigationbar from '../../components/navigationbar/Navigationbar';
 
 import "./home.css"
+import ChatComponent from '../../components/chatComponent/ChatComponent';
+import CourseComponent from '../../components/courseComponent/CourseComponent';
 
 function Home() {
     const { currentUser, setCurrentUser }  = useContext(LoginContext);
@@ -13,7 +15,8 @@ function Home() {
         <div className="landing-page-wrapper" style={{backgroundColor: "var(--tertiary-" + "green" + ")"}}>
             <Sidebar />
             <Navigationbar />
-            <div className="main">{currentUser.getEmail()}</div>
+            <ChatComponent />
+            <CourseComponent />
         </div>
     )
 }
