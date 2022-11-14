@@ -82,7 +82,7 @@ export function Login() {
                 </div>
             </div>
             <div className="bottom-text">
-                <Link to="/forgot-password">Forgot password</Link>
+                <li><Link to="/forgot-password">Forgot password</Link></li>
                 <Link to="#">Privacy policy</Link>
                 <Link to="#">© StudentIT 2022</Link>
             </div>

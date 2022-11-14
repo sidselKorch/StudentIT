@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { LoginContext } from '../../contexts/LoginContext'
 import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
@@ -8,6 +8,8 @@ import "./navigationbar.css"
 function Navigationbar() {
     const { currentUser, setCurrentUser }  = useContext(LoginContext);
     const [bgColor, setBgColor] = useState("blue");
+    const [ courseArray, setCourseArray] = useState([]);
+    const [ localCourseColorArray, setlocalCourseColorArray] = useState([]);
 
     // Function that will return current user and also update current username
     const getCurrentUser = async function () {
@@ -16,8 +18,6 @@ function Navigationbar() {
         setCurrentUser(currentUser);
         return currentUser;
     };
-
-    console.log(currentUser)
 
     const doUserLogOut = async function () {
         try {
@@ -41,12 +41,41 @@ function Navigationbar() {
         initials = "NaN"
     }
 
+
+    // FETCH CORUSES FROM DATABASE AND CREATE BUTTONS
+    useEffect(() => {
+        async function fetchCourses() {
+            // create your Parse Query using the Person Class you've created
+            const query = new Parse.Query('Courses');
+            let courses = await query.find();
+
+            const localCoursesArray = []
+            const localCourseColorArray = []
+            function pushCourseToArray (courseElement){
+            localCoursesArray.push(courseElement.get("CourseTitle"))
+            localCourseColorArray.push(courseElement.get("CourseColor"))
+            }
+
+            courses.forEach(pushCourseToArray);
+            setCourseArray(localCoursesArray)
+            setlocalCourseColorArray(localCourseColorArray)
+        }
+        fetchCourses();
+    },[]);
+    
+    function parseItemtoComponent (item, index){
+        const slashItem = "/" + item.split(" ").join("-").toLowerCase()
+        const color = "tab tab-" + localCourseColorArray[index]
+        return <Link to={slashItem} key={index}><h4 className={color} onClick={() => {setBgColor("red")}}>{item}</h4></Link>
+    }
+
+    const componentList = courseArray.map(parseItemtoComponent);
+
+    // RENDER NAVIGATION BAR
     return (
         <nav className="nav">
             <div className='tab-container'>
-                <Link to="/course1"><h4 className="tab tab-red" onClick={() => {setBgColor("green")}}>Course3</h4></Link>
-                <Link to="/course1"><h4 className="tab tab-blue" onClick={() => {setBgColor("green")}}>Course2</h4></Link>
-                <Link to="/course1"><h4 className="tab tab-green" onClick={() => {setBgColor("green")}}>Course1</h4></Link>
+                {componentList}
             </div>
             <div className='profile'>
                 <Link to="/account-settings">
@@ -57,7 +86,9 @@ function Navigationbar() {
                         </div>
                     </div>
                 </Link>
-                <button type="submit" onClick={() => doUserLogOut()} className="btn margin-0-auto">Logout</button>
+                <Link to="/">
+                    <button type="submit" onClick={() => doUserLogOut()} className="btn margin-0-auto">Logout</button>
+                </Link>
             </div>
         </nav>
     )
