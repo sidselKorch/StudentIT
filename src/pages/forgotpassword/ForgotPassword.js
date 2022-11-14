@@ -24,8 +24,6 @@ function ForgotPassword() {
     }
   };
 
-
-
   return (
     <div className="content-container">
       <div className="hero-text">

@@ -12,7 +12,9 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  
+
+  const [ errorMessage, setErrorMessages ] = useState("");
+
   // Handling the first name change
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -74,9 +76,14 @@ function SignUp() {
     } catch (error) {
       // signUp can fail if any parameter is blank or failed an uniqueness check on the server
       alert(`Error! ${error}`);
+      setErrorMessages(error.message)
       return false;
     }
   };
+
+const renderErrorMessage = () =>(
+    <div className="error">{errorMessage}</div>
+);
 
   // Parse.User.logOut();
 
@@ -90,7 +97,7 @@ function SignUp() {
 
       <div className="input-wrapper">
         <h1 className="input-header">Create account</h1>
-
+        
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">

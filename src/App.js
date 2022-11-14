@@ -7,6 +7,7 @@ import Home from './pages/home/Home';
 import { Login } from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
+import AccountSettings from "./pages/accountsettings/AccountSettings";
 
 
 import "./App.css";
@@ -49,6 +50,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
           </Routes>
         </BrowserRouter>
       </LoginContext.Provider>
@@ -61,6 +65,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
           </Routes>
         </BrowserRouter>
       </LoginContext.Provider>

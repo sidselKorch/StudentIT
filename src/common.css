@@ -100,6 +100,10 @@ a:hover{
     text-decoration: underline;
 }
 
+.error{
+    color: var(--primary-red);
+}
+
 /* MARGIN-0 */
 .margin-0-auto{
     margin: 0 auto;
@@ -293,6 +297,7 @@ a:hover{
 .input-header{
     text-align: left;
     color: var(--primary-blue);
+    width: max-content;
 }
 
 .input-wrapper{

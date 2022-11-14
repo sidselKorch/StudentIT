@@ -1,43 +1,42 @@
-import React, { useState, Component } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { LoginContext } from '../../contexts/LoginContext'
+import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
-// import "../signup/signup.css";
 
 import "../../common.css"
 
-const initialValues = {
-  email: "",
-  password: "",
-};
-
 function AccountSettings() {
-  const [component, setComponent] = useState("signup");
-
+  
   // States for registration
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  
+  const { currentUser, setCurrentUser }  = useContext(LoginContext);
 
-  // Handling the name change
-  const handleName = (e) => {
-    setName(e.target.value);
+  // Function that will return current user and also update current username
+  const getCurrentUser = async function () {
+      const currentUser = await Parse.User.current();
+      // Update state variable holding current user
+      setCurrentUser(currentUser);
+      return currentUser;
   };
 
-  // Handling the phone number change
-  const handlePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
+  // Handling the first name change
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  // Handling the last name change
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   // Handling the email change
   const handleEmail = (e) => {
     setEmail(e.target.value);
-  };
-
-  // Handling the username change
-  const handleUserName = (e) => {
-    setUsername(e.target.value);
   };
 
   // Handling the password change
@@ -49,6 +48,14 @@ function AccountSettings() {
   const handleRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  const handleUpdateUser = () => {
+    currentUser.set("firstName", firstName)
+    currentUser.set("lastName", lastName)
+    currentUser.set("email", email)
+    currentUser.save();
+  }
+  
 
   return (
     <div className="content-container">
@@ -63,40 +70,36 @@ function AccountSettings() {
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-            <h3>Full Name</h3>
-            <input placeholder="Type here..." onChange={handleName} value={name}></input>
+            <h3>First Name</h3>
+            <input onChange={handleFirstName} editable={true} value={Parse.User.current().get("firstName")}></input>
+          </div>
+
+          <div className="input-container">
+            <h3>Last Name</h3>
+            <input placeholder={Parse.User.current().get("lastName")} onChange={handleLastName} value={lastName}></input>
           </div>
 
           <div className="input-container">
             <h3>Email</h3>
-            <input placeholder="Type here..." onChange={handleEmail} value={email}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>User Name</h3>
-            <input placeholder="Type here..." onChange={handleUserName} value={userName}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>Phone Number</h3>
-            <input placeholder="Type here..." onChange={handlePhoneNumber} value={phoneNumber}></input>
+            <input placeholder={Parse.User.current().getEmail()} onChange={handleEmail} value={email}></input>
           </div>
 
           <div className="input-container">
             <h3>Password</h3>
-            <input placeholder="Type here..." onChange={handlePassword} value={password}></input>
+            <input placeholder="Hmm, fiqure this out" onChange={handlePassword} type="password" value={password}></input>
           </div>
 
           <div className="input-container">
             <h3>Repeat password</h3>
-            <input placeholder="Type here..." onChange={handleRepeatPassword} value={repeatPassword}></input>
+            <input placeholder="Hmm, fiqure this out" onChange={handleRepeatPassword} type="password" value={repeatPassword}></input>
           </div>
 
         </div>
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
-          <Link to="/"><button className="btn">Save changes</button></Link>
+          <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
+
         </div>
 
       </div>

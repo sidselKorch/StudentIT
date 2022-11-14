@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import Parse from 'parse/dist/parse.min.js';
 import { LoginContext } from '../../contexts/LoginContext'
 
+import { getCurrentUser } from '../../API/getCurrentUser';
+
 // import '../../common.css';
 import './login.css';
 
@@ -9,18 +11,19 @@ import { Link } from "react-router-dom";
 
 export function Login() {
     // State variables
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const { currentUser, setCurrentUser }  = useContext(LoginContext);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [ errorMessage, setErrorMessages ] = useState("");
 
-    // Function that will return current user and also update current username
-    const getCurrentUser = async function () {
-        const currentUser = await Parse.User.current();
-        // Update state variable holding current user
-        setCurrentUser(currentUser);
-        return currentUser;
-    };
+    // // Function that will return current user and also update current username
+    // const getCurrentUser = async function () {
+    //     const currentUser = await Parse.User.current();
+    //     // Update state variable holding current user
+    //     setCurrentUser(currentUser);
+    //     return currentUser;
+    // };
+
+    <getCurrentUser />
 
     const doUserLogIn = async function () {
         // Note that these values come from state variables that we've declared before
@@ -71,7 +74,7 @@ export function Login() {
                         {/* Changes state of password */}
                         <input type ="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Type here..."/>
                     </div>
-                    {renderErrorMessage("satans")}
+                    {renderErrorMessage()}
                 </div>
 
                 <div className="sign-up-btns">
