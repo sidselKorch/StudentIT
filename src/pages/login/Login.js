@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import Parse from 'parse/dist/parse.min.js';
 import { LoginContext } from '../../contexts/LoginContext'
 
-import { getCurrentUser } from '../../API/getCurrentUser';
+import { getCurrentUserApi } from '../../API/getCurrentUserApi';
 
 // import '../../common.css';
 import './login.css';
@@ -15,6 +15,8 @@ export function Login() {
     const [password, setPassword] = useState("");
     const [ errorMessage, setErrorMessages ] = useState("");
 
+    const { currentUser, setCurrentUser }  = useContext(LoginContext);
+
     // // Function that will return current user and also update current username
     // const getCurrentUser = async function () {
     //     const currentUser = await Parse.User.current();
@@ -23,7 +25,7 @@ export function Login() {
     //     return currentUser;
     // };
 
-    <getCurrentUser />
+    <getCurrentUserApi />
 
     const doUserLogIn = async function () {
         // Note that these values come from state variables that we've declared before
