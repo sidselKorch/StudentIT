@@ -1,5 +1,5 @@
 .hero-text{
-    color: var(--primary-blue);
+    color: var(--primary-color);
 }
 
 .hero-text h1{
@@ -12,7 +12,7 @@
 }
 
 a{
-    color: var(--primary-blue);
+    color: var(--primary-color);
 }
 
 .login-container{

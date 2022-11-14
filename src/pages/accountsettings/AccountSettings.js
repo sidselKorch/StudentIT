@@ -64,7 +64,6 @@ function AccountSettings() {
     } catch{
     }
   }
-  
 
   return (
     <div className="content-container">
@@ -108,8 +107,7 @@ function AccountSettings() {
         <div className="input-btn">
           <Link to="/" >Back</Link>
           <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
-          <button className="btn" type="submit" onClick={() => handleDeletion()} >Delete Account</button>
-
+          {/* <button className="btn" type="submit" onClick={() => handleDeletion()} >Delete Account</button> */}
         </div>
 
       </div>

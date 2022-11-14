@@ -7,6 +7,8 @@
     z-index: 1;
 }
 
+.sidebar 
+
 .chats{
     display: grid;
     margin: 35px 10px 0 10px;
@@ -20,7 +22,7 @@
 }
 
 .sidebar p{
-    background-color: var(--tertiary-blue);
+    background-color: var(--tertiary-color);
     padding: 10px 20px;
     /* width: max-content; */
     height: min-content;
@@ -29,11 +31,11 @@
 }
 
 .sidebar p:hover{
-    background-color: var(--secondary-blue);
+    background-color: var(--secondary-color);
 }
 
 .sidebar h1{
     text-align: center;
     margin-top: 20px;
-    color: var(--primary-blue);
+    color: var(--primary-color);
 }
