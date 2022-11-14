@@ -9,7 +9,6 @@ import SignUp from "./pages/signup/SignUp";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import AccountSettings from "./pages/accountsettings/AccountSettings";
 
-
 import "./App.css";
 import "./common.css"
 
