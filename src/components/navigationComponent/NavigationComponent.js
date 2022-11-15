@@ -66,7 +66,7 @@ function NavigationComponent() {
             fetchCourses();
         }
         count.current = count.current + 1;
-    },[count]);
+    },[]);
 
     function parseItemtoComponent (item, index){
         const pathItem = "/" + item.courseTitle.split(" ").join("-").toLowerCase()

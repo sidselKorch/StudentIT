@@ -49,7 +49,7 @@ function App() {
       <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/" element={<Home />} />
             <Route path="/:courseTitle" element={<Home />}/>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
@@ -61,7 +61,7 @@ function App() {
       <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="*" element={<Navigate to="/" />} /> */}
+            <Route path="*" element={<Navigate to="/" />} />
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
