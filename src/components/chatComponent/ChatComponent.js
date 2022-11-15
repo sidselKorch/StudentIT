@@ -3,12 +3,12 @@ import { LoginContext } from '../../contexts/LoginContext'
 
 import "./chatcomponent.css"
 
-function ChatComponent() {
+function ChatComponent(props) {
   const { currentUser, setCurrentUser }  = useContext(LoginContext);
   
   return (
     <div className="chat-component">
-      <h1>ChatComponent</h1>
+      <h1>{props.id}'s <br></br>ChatComponent</h1>
     </div>
   )
 }

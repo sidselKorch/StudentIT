@@ -3,9 +3,9 @@ import { LoginContext } from '../../contexts/LoginContext'
 import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
 
-import "./navigationbar.css"
+import "./navigationcomponent.css"
 
-function Navigationbar() {
+function NavigationComponent() {
     const { currentUser, setCurrentUser }  = useContext(LoginContext);
     const [bgColor, setBgColor] = useState("blue");
     const [ courseArray, setCourseArray] = useState([]);
@@ -94,4 +94,4 @@ function Navigationbar() {
     )
 }
 
-export default Navigationbar
+export default NavigationComponent

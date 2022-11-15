@@ -1,8 +1,8 @@
 import React from 'react'
 
-import "./sidebar.css"
+import "./sidebarcomponent.css"
 
-function Sidebar() {
+function Sidebar(props) {
   return (
     <div className='sidebar'>
       <h1>StudentIT</h1>

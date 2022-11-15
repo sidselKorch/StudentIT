@@ -29,20 +29,20 @@
 
 :root{
     /* COLORS */
-    --primary-color: hsl(215, 65%, 38%);
+    /* --primary-color: hsl(215, 65%, 38%);
     --secondary-color: hsl(214, 85%, 81%);
     --tertiary-color: hsl(206, 80%, 96%);
-    
+     */
     /* YELLOW */
     /* --primary-color: hsl(35, 90%, 63%);
     --secondary-color:hsl(35, 89%, 86%);
     --tertiary-color: hsl(37, 80%, 98%); */
     
     /* GREEN */
-    /* --primary-color: hsl(152, 21%, 34%);
+    --primary-color: hsl(152, 21%, 34%);
     --secondary-color: hsl(150, 10%, 65%);
     --tertiary-color: hsl(156, 10%, 90%);
-     */
+    
 
     /* RED */
     /* --primary-color: hsl(350, 71%, 43%);

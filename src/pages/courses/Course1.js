@@ -1,8 +1,12 @@
 import React from 'react'
+import { Link, useParams } from "react-router-dom";
 
 function Course1() {
+  const { id } = useParams();
   return (
-    <div>Course1</div>
+    <div>
+      <h2>Now showing post {id}</h2>
+   </div>
   )
 }
 

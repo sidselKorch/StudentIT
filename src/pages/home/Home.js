@@ -1,22 +1,34 @@
-import React, { useState, useContext } from 'react';
-import { LoginContext } from '../../contexts/LoginContext'
+import React from 'react';
+import { useParams } from "react-router-dom";
 
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navigationbar from '../../components/navigationbar/Navigationbar';
-
-import "./home.css"
+import SidebarComponent from '../../components/sidebarComponent/SidebarComponent';
+import NavigationComponent from '../../components/navigationComponent/NavigationComponent';
 import ChatComponent from '../../components/chatComponent/ChatComponent';
 import CourseComponent from '../../components/courseComponent/CourseComponent';
 
+import "./home.css"
+
 function Home() {
-    const { currentUser, setCurrentUser }  = useContext(LoginContext);
-    
+    const { id } = useParams();
+
+    let color = "blue"
+
+    if (id === "technical-interaction-design"){
+        color = "blue"
+    } 
+    if (id === "big-data-management"){
+        color = "green"
+    } 
+    if (id === "database-programming"){
+        color = "red"
+    } 
+
     return (
-        <div className="landing-page-wrapper" style={{backgroundColor: "var(--tertiary-" + "green" + ")"}}>
-            <Sidebar />
-            <Navigationbar />
-            <ChatComponent />
-            <CourseComponent />
+        <div className="landing-page-wrapper" style={{backgroundColor: "var(--tertiary-" + color + ")"}}>
+            <SidebarComponent id={id}/>
+            <NavigationComponent />
+            <ChatComponent id={id} />
+            <CourseComponent id={id}/>
         </div>
     )
 }
