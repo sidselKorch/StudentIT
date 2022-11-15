@@ -9,26 +9,26 @@ import CourseComponent from '../../components/courseComponent/CourseComponent';
 import "./home.css"
 
 function Home() {
-    const { id } = useParams();
+    const { courseTitle } = useParams();
 
     let color = "blue"
 
-    if (id === "technical-interaction-design"){
+    if (courseTitle === "technical-interaction-design"){
         color = "blue"
     } 
-    if (id === "big-data-management"){
+    if (courseTitle === "big-data-management"){
         color = "green"
     } 
-    if (id === "database-programming"){
+    if (courseTitle === "database-programming"){
         color = "red"
     } 
 
     return (
         <div className="landing-page-wrapper" style={{backgroundColor: "var(--tertiary-" + color + ")"}}>
-            <SidebarComponent id={id}/>
+            <SidebarComponent courseTitle={courseTitle}/>
             <NavigationComponent />
-            <ChatComponent id={id} />
-            <CourseComponent id={id}/>
+            <ChatComponent courseTitle={courseTitle} color={color} />
+            <CourseComponent courseTitle={courseTitle}/>
         </div>
     )
 }

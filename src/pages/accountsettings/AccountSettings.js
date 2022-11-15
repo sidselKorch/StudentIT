@@ -1,9 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
-import { LoginContext } from '../../contexts/LoginContext'
+import React, { useState } from "react";
 import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
 
+// CSS
 import "../../common.css"
+
+// COSTUM HOOKS
+import useCurrentUser from '../../hooks/useCurrentUser';
 
 function AccountSettings() {
   
@@ -14,20 +17,13 @@ function AccountSettings() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   
-  const { currentUser, setCurrentUser }  = useContext(LoginContext);
+  // // Function that will return current user and also update current username
+  const { currentUser } = useCurrentUser()
 
-  // Function that will return current user and also update current username
-  const getCurrentUser = async function () {
-      const currentUser = await Parse.User.current();
-      // Update state variable holding current user
-      setCurrentUser(currentUser);
-      return currentUser;
-  };
 
   // Handling the first name change
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
-    console.log(e.target.value)
   };
 
   // Handling the last name change
@@ -57,13 +53,13 @@ function AccountSettings() {
     currentUser.save();
   }
 
-  const handleDeletion = async function () {
-    try {
-      await Parse.User.delete();
-      alert("Succesfull deletion")
-    } catch{
-    }
-  }
+  // const handleDeletion = async function () {
+  //   try {
+  //     await Parse.User.delete();
+  //     alert("Succesfull deletion")
+  //   } catch{
+  //   }
+  // }
 
   return (
     <div className="content-container">

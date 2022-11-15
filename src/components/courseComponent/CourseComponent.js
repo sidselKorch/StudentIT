@@ -5,7 +5,7 @@ import "./coursecomponent.css"
 function CourseComponent(props) {
   return (
     <div className="course-component">
-      <h1>{props.id}'s <br></br>CourseComponent</h1>
+      <h1>{props.courseTitle}'s <br></br>CourseComponent</h1>
     </div>
   )
 }

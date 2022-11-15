@@ -1,14 +1,11 @@
-import React, { useContext } from 'react';
-import { LoginContext } from '../../contexts/LoginContext'
-
+import React from 'react';
 import "./chatcomponent.css"
 
 function ChatComponent(props) {
-  const { currentUser, setCurrentUser }  = useContext(LoginContext);
-  
   return (
     <div className="chat-component">
-      <h1>{props.id}'s <br></br>ChatComponent</h1>
+      <h1>{props.courseTitle}'s <br></br>ChatComponent</h1>
+      <h3 style={{color: "var(--primary-" + props.color + ")"}}>{props.color}</h3>
     </div>
   )
 }

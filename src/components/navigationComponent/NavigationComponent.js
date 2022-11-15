@@ -1,26 +1,22 @@
-import React, { useState, useContext, useEffect} from 'react';
-import { LoginContext } from '../../contexts/LoginContext'
+
+import React, { useState, useEffect, useRef} from 'react';
 import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
 
+// ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
+// CSS
 import "./navigationcomponent.css"
 
-function NavigationComponent() {
-    const { currentUser, setCurrentUser }  = useContext(LoginContext);
-    const [bgColor, setBgColor] = useState("blue");
-    const [ courseArray, setCourseArray] = useState([]);
-    const [ localCourseColorArray, setlocalCourseColorArray] = useState([]);
+// COSTUM HOOKS
+import useCurrentUser from '../../hooks/useCurrentUser';
 
-    // Function that will return current user and also update current username
-    const getCurrentUser = async function () {
-        const currentUser = await Parse.User.current();
-        // Update state variable holding current user
-        setCurrentUser(currentUser);
-        return currentUser;
-    };
+function NavigationComponent() {
+    
+    // // Function that will return current user and also update current username
+    const {currentUser, getCurrentUser} = useCurrentUser()
 
     const doUserLogOut = async function () {
         try {
@@ -44,6 +40,14 @@ function NavigationComponent() {
         initials = "NaN"
     }
 
+    // STILL MISSES SOME ADJUSTMENTS
+    const [CourseInfo, setCourseInfo] = useState([]);    
+
+    const count = useRef(0);
+
+    const addObjectToArray = obj => {
+        setCourseInfo(current => [...current, obj]);
+    };
 
     // FETCH CORUSES FROM DATABASE AND CREATE BUTTONS
     useEffect(() => {
@@ -52,28 +56,26 @@ function NavigationComponent() {
             const query = new Parse.Query('Courses');
             let courses = await query.find();
 
-            const localCoursesArray = []
-            const localCourseColorArray = []
-            function pushCourseToArray (courseElement){
-            localCoursesArray.push(courseElement.get("CourseTitle"))
-            localCourseColorArray.push(courseElement.get("CourseColor"))
+            for (let i = 0; i < courses.length; i++) {
+                addObjectToArray({courseTitle: courses[i].get("CourseTitle"), courseColor: courses[i].get("CourseColor")})
             }
-
-            courses.forEach(pushCourseToArray);
-            setCourseArray(localCoursesArray)
-            setlocalCourseColorArray(localCourseColorArray)
         }
-        fetchCourses();
-    },[]);
-    
+        // console.log("CourseInfo", CourseInfo.length)
+        
+        if (count.current === 1){
+            fetchCourses();
+        }
+        count.current = count.current + 1;
+    },[count]);
+
     function parseItemtoComponent (item, index){
-        const slashItem = "/" + item.split(" ").join("-").toLowerCase()
-        const color = "tab tab-" + localCourseColorArray[index]
-        return <Link to={slashItem} key={index}><h4 className={color} onClick={() => {setBgColor("red")}}>{item}</h4></Link>
+        const pathItem = "/" + item.courseTitle.split(" ").join("-").toLowerCase()
+        const color = "tab tab-" + item.courseColor;
+        return <Link to={pathItem} key={index}><h4 className={color}>{item.courseTitle}</h4></Link>
     }
 
-    const componentList = courseArray.map(parseItemtoComponent);
-
+    const componentList = CourseInfo.map(parseItemtoComponent);
+    
     // RENDER NAVIGATION BAR
     return (
         <nav className="nav">
