@@ -1,0 +1,22 @@
+
+.nav{
+    grid-area: navigationbar;
+    display: flex;
+    justify-content: space-between;
+    z-index: 0;
+    background-color: #fff;
+    height: min-content;
+    width: 100%;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-profile{
+    display: flex;
+    place-items: center;
+    gap: 10px;
+}

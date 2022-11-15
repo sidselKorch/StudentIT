@@ -29,28 +29,51 @@
 
 :root{
     /* COLORS */
+    --primary-color: hsl(215, 65%, 38%);
+    --secondary-color: hsl(214, 85%, 81%);
+    --tertiary-color: hsl(206, 80%, 96%);
+    
+    /* YELLOW */
+    /* --primary-color: hsl(35, 90%, 63%);
+    --secondary-color:hsl(35, 89%, 86%);
+    --tertiary-color: hsl(37, 80%, 98%); */
+    
+    /* GREEN */
+    /* --primary-color: hsl(152, 21%, 34%);
+    --secondary-color: hsl(150, 10%, 65%);
+    --tertiary-color: hsl(156, 10%, 90%);
+     */
+
+    /* RED */
+    /* --primary-color: hsl(350, 71%, 43%);
+    --secondary-color: hsl(349, 55%, 80%);
+    --tertiary-color: hsl(351, 47%, 97%); */
+
+
+    /* GRAYS */
+    --primary-gray: hsl(0, 0%, 20%);
+    --secondary-gray: hsl(0, 0%, 70%);
+    --tertiary-gray: hsl(0, 0%, 95%);
+
+
+    /* COLOR REFERENCE */
     --primary-yellow: hsl(35, 90%, 63%);
     --primary-red: hsl(350, 71%, 43%);
     --primary-green: hwb(153 27% 59%);
     --primary-blue: hsl(215, 65%, 38%);
-    --primary-gray: hsl(0, 0%, 20%);
     
-
     --secondary-yellow: hsl(35, 89%, 86%);
     --secondary-red: hsl(349, 55%, 80%);
     --secondary-green: hsl(150, 10%, 65%);
     --secondary-blue: hsl(214, 85%, 81%);
-    --secondary-gray: hsl(0, 0%, 70%);
-
+    
     --tertiary-yellow: hsl(37, 80%, 98%);
     --tertiary-red: hsl(351, 47%, 97%);
     --tertiary-green: hsl(156, 10%, 90%);
     --tertiary-blue: hsl(206, 80%, 96%);
-    --tertiary-gray: hsl(0, 0%, 95%);
 
+    /* OTHER */
     --box-shadow: 0px 0px 25px hsla(0, 0%, 0%, 0.1);
-    /* --box-shadow-tab: 3px 0px 4px hsla(0, 0%, 0%, 0.05); */
-
     --transition: 300ms ease-in-out;
 }
 
@@ -63,7 +86,7 @@ h1{
 h2{
     font-weight: 700;
     font-size: 18px;
-    color: var(--primary-blue);
+    color: var(--primary-color);
 }
 
 h3{
@@ -94,10 +117,15 @@ li{
 a{
     text-decoration: none;
     font-size: 14px;
+    color: var(--primary-color);
 }
 
 a:hover{
     text-decoration: underline;
+}
+
+.error{
+    color: var(--primary-red);
 }
 
 /* MARGIN-0 */
@@ -111,7 +139,7 @@ a:hover{
     text-align: center;
     text-decoration: none;
     padding: 5px 15px;
-    background-color: var(--primary-blue);
+    background-color: var(--primary-color);
     color: #fff;
     width: fit-content;
     height: min-content;
@@ -161,7 +189,7 @@ a:hover{
     font-size: calc(var(--size)/2.5);
     /* margin: auto; */
     font-weight: 700;
-    color: var(--primary-blue);
+    color: var(--primary-color);
     text-transform: uppercase;
 }
 
@@ -218,11 +246,11 @@ a:hover{
 
 .chat:hover{
     cursor: pointer;
-    background-color: var(--tertiary-blue);
+    background-color: var(--tertiary-color);
 }
 
 .chat-active{
-    background-color: var(--tertiary-blue);
+    background-color: var(--tertiary-color);
     font-weight: 700;
 }
 
@@ -242,7 +270,7 @@ a:hover{
 }
 
 .dot-chat-notification{
-    background-color: var(--primary-blue);
+    background-color: var(--primary-color);
 }
 
 .dot-course-notification{
@@ -292,7 +320,8 @@ a:hover{
 /* INPUT CONTAINER */
 .input-header{
     text-align: left;
-    color: var(--primary-blue);
+    color: var(--primary-color);
+    width: max-content;
 }
 
 .input-wrapper{
@@ -311,7 +340,7 @@ a:hover{
 }
 
 .input-container h3{
-    color: var(--primary-blue);
+    color: var(--primary-color);
     margin-bottom: 5px;
 }
 
@@ -359,7 +388,7 @@ a:hover{
 }
 
 .dropdown li:hover{
-    color: var(--primary-blue);
+    color: var(--primary-color);
     font-weight: 700;
     cursor: pointer;
 }
@@ -390,7 +419,7 @@ a:hover{
 
 .post-flag-small:hover{
     padding: 20px;
-    color: var(--primary-blue);
+    color: var(--primary-color);
 }
 
 .post-flag-large{
@@ -398,7 +427,7 @@ a:hover{
 }
 
 .post-flag-small{
-    color: var(--secondary-blue);
+    color: var(--secondary-color);
     padding: 10px;
 }
 
@@ -409,22 +438,5 @@ a:hover{
     left:0;
     right:0;
     margin: 0 auto;
-    width: fit-content;
-}
-
-.chat-name-container{
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.chat-name{
-    margin-left: -80px;
-    padding: 10px 40px 10px 100px;
-
-    font-weight: 400;
-    /* font-size: 12px; */
-    border-radius: 0px 0px 100px 0px;
-    box-shadow: var(--box-shadow-tab);
-    transition: var(--transition);
     width: fit-content;
 }

@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import "./chat.css"
-import "../../common.css"
+import "./chat.css";
+import "../../common.css";
 
-function Chat(){
-    return(
-        <div className='content-container'>
-        <div className="chat-name-container">
-            <div className="chat-name"> 
-            <h1>Chat</h1>
+import { MessageApi } from "../../api/MessageApi"
+import { ChatApi } from "../../api/ChatApi";
 
-            </div>
-            
-        </div>
-        </div>
-    );
-
+function Chat() {
+  return (
+    <div className="chat-component">
+      <h1>Chat</h1>
+      <MessageApi />
+      <ChatApi />
+    </div>
+  );
 }
 
-export default Chat
+export default Chat;
