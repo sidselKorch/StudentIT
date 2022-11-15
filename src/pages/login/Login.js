@@ -61,25 +61,25 @@ export function Login() {
 
             <div className="input-wrapper">
                 <h1 className="input-header">Login to account</h1>
-                
+
                 <div className="login-container">
                     <div className="input-container">
-                        <h3>Email address</h3>
-                        {/* Changes state of userName */}
+                        <h3>Email Adress </h3>
                         <input value={username} onChange={(event) => setUsername(event.target.value)} placeholder="Type here..."/>
                     </div>
+                    
                     <div className="input-container">
-                        <h3>Password</h3>
-                        {/* Changes state of password */}
+                        <h3>Password </h3>
                         <input type ="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Type here..."/>
+                        {renderErrorMessage()}
                     </div>
-                    {renderErrorMessage()}
                 </div>
 
                 <div className="sign-up-btns">
                     <button type="submit" onClick={() => doUserLogIn()} className="btn margin-0-auto">Login</button>
                     <Link to="/signup" className='sign-in-btn'>Sign Up</Link>
                 </div>
+
             </div>
             <div className="bottom-text">
                 <li><Link to="/forgot-password">Forgot password</Link></li>
@@ -90,4 +90,3 @@ export function Login() {
     )  
 }
 
-// export default Login;
