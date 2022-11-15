@@ -3,6 +3,9 @@ import { LoginContext } from '../../contexts/LoginContext'
 import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
 import "./navigationcomponent.css"
 
 function NavigationComponent() {
@@ -87,7 +90,7 @@ function NavigationComponent() {
                     </div>
                 </Link>
                 <Link to="/">
-                    <button type="submit" onClick={() => doUserLogOut()} className="btn margin-0-auto">Logout</button>
+                    <button type="submit" onClick={() => doUserLogOut()} className="btn logout-btn"><FontAwesomeIcon icon={faSignOutAlt} /></button>
                 </Link>
             </div>
         </nav>
