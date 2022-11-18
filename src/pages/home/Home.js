@@ -11,23 +11,11 @@ import "./home.css"
 function Home() {
     const { courseTitle } = useParams();
 
-    let color = "blue"
-
-    if (courseTitle === "technical-interaction-design"){
-        color = "blue"
-    } 
-    if (courseTitle === "big-data-management"){
-        color = "green"
-    } 
-    if (courseTitle === "database-programming"){
-        color = "red"
-    } 
-
     return (
-        <div className="landing-page-wrapper" style={{backgroundColor: "var(--tertiary-" + color + ")"}}>
+        <div className="landing-page-wrapper">
             <SidebarComponent courseTitle={courseTitle}/>
             <NavigationComponent />
-            <ChatComponent courseTitle={courseTitle} color={color} />
+            <ChatComponent courseTitle={courseTitle} />
             <CourseComponent courseTitle={courseTitle}/>
         </div>
     )

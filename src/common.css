@@ -27,33 +27,39 @@
     border-bottom: 1px solid var(--secondary-gray);
 }
 
+/* COLORS */
 :root{
-    /* COLORS */
     --primary-color: hsl(215, 65%, 38%);
     --secondary-color: hsl(214, 85%, 81%);
     --tertiary-color: hsl(206, 80%, 96%);
-    /* YELLOW */
-    /* --primary-color: hsl(35, 90%, 63%);
-    --secondary-color:hsl(35, 89%, 86%);
-    --tertiary-color: hsl(37, 80%, 98%); */
-    
-    /* GREEN */
-    /* --primary-color: hsl(152, 21%, 34%);
+}
+
+:root:has(#blue:checked){
+    --primary-color: hsl(215, 65%, 38%);
+    --secondary-color: hsl(214, 85%, 81%);
+    --tertiary-color: hsl(206, 80%, 96%);
+}
+:root:has(#green:checked){
+    --primary-color: hsl(152, 21%, 34%);
     --secondary-color: hsl(150, 10%, 65%);
-    --tertiary-color: hsl(156, 10%, 90%); */
-    
-
-    /* RED */
-    /* --primary-color: hsl(350, 71%, 43%);
+    --tertiary-color: hsl(156, 10%, 90%);
+}
+:root:has(#red:checked){
+        --primary-color: hsl(350, 71%, 43%);
     --secondary-color: hsl(349, 55%, 80%);
-    --tertiary-color: hsl(351, 47%, 97%); */
+    --tertiary-color: hsl(351, 47%, 97%);
+}
+:root:has(#yellow:checked){
+    --primary-color: hsl(35, 90%, 63%);
+    --secondary-color:hsl(35, 89%, 86%);
+    --tertiary-color: hsl(37, 80%, 98%);
+}
 
-
+:root{
     /* GRAYS */
     --primary-gray: hsl(0, 0%, 20%);
     --secondary-gray: hsl(0, 0%, 70%);
     --tertiary-gray: hsl(0, 0%, 95%);
-
 
     /* COLOR REFERENCE */
     --primary-yellow: hsl(35, 90%, 63%);
@@ -77,59 +83,65 @@
 }
 
 /* GENERAL */
-h1{
+h1, h2, h3, h4{
     font-weight: 700;
+}
+
+h1{
     font-size: 20px;
 }
 
 h2{
-    font-weight: 700;
     font-size: 18px;
     color: var(--primary-color);
 }
 
 h3{
-    font-weight: 700;
     font-size: 15px;
 }
 
 h4{
-    font-weight: 700;
-    font-size: 12px;
     font-size: 15px;
 }
 
 p{
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 12px;
     font-size: 15px;
+    font-weight: 300;
 }
 
 li{
-    text-decoration: none;
-    list-style: none;
     padding: 0;
     margin: 0;
+    text-decoration: none;
+    list-style: none;
 }
 
 a{
-    text-decoration: none;
     font-size: 14px;
     color: var(--primary-color);
+    text-decoration: none;
 }
 
 a:hover{
-    text-decoration: underline;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a > p:hover{
+    font-weight: 700;
 }
 
 .error{
     color: var(--primary-red);
 }
 
-/* MARGIN-0 */
 .margin-0-auto{
     margin: 0 auto;
+}
+
+input[type="radio"]{
+    display: none;
 }
 
 /* BUTTONS */
@@ -190,47 +202,6 @@ a:hover{
     font-weight: 700;
     color: var(--primary-color);
     text-transform: uppercase;
-}
-
-
-/* TABS */
-.tab-container{
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.tab{
-    margin-left: -80px;
-    padding: 10px 40px 10px 100px;
-
-    font-weight: 400;
-    /* font-size: 12px; */
-    border-radius: 0px 100px 0px 0px;
-    box-shadow: var(--box-shadow-tab);
-    transition: var(--transition);
-    width: fit-content;
-}
-
-.tab:hover{
-    cursor: pointer;
-    padding: 10px 60px 10px 120px;
-}
-
-.tab-blue{
-    background-color: var(--tertiary-blue);
-    color: var(--primary-blue);
-}
-.tab-red{
-    background-color: var(--tertiary-red);
-    color: var(--primary-red);
-}
-.tab-yellow{
-    background-color: var(--tertiary-yellow);
-    color: var(--primary-yellow);
-}
-.tab-green{
-    background-color: var(--tertiary-green);
-    color: var(--primary-green);
 }
 
 /* CHAT USERS */
