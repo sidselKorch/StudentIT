@@ -71,10 +71,6 @@ function SignUp() {
         setEmail("")
         setPassword("")
         setRepeatPassword("")
-
-        alert(
-          `Success! User ${createdUser.getUsername()} was successfully created!`
-        );
         getCurrentUser()
         return true;
       } else {
@@ -92,8 +88,6 @@ function SignUp() {
 const renderErrorMessage = () =>(
     <div className="error">{errorMessage}</div>
 );
-
-  // Parse.User.logOut();
 
   return (
     <div className="content-container">

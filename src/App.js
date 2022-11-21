@@ -54,6 +54,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/:courseTitle" element={<Home />}/>
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/signup" element={<Navigate to="/" />} />
             <Route path="/account-settings" element={<AccountSettings />} />
           </Routes>
         </BrowserRouter>
