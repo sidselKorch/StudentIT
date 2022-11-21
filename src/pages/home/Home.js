@@ -7,6 +7,9 @@ import Chat from "../../components/chat/Chat";
 import Sidebar from "../../components/sidebar/Sidebar";
 import PostComponent from "../../components/postcomponent/PostComponent";
 import Navigationbar from "../../components/navigationbar/NavigationBar";
+import { useParams } from "react-router-dom";
+import { Button } from "antd";
+import Parse from "parse";
 
 function Home() {
     const { currentUser, setCurrentUser }  = useContext(LoginContext);

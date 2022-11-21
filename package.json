@@ -5,9 +5,13 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@parse/react": "^0.0.1-alpha.18",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.24.2",
+    "cra-template-typescript": "^1.2.0",
+    "npx": "^10.2.2",
     "parse": "^3.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

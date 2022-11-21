@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import Parse from "parse/dist/parse.min.js";
 import { LoginContext } from "./contexts/LoginContext";
+import { initializeParse } from  '@parse/react';
 import "./App.css";
 import "./common.css"
 
@@ -19,6 +20,9 @@ function App() {
   const PARSE_JAVASCRIPT_KEY = "WGjW7ApXRydSe8LC70gNWngqqgG3CTuDPPl8JiQs";
   Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
   Parse.serverURL = PARSE_HOST_URL;
+
+  const BACK_4_APP_SUBDOMAIN = "https://studentitsid.b4a.io"
+  initializeParse(BACK_4_APP_SUBDOMAIN, PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY)
 
   const [currentUser, setCurrentUser] = useState(null);
   const [ courseArray, setCourseArray] = useState([]);
