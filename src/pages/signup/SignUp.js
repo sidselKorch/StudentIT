@@ -5,6 +5,9 @@ import Parse from 'parse/dist/parse.min.js';
 import "./signup.css";
 import "../../common.css"
 
+// COSTUM HOOKS
+import useCurrentUser from '../../hooks/useCurrentUser';
+
 function SignUp() {
   // States for registration
   const [firstName, setFirstName] = useState("");
@@ -14,6 +17,9 @@ function SignUp() {
   const [repeatPassword, setRepeatPassword] = useState("");
 
   const [ errorMessage, setErrorMessages ] = useState("");
+
+  const { getCurrentUser } = useCurrentUser()
+
 
   // Handling the first name change
   const handleFirstName = (e) => {
@@ -69,6 +75,7 @@ function SignUp() {
         alert(
           `Success! User ${createdUser.getUsername()} was successfully created!`
         );
+        getCurrentUser()
         return true;
       } else {
         alert("Need same password")
@@ -80,6 +87,7 @@ function SignUp() {
       return false;
     }
   };
+
 
 const renderErrorMessage = () =>(
     <div className="error">{errorMessage}</div>

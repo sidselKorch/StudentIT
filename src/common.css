@@ -179,6 +179,11 @@ input[type="radio"]{
     color: var(--primary-gray);
     padding: 0;
 }
+.btn-delete{
+    background: none;
+    color: var(--primary-red);
+    font-weight: 400;
+}
 
 /* USER ICONS */
 .user-icon{

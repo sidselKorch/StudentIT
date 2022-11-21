@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Parse from 'parse/dist/parse.min.js';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // CSS
 import "../../common.css"
@@ -18,7 +18,7 @@ function AccountSettings() {
   const [repeatPassword, setRepeatPassword] = useState("");
   
   // // Function that will return current user and also update current username
-  const { currentUser } = useCurrentUser()
+  const { currentUser, getCurrentUser } = useCurrentUser()
 
 
   // Handling the first name change
@@ -53,13 +53,17 @@ function AccountSettings() {
     currentUser.save();
   }
 
-  // const handleDeletion = async function () {
-  //   try {
-  //     await Parse.User.delete();
-  //     alert("Succesfull deletion")
-  //   } catch{
-  //   }
-  // }
+  const handleDeleteUser = async function () {
+    try {
+      await currentUser.destroy();
+      getCurrentUser()
+      return true;
+    } catch (error) {
+      // Error can be caused by lack of Internet connection
+      alert(`Error ${error.message}`);
+      return false;
+    };
+  };
 
   return (
     <div className="content-container">
@@ -102,8 +106,8 @@ function AccountSettings() {
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
+          <button className="btn btn-delete" type="submit" onClick={() => handleDeleteUser()} >Delete User</button>
           <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
-          {/* <button className="btn" type="submit" onClick={() => handleDeletion()} >Delete Account</button> */}
         </div>
 
       </div>
