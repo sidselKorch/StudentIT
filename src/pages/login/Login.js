@@ -1,68 +1,51 @@
-import React, { useState, useContext } from 'react'
-import { LoginContext } from '../../contexts/LoginContext'
-
-import '../../common.css';
-import './login.css';
-
+import React, { useState } from 'react';
+import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
 
-function Login() {
+// CSS
+import './login.css';
 
-    // Imports the states using context from the parent component App.js
-    const { userName, setUserName, password, setPassword, setShowProfile }  = useContext(LoginContext);
-    const [ errorMessages, setErrorMessages ] = useState({});
+// COSTUM HOOKS
+import useCurrentUser from '../../hooks/useCurrentUser';
 
-    // User Login database
-    const database = [
-      {
-        username: "user1",
-        password: "pass1"
-      },
-      {
-        username: "Wim Sørensen",
-        password: "pass"
-      },
-      {
-        username: "Sidsel Lysholm",
-        password: "pass"
-      },
-      {
-        username: "Yuni Song",
-        password: "pass"
-      }
-    ];
 
-    const errors = {
-        uname: "Invalid username",
-        pass: "Invalid password"
+export function Login() {
+    // State variables
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [ errorMessage, setErrorMessages ] = useState("");
+
+    // // Function that will return current user and also update current username
+    const { getCurrentUser } = useCurrentUser()
+
+    const doUserLogIn = async function () {
+        // Note that these values come from state variables that we've declared before
+        const usernameValue = username;
+        const passwordValue = password;
+        try {
+            await Parse.User.logIn(usernameValue, passwordValue);
+            
+            // To verify that this is in fact the current user, `current` can be used
+            // const currentUser = await Parse.User.current();
+            // console.log(loggedInUser === currentUser);
+
+            setUsername('');
+            setPassword('');
+
+            getCurrentUser();
+            return true;
+        } catch (error) {
+        // Error can be caused by wrong parameters or lack of Internet connection
+            // alert(`Error! ${error.message}`);
+            setErrorMessages(error.message)
+            return false;
+        }
     };
 
-    // Handles the submit from the login button
-    function handleSubmit() {
+    const renderErrorMessage = () =>(
+        <div className="error">{errorMessage}</div>
+    );
 
-        // Check the database to find a match with the state userName
-        const userData = database.find((user) => user.username === userName);
-        console.log(userData)
-        if(userData){
-            // Check the database to find a match with the state password
-            if(userData.password !== password){
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.pass });
-            }
-            else {
-                // Sets the state of showProfile to true
-                setShowProfile(true)
-            }
-        } else {
-            setErrorMessages({ name: "uname", message: errors.uname });
-        }
-    }
-
-    const renderErrorMessage = (name) =>
-        name === errorMessages.name && (
-            <div className="error">{errorMessages.message}</div>
-        );
-  
     return (
         <div className="content-container">
             <div className="hero-text">
@@ -73,32 +56,25 @@ function Login() {
 
             <div className="input-wrapper">
                 <h1 className="input-header">Login to account</h1>
-                
+
                 <div className="login-container">
                     <div className="input-container">
-                        <h3>Email address</h3>
-                        {/* Changes state of userName */}
-                        <input type="text" placeholder="Type here..." onChange={(event) => {
-                            setUserName(event.target.value)
-                        }}/>
-                        {renderErrorMessage("uname")}
+                        <h3>Email Adress </h3>
+                        <input value={username} onChange={(event) => setUsername(event.target.value)} placeholder="Type here..."/>
                     </div>
                     
                     <div className="input-container">
-                        <h3>Password</h3>
-                        {/* Changes state of password */}
-                        <input type="password" placeholder="Type here..." onChange={(event) => {
-                            setPassword(event.target.value)
-                        }}/>
-                        {renderErrorMessage("pass")}
+                        <h3>Password </h3>
+                        <input type ="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Type here..."/>
+                        {renderErrorMessage()}
                     </div>
                 </div>
 
                 <div className="sign-up-btns">
-                    <button type="submit" onClick={() => handleSubmit()
-                    } className="btn margin-0-auto">Login</button>
+                    <button type="submit" onClick={() => doUserLogIn()} className="btn margin-0-auto">Login</button>
                     <Link to="/signup" className='sign-in-btn'>Sign Up</Link>
                 </div>
+
             </div>
             <div className="bottom-text">
                 <Link to="/forgot-password">Forgot password</Link>
@@ -106,7 +82,6 @@ function Login() {
                 <Link to="#">© StudentIT 2022</Link>
             </div>
         </div>
-    )
+    )  
 }
 
-export default Login

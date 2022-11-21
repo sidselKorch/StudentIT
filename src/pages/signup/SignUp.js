@@ -1,43 +1,39 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./signup.css";
+import Parse from 'parse/dist/parse.min.js';
 
+import "./signup.css";
 import "../../common.css"
 
-const initialValues = {
-  email: "",
-  password: "",
-};
+// COSTUM HOOKS
+import useCurrentUser from '../../hooks/useCurrentUser';
 
 function SignUp() {
-  const [component, setComponent] = useState("signup");
-
   // States for registration
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
-  // Handling the name change
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
+  const [ errorMessage, setErrorMessages ] = useState("");
 
-  // Handling the phone number change
-  const handlePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
+  const { getCurrentUser } = useCurrentUser()
+
+
+  // Handling the first name change
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  
+  // Handling the last name change
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   // Handling the email change
   const handleEmail = (e) => {
     setEmail(e.target.value);
-  };
-
-  // Handling the username change
-  const handleUserName = (e) => {
-    setUsername(e.target.value);
   };
 
   // Handling the password change
@@ -50,6 +46,55 @@ function SignUp() {
     setRepeatPassword(e.target.value);
   };
 
+
+  // Functions used by the screen components
+  const handleSignup = async function () {
+    // Note that these values come from state variables that we've declared before
+    const usernameValue = email;
+    const passwordValue = password;
+    
+    try {
+      // Since the signUp method returns a Promise, we need to call it using await
+      if (password === repeatPassword){
+        // Creates user in database
+        const createdUser = await Parse.User.signUp(usernameValue, passwordValue);
+        
+        // Fill out data for user
+        createdUser.set("firstName", firstName)
+        createdUser.set("lastName", lastName)
+        createdUser.set("email", email)
+        await createdUser.save();
+
+        // Reset forms
+        setFirstName("")
+        setLastName("")
+        setEmail("")
+        setPassword("")
+        setRepeatPassword("")
+
+        alert(
+          `Success! User ${createdUser.getUsername()} was successfully created!`
+        );
+        getCurrentUser()
+        return true;
+      } else {
+        alert("Need same password")
+      }
+    } catch (error) {
+      // signUp can fail if any parameter is blank or failed an uniqueness check on the server
+      alert(`Error! ${error}`);
+      setErrorMessages(error.message)
+      return false;
+    }
+  };
+
+
+const renderErrorMessage = () =>(
+    <div className="error">{errorMessage}</div>
+);
+
+  // Parse.User.logOut();
+
   return (
     <div className="content-container">
       <div className="hero-text">
@@ -60,12 +105,17 @@ function SignUp() {
 
       <div className="input-wrapper">
         <h1 className="input-header">Create account</h1>
-
+        
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-            <h3>Full Name</h3>
-            <input placeholder="Type here..." onChange={handleName} value={name}></input>
+            <h3>First Name</h3>
+            <input placeholder="Type here..." onChange={handleFirstName} value={firstName}></input>
+          </div>
+
+          <div className="input-container">
+            <h3>Last Name</h3>
+            <input placeholder="Type here..." onChange={handleLastName} value={lastName}></input>
           </div>
 
           <div className="input-container">
@@ -74,31 +124,22 @@ function SignUp() {
           </div>
 
           <div className="input-container">
-            <h3>User Name</h3>
-            <input placeholder="Type here..." onChange={handleUserName} value={userName}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>Phone Number</h3>
-            <input placeholder="Type here..." onChange={handlePhoneNumber} value={phoneNumber}></input>
-          </div>
-
-          <div className="input-container">
             <h3>Password</h3>
-            <input placeholder="Type here..." onChange={handlePassword} value={password}></input>
+            <input placeholder="Type here..." onChange={handlePassword} type="password" value={password}></input>
           </div>
 
           <div className="input-container">
             <h3>Repeat password</h3>
-            <input placeholder="Type here..." onChange={handleRepeatPassword} value={repeatPassword}></input>
+            <input placeholder="Type here..." onChange={handleRepeatPassword} type="password" value={repeatPassword}></input>
           </div>
 
         </div>
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
-          <Link to="/"><button className="btn">Create Account</button></Link>
+          <button className="btn" type="submit" onClick={() => handleSignup()} >Create Account</button>
         </div>
+  
 
       </div>
 

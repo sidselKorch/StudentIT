@@ -1,43 +1,39 @@
-import React, { useState, Component } from "react";
-import { Link } from "react-router-dom";
-// import "../signup/signup.css";
+import React, { useState } from "react";
+import Parse from 'parse/dist/parse.min.js';
+import { Link, useNavigate } from "react-router-dom";
 
+// CSS
 import "../../common.css"
 
-const initialValues = {
-  email: "",
-  password: "",
-};
+// COSTUM HOOKS
+import useCurrentUser from '../../hooks/useCurrentUser';
 
 function AccountSettings() {
-  const [component, setComponent] = useState("signup");
-
+  
   // States for registration
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  
+  // // Function that will return current user and also update current username
+  const { currentUser, getCurrentUser } = useCurrentUser()
 
-  // Handling the name change
-  const handleName = (e) => {
-    setName(e.target.value);
+
+  // Handling the first name change
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
   };
 
-  // Handling the phone number change
-  const handlePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
+  // Handling the last name change
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   // Handling the email change
   const handleEmail = (e) => {
     setEmail(e.target.value);
-  };
-
-  // Handling the username change
-  const handleUserName = (e) => {
-    setUsername(e.target.value);
   };
 
   // Handling the password change
@@ -48,6 +44,25 @@ function AccountSettings() {
   // Handling the repeat password change
   const handleRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const handleUpdateUser = () => {
+    currentUser.set("firstName", firstName)
+    currentUser.set("lastName", lastName)
+    currentUser.set("email", email)
+    currentUser.save();
+  }
+
+  const handleDeleteUser = async function () {
+    try {
+      await currentUser.destroy();
+      getCurrentUser()
+      return true;
+    } catch (error) {
+      // Error can be caused by lack of Internet connection
+      alert(`Error ${error.message}`);
+      return false;
+    };
   };
 
   return (
@@ -63,40 +78,36 @@ function AccountSettings() {
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-            <h3>Full Name</h3>
-            <input placeholder="Type here..." onChange={handleName} value={name}></input>
+            <h3>First Name</h3>
+            <input onChange={handleFirstName} defaultValue={currentUser.get("firstName")}></input>
+          </div>
+
+          <div className="input-container">
+            <h3>Last Name</h3>
+            <input onChange={handleLastName} defaultValue={currentUser.get("lastName")}></input>
           </div>
 
           <div className="input-container">
             <h3>Email</h3>
-            <input placeholder="Type here..." onChange={handleEmail} value={email}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>User Name</h3>
-            <input placeholder="Type here..." onChange={handleUserName} value={userName}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>Phone Number</h3>
-            <input placeholder="Type here..." onChange={handlePhoneNumber} value={phoneNumber}></input>
+            <input onChange={handleEmail} defaultValue={currentUser.getEmail()}></input>
           </div>
 
           <div className="input-container">
             <h3>Password</h3>
-            <input placeholder="Type here..." onChange={handlePassword} value={password}></input>
+            <input placeholder="Hmm, fiqure this out" onChange={handlePassword} type="password" value={password}></input>
           </div>
 
           <div className="input-container">
             <h3>Repeat password</h3>
-            <input placeholder="Type here..." onChange={handleRepeatPassword} value={repeatPassword}></input>
+            <input placeholder="Hmm, fiqure this out" onChange={handleRepeatPassword} type="password" value={repeatPassword}></input>
           </div>
 
         </div>
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
-          <Link to="/"><button className="btn">Save changes</button></Link>
+          <button className="btn btn-delete" type="submit" onClick={() => handleDeleteUser()} >Delete User</button>
+          <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
         </div>
 
       </div>
