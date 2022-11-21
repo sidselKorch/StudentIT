@@ -27,8 +27,10 @@ function App() {
     const checkCurrentUser = async () => {
       try {
         const user = await Parse.User.currentAsync();
-        if (user === null || user === undefined) {
-          //   history.push("/");
+        if (user === null && window.location.pathname !== "/") {
+          // if(window.location.pathname !== "/"){
+            window.location.pathname = "/"
+        // }
         } else {
           if (currentUser === null) {
             setCurrentUser(user);
@@ -52,6 +54,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/:courseTitle" element={<Home />}/>
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
           </Routes>
         </BrowserRouter>
       </LoginContext.Provider>
@@ -65,7 +68,6 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/account-settings" element={<AccountSettings />} />
           </Routes>
         </BrowserRouter>
       </LoginContext.Provider>

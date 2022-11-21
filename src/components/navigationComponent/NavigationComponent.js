@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef} from 'react';
 import Parse from 'parse/dist/parse.min.js';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -56,25 +56,33 @@ function NavigationComponent() {
         count.current = count.current + 1;
     },[]);
 
-    function check(id) {
+    function checkRadioButton(id) {
         document.getElementById(id).checked = true;
       }
 
     let location = useLocation();
+    const navigate = useNavigate();
+
+    let lastPathItem = ""
+
+    const navigateToLastPathItem = () => {
+        navigate(lastPathItem);
+    };
   
     function parseItemtoComponent (item, index){
         const pathItem = "/" + item.courseTitle.split(" ").join("-").toLowerCase()
         const color = "tab tab-" + item.courseColor;
-        console.log(pathItem)
+        console.log("PathItem", pathItem)
         if(pathItem === location.pathname){
             return <div key={index}>
-                        <Link to={pathItem}><h4 className={color} onClick={() => check(item.courseColor)}>{item.courseTitle}</h4></Link>
+                        <Link to={pathItem}><h4 className={color} onClick={() => checkRadioButton(item.courseColor)}>{item.courseTitle}</h4></Link>
                         <input type="radio" id={item.courseColor} name="theme" defaultChecked/>
                     </div>
 
         } else {
+            lastPathItem = pathItem;
             return <div key={index}>
-                        <Link to={pathItem}><h4 className={color} onClick={() => check(item.courseColor)}>{item.courseTitle}</h4></Link>
+                        <Link to={pathItem}><h4 className={color} onClick={() => checkRadioButton(item.courseColor)}>{item.courseTitle}</h4></Link>
                         <input type="radio" id={item.courseColor} name="theme"/>
                     </div>
 
@@ -83,7 +91,7 @@ function NavigationComponent() {
 
     const componentList = CourseInfo.map(parseItemtoComponent);
 
-    if(componentList.length === 0){
+    if(componentList.length === 0 && currentUser != null){
         return(
         <nav className="nav">
             <div className='tab-container'>
@@ -112,6 +120,9 @@ function NavigationComponent() {
             </div>
         </nav>
     )} else{
+        if(location.pathname === "/" && currentUser != null)
+            {navigateToLastPathItem()
+        } 
         return (
             <nav className="nav">
                 <div className='tab-container'>
