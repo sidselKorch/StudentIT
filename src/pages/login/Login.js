@@ -77,7 +77,7 @@ export function Login() {
 
             </div>
             <div className="bottom-text">
-                <li><Link to="/forgot-password">Forgot password</Link></li>
+                <Link to="/forgot-password">Forgot password</Link>
                 <Link to="#">Privacy policy</Link>
                 <Link to="#">© StudentIT 2022</Link>
             </div>

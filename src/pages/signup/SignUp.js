@@ -50,7 +50,7 @@ function SignUp() {
   // Functions used by the screen components
   const handleSignup = async function () {
     // Note that these values come from state variables that we've declared before
-    const usernameValue = email.split("@")[0];
+    const usernameValue = email;
     const passwordValue = password;
     
     try {
