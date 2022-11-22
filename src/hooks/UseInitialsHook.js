@@ -9,6 +9,7 @@ function useInitialsHook(currentUser){
     }
 
     return {initials}
+    
 }
 
 export default useInitialsHook;
