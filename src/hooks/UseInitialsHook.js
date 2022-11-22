@@ -1,4 +1,4 @@
-function UseInitialsHook(currentUser){
+function useInitialsHook(currentUser){
     let initials = "";
     const FIRST_NAME = currentUser.get("firstName")[0]
     const LAST_NAME = currentUser.get("lastName")[0]
@@ -11,4 +11,4 @@ function UseInitialsHook(currentUser){
     return {initials}
 }
 
-export default UseInitialsHook;
+export default useInitialsHook;

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUser from '../../hooks/UseCurrentUserHook';
+import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 function AccountSettings() {
   
@@ -17,7 +17,7 @@ function AccountSettings() {
   const [repeatPassword, setRepeatPassword] = useState("");
   
   // // Function that will return current user and also update current username
-  const { currentUser, getCurrentUser } = useCurrentUser()
+  const { currentUser, getCurrentUser } = useCurrentUserHook()
 
 
   // Handling the first name change

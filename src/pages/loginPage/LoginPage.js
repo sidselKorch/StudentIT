@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import './loginpage.css';
 
 // COSTUM HOOKS
-import useCurrentUser from '../../hooks/UseCurrentUserHook';
+import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 
 export function Login() {
@@ -16,7 +16,7 @@ export function Login() {
     const [ errorMessage, setErrorMessages ] = useState("");
 
     // // Function that will return current user and also update current username
-    const { getCurrentUser } = useCurrentUser()
+    const { getCurrentUser } = useCurrentUserHook()
 
     const doUserLogIn = async function () {
         // Note that these values come from state variables that we've declared before

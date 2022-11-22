@@ -6,7 +6,7 @@ import "./signuppage.css";
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUser from '../../hooks/UseCurrentUserHook';
+import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 function SignUp() {
   // States for registration
@@ -18,7 +18,7 @@ function SignUp() {
 
   const [ errorMessage, setErrorMessages ] = useState("");
 
-  const { getCurrentUser } = useCurrentUser()
+  const { getCurrentUser } = useCurrentUserHook()
 
 
   // Handling the first name change
