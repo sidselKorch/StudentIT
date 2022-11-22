@@ -12,8 +12,8 @@ import "./navigationcomponent.css"
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUserHook from '../../hooks/useCurrentHook';
-import useInitialsHook from '../../hooks/usehumlebuksHook';
+import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+import useInitialsHook from '../../hooks/useInitialsHook';
 
 function NavigationComponent() {
     

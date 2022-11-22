@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUserHook from '../../hooks/useCurrentHook';
+import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 function AccountSettings() {
   

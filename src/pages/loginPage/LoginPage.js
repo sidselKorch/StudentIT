@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import './loginpage.css';
 
 // COSTUM HOOKS
-import useCurrentUserHook from '../../hooks/useCurrentHook';
+import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 
 export function Login() {
