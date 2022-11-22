@@ -14,6 +14,7 @@ function useCurrentUserHook(){
     };
 
     return {currentUser, setCurrentUser, getCurrentUser}
+    
 }
 
 export default useCurrentUserHook;
