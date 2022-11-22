@@ -12,16 +12,16 @@ import "./navigationcomponent.css"
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUser from '../../hooks/UseCurrentUserHook';
-import useInitials from '../../hooks/UseInitials';
+import useCurrentUserHook from '../../hooks/UseCurrentUserHook';
+import useInitialsHook from '../../hooks/UseInitialsHook';
 
 function NavigationComponent() {
     
     // // Function that will return current user and also update current username
     const [ CourseInfo, setCourseInfo] = useState([]);    
     const count = useRef(0);
-    const { currentUser, getCurrentUser } = useCurrentUser()
-    const { initials } = useInitials(currentUser)
+    const { currentUser, getCurrentUser } = useCurrentUserHook()
+    const { initials } = useInitialsHook(currentUser)
 
     const doUserLogOut = async function () {
         try {
