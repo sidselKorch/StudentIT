@@ -6,7 +6,7 @@ import "./signuppage.css";
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+import useCurrentUserHook from '../../hooks/useCurrentHook';
 
 function SignUp() {
   // States for registration
