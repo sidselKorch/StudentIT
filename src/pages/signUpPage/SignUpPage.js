@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Parse from 'parse/dist/parse.min.js';
 
-import "./signup.css";
+import "./signuppage.css";
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUser from '../../hooks/useCurrentUser';
+import useCurrentUser from '../../hooks/UseCurrentUserHook';
 
 function SignUp() {
   // States for registration

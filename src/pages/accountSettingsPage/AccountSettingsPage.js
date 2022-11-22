@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Parse from 'parse/dist/parse.min.js';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // CSS
 import "../../common.css"
 
 // COSTUM HOOKS
-import useCurrentUser from '../../hooks/useCurrentUser';
+import useCurrentUser from '../../hooks/UseCurrentUserHook';
 
 function AccountSettings() {
   

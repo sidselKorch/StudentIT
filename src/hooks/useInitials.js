@@ -1,4 +1,4 @@
-function useInitials(currentUser){
+function UseInitials(currentUser){
     let initials = "";
     const FIRST_NAME = currentUser.get("firstName")[0]
     const LAST_NAME = currentUser.get("lastName")[0]
@@ -11,4 +11,4 @@ function useInitials(currentUser){
     return {initials}
 }
 
-export default useInitials;
+export default UseInitials;

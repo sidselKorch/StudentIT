@@ -2,7 +2,7 @@ import { useContext} from 'react';
 import { LoginContext } from '../contexts/LoginContext'
 import Parse from 'parse/dist/parse.min.js';
 
-function useCurrentUser(){
+function UseCurrentUser(){
     
     const { currentUser, setCurrentUser }  = useContext(LoginContext);
     
@@ -16,4 +16,4 @@ function useCurrentUser(){
     return {currentUser, setCurrentUser, getCurrentUser}
 }
 
-export default useCurrentUser;
+export default UseCurrentUser;

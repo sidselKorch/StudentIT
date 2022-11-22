@@ -3,10 +3,10 @@ import Parse from 'parse/dist/parse.min.js';
 import { Link } from "react-router-dom";
 
 // CSS
-import './login.css';
+import './loginpage.css';
 
 // COSTUM HOOKS
-import useCurrentUser from '../../hooks/useCurrentUser';
+import useCurrentUser from '../../hooks/UseCurrentUserHook';
 
 
 export function Login() {

@@ -3,11 +3,11 @@ import Parse from 'parse/dist/parse.min.js';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { LoginContext } from "./contexts/LoginContext";
 
-import Home from './pages/home/Home';
-import { Login } from "./pages/login/Login";
-import SignUp from "./pages/signup/SignUp";
-import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
-import AccountSettings from "./pages/accountsettings/AccountSettings";
+import Home from './pages/homePage/HomePage';
+import { Login } from "./pages/loginPage/LoginPage";
+import SignUp from "./pages/signUpPage/SignUpPage";
+import ForgotPassword from "./pages/forgotPasswordPage/ForgotPasswordPage";
+import AccountSettings from "./pages/accountSettingsPage/AccountSettingsPage";
 
 import "./App.css";
 import "./common.css"

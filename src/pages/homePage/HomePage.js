@@ -6,7 +6,7 @@ import NavigationComponent from '../../components/navigationComponent/Navigation
 import ChatComponent from '../../components/chatComponent/ChatComponent';
 import CourseComponent from '../../components/courseComponent/CourseComponent';
 
-import "./home.css"
+import "./homepage.css"
 
 function Home() {
     const { courseTitle } = useParams();
