@@ -13,19 +13,19 @@ export const LiveChat = (props) => {
 
   // Create parse query for live querying using useParseQuery hook
   const parseQuery = new Parse.Query("Message");
-  // Get messages that involve both nicknames
+  // Get messages that involve both names
   parseQuery.containedIn("sender", [
-    props.senderNicknameId,
-    props.receiverNicknameId,
+    props.senderNameId,
+    props.receiverNameId,
   ]);
   parseQuery.containedIn("receiver", [
-    props.senderNicknameId,
-    props.receiverNicknameId,
+    props.senderNameId,
+    props.receiverNameId,
   ]);
   // Set results ordering
   parseQuery.ascending("createdAt");
 
-  // Include nickname fields, to enable name getting on list
+  // Include name fields, to enable name getting on list
   parseQuery.includeAll();
 
   // Declare hook and variables to hold hook responses
@@ -40,21 +40,21 @@ export const LiveChat = (props) => {
     try {
       const messageText = messageInput;
 
-      // Get sender and receiver nickname Parse objects
-      const senderNicknameObjectQuery = new Parse.Query("User");
-      senderNicknameObjectQuery.equalTo("objectId", currentUser.id);
-      let senderNicknameObject = await senderNicknameObjectQuery.first();
-      const receiverNicknameObjectQuery = new Parse.Query("User");
-      receiverNicknameObjectQuery.equalTo("objectId", props.receiverNicknameId);
-      let receiverNicknameObject = await receiverNicknameObjectQuery.first();
+      // Get sender and receiver name Parse objects
+      const senderNameObjectQuery = new Parse.Query("User");
+      senderNameObjectQuery.equalTo("objectId", currentUser.id);
+      let senderNameObject = await senderNameObjectQuery.first();
+      const receiverNameObjectQuery = new Parse.Query("User");
+      receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
+      let receiverNameObject = await receiverNameObjectQuery.first();
 
       // Create new Message object and save it
       let Message = new Parse.Object("Message");
       Message.set("text", messageText);
-      Message.set("sender", senderNicknameObject);
-      Message.set("receiver", receiverNicknameObject);
+      Message.set("sender", senderNameObject);
+      Message.set("receiver", receiverNameObject);
       Message.save();
-      console.log(senderNicknameObject, receiverNicknameObject, 'What is')
+      console.log(senderNameObject, receiverNameObject, 'What is')
       
 
       // Clear input
