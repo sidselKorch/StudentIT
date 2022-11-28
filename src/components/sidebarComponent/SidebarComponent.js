@@ -1,4 +1,5 @@
 import React from 'react'
+import SidebarUserComponent from '../sidebarUserComponent/SidebarUserComponent'
 
 import "./sidebarcomponent.css"
 
@@ -6,28 +7,10 @@ function Sidebar(props) {
   return (
     <div className='sidebar'>
       <h1>StudentIT</h1>
-      <div className="chats">
-        <h2>Teacher/TA</h2>
-        <p>Chat</p>
-        <p>Chat</p>
-      </div>
-      <div className="chats">
-        <h2>Groups</h2>
-        <p>Chat</p>
-        <p>Chat</p>
-      </div>
-      <div className="chats">
-        <h2>Chats</h2>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
-        <p>Chat</p>
+      <div className="sidebar-chat-container">
+        <SidebarUserComponent title={"Students"} first={"User"} second={"firstName"} third={"lastName"}/>
+        {/* <SidebarUserComponent title={"Nicknames"} first={"Message"} second={"text"} third={"lastName"}/> */}
+        {/* <SidebarUserComponent title={"Message"} first={"Message"} second={"text"} third={"lastName"}/> */}
       </div>
     </div>
   )
