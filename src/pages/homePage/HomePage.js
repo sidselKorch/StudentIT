@@ -23,7 +23,7 @@ function Home() {
                 <SidebarComponent courseTitle={courseTitle}/>
                 <NavigationComponent />
                 <ChatComponent courseTitle={courseTitle} />
-                <CourseComponent courseTitle={courseTitle}/>
+                {/* <CourseComponent courseTitle={courseTitle}/> */}
             </ReceiverIdContext.Provider>
         </div>
     )

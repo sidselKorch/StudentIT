@@ -70,12 +70,12 @@ export const ChatSetup = () => {
   })
 
   return (
-    <div>
+    <>
         {senderNameId !== null && receiverNameId !== null && (
           <LiveChat
             senderNameId={senderNameId}
             receiverNameId={receiverNameId}
           />
         )}
-    </div>
+    </>
 )};

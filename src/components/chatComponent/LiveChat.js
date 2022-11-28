@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import "./chatcomponent.css";
-import { Button, Input, Tooltip } from "antd";
-import { SyncOutlined } from "@ant-design/icons";
 import Parse from "parse";
 import { useParseQuery } from "@parse/react";
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+
+// ICONS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
+import "./liveChat.css"
 
 export const LiveChat = (props) => {
   // State variable to hold message text input
@@ -66,21 +70,12 @@ export const LiveChat = (props) => {
 
   // Helper to format createdAt value on Message
   const formatDateToTime = (date) => {
-    return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${date.getHours()}:${minutes}`;
   };
 
   return (
-    <div>
-      <div className="flex_between">
-        <Tooltip title="Reload">
-          <button
-            onClick={reload}
-            type="primary"
-            shape="circle"
-            icon={<SyncOutlined />}
-          />
-        </Tooltip>
-      </div>
+    <div className="message_container">
       {results && (
         <div className="messages">
           {results
@@ -89,48 +84,46 @@ export const LiveChat = (props) => {
               <div
                 key={result.id}
                 className={
-                  result.get("sender").id === props.senderNicknameId
+                  result.get("sender").id === props.senderNameId
                     ? "message_sent"
                     : "message_received"
                 }
               >
+                <p className="message_name">
+                  {result.get("sender").get("firstName")}
+                </p>
                 <p className="message_bubble">{result.get("text")}</p>
                 <p className="message_time">
                   {formatDateToTime(result.get("createdAt"))}
-                </p>
-                <p className="message_name">
-                  {result.get("sender").get("name")}
                 </p>
               </div>
             ))}
         </div>
       )}
+
+
       <div className="new_message">
-        <h2 className="new_message_title">New message</h2>
-        <Input
-          className="form_input"
-          value={messageInput}
-          onChange={(event) => setMessageInput(event.target.value)}
-          placeholder={"Your message..."}
-          size="large"
-        />
-        <Button
-          type="primary"
-          className="form_button"
-          color={"#208AEC"}
-          size={"large"}
-          onClick={sendMessage}
-        >
-          Send message
-        </Button>
+        
+        <div className="input-field">
+            <input autofocus type="text" placeholder="Type message here..."  value={messageInput}
+            onChange={(event) => setMessageInput(event.target.value)}></input>
+        </div>
+
+          <button
+            type="primary"
+            className="btn"
+            onClick={sendMessage}
+          >
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </button>
       </div>
-      <div>
+      {/* <div>
         {isLoading && <p>{"Loading…"}</p>}
         {isSyncing && <p>{"Syncing…"}</p>}
         {isLive ? <p>{"Status: Live"}</p> : <p>{"Status: Offline"}</p>}
         {error && <p>{error.message}</p>}
         {count && <p>{`Count: ${count}`}</p>}
-      </div>
+      </div> */}
     </div>
   );
 };
