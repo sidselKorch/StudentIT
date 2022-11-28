@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Parse from 'parse/dist/parse.min.js';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { LoginContext } from "./contexts/LoginContext";
+import { initializeParse } from  '@parse/react';
 
 import Home from './pages/homePage/HomePage';
 import { Login } from "./pages/loginPage/LoginPage";
@@ -18,6 +19,9 @@ const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
 const PARSE_JAVASCRIPT_KEY = 'EFwT6nfGKmEjFyfeGdwimXED1kc44EAP0oj1razX';
 Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
 Parse.serverURL = PARSE_HOST_URL;
+
+const BACK_4_APP_SUBDOMAIN = "https://das.b4a.io"
+  initializeParse(BACK_4_APP_SUBDOMAIN, PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY)
 
 function App() {
 
