@@ -7,7 +7,13 @@
     z-index: 1;
 }
 
-.chats{
+.sidebar h1{
+    text-align: center;
+    margin-top: 20px;
+    color: var(--primary-color);
+}
+
+.sidebar-chat-container{
     display: grid;
     margin: 35px 10px 0 10px;
     /* display: flex;
@@ -17,23 +23,4 @@
     /* flex-grow: 0;
     flex-shrink: 1;
     flex-basis: 0%; */
-}
-
-.sidebar p{
-    background-color: var(--tertiary-color);
-    padding: 10px 20px;
-    /* width: max-content; */
-    height: min-content;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.sidebar p:hover{
-    background-color: var(--secondary-color);
-}
-
-.sidebar h1{
-    text-align: center;
-    margin-top: 20px;
-    color: var(--primary-color);
 }

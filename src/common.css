@@ -196,18 +196,36 @@ input[type="radio"]{
 
     background-color: var(--tertiary-gray);
     
-    /* display: flex; */
     border-radius: 10000px;
     text-align: center;
 }
 
 .user-icon p {
     font-size: calc(var(--size)/2.5);
-    /* margin: auto; */
     font-weight: 700;
     color: var(--primary-color);
     text-transform: uppercase;
 }
+
+
+/* SCROLL */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--secondary-gray); 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-gray); 
+  }
+
+
 
 /* CHAT USERS */
 
@@ -265,7 +283,7 @@ input[type="radio"]{
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 0 20px;
+    padding: 0 10px;
     border: 1px solid var(--tertiary-gray);
     border-radius: 10px;
     justify-content: space-between;
@@ -275,6 +293,7 @@ input[type="radio"]{
     border: none;
     line-height: 3;
     font-size: 15px;
+    color: var(--primary-color);
 }
 
 
