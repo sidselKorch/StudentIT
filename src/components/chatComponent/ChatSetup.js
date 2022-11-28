@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./chatcomponent.css";
 import Parse from "parse";
 import { LiveChat } from "./LiveChat";
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+
+import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
 export const ChatSetup = () => {
   // State variables holding input values and results
   const [senderNameId, setSenderNameId] = useState(null);
   const [receiverNameId, setReceiverNameId] = useState(null);
   const { currentUser, getCurrentUser } = useCurrentUserHook();
+  const [ ReceiverId ] = useContext(ReceiverIdContext)
 
   // Create or retrieve User name objects and start LiveChat component
   const startLiveChat = async () => {
@@ -37,7 +40,7 @@ export const ChatSetup = () => {
     let receiverNameObject = null;
     try {
       const receiverParseQuery = new Parse.Query("User");
-      receiverParseQuery.equalTo("objectId", "ASXJyKoPx8");
+      receiverParseQuery.equalTo("objectId", ReceiverId);
       const receiverParseQueryResult = await receiverParseQuery.first();
       console.log(currentUser.id)
       if (
@@ -47,7 +50,7 @@ export const ChatSetup = () => {
         receiverNameObject = receiverParseQueryResult;
       } else {
         receiverNameObject = new Parse.Object("User");
-        receiverNameObject.set("objectId", "ASXJyKoPx8");
+        receiverNameObject.set("objectId", ReceiverId);
         receiverNameObject = await receiverNameObject.save();
       }
     } catch (error) {
@@ -62,17 +65,12 @@ export const ChatSetup = () => {
     return true;
   };
 
+  useEffect(() => {
+    startLiveChat()
+  })
+
   return (
     <div>
-            <button
-              type="primary"
-              className="form_button"
-              color={"#208AEC"}
-              size={"large"}
-              onClick={startLiveChat}
-            >
-              Start live chat
-            </button>
         {senderNameId !== null && receiverNameId !== null && (
           <LiveChat
             senderNameId={senderNameId}
