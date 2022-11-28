@@ -3,6 +3,7 @@ import Parse from 'parse/dist/parse.min.js';
 
 
 import "./sidebarUserComponent.css"
+import { ChatSetup } from "../chatComponent/ChatSetup";
 
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
@@ -48,6 +49,7 @@ function SidebarUserComponent(props) {
 
     return (
         <div className="sidebar-user-component">
+            {/* <ChatSetup /> */}
             <h2>{props.title}</h2>
             <p>Clicked Element's ID: {ReceiverId}</p>
             <button className="btn" onClick={() => resetReceiverId()}>Close Chat</button>
