@@ -1,12 +1,15 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import Parse from 'parse/dist/parse.min.js';
+
 
 import "./sidebarUserComponent.css"
 
-function SidebarUserComponent(props) {
-    const [ userData, setUserdata ] = useState([])
-    const [ clickedId, setClickedId ] = useState("")
+import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
+function SidebarUserComponent(props) {
+    const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
+
+    const [ userData, setUserdata ] = useState([])
     const [ searchTerm, setSearchTerm ] = useState("");
 
     function fetchUserData () {
@@ -39,28 +42,29 @@ function SidebarUserComponent(props) {
     },[])
     
     console.log(userData)
-    function resetClickedId(){
-        setClickedId("")
+    function resetReceiverId(){
+        setReceiverId("")
     }
 
     return (
         <div className="sidebar-user-component">
             <h2>{props.title}</h2>
-            <p>Clicked Element's ID: {clickedId}</p>
-            <button className="btn" onClick={() => resetClickedId()}>Close Chat</button>
+            <p>Clicked Element's ID: {ReceiverId}</p>
+            <button className="btn" onClick={() => resetReceiverId()}>Close Chat</button>
             <div className="input-field">
                 <input type="text" placeholder="Search..." onChange={(event) => {setSearchTerm(event.target.value)}}></input>
             </div>
 
             <div className="sidebar-user-container">
             {userData.filter((val) => {
-                if (searchTerm == "") {
+                if (searchTerm === "") {
                     return val
                 } else if (val.get(props.second).toLowerCase().includes(searchTerm.toLocaleLowerCase())){
                     return val
                 }
             }).map((val) => {
-                return <div className={`sidebar-user ${clickedId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setClickedId(val.id)}>
+                // return <div className={`sidebar-user ${clickedId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setClickedId(val.id)}>
+                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
                 <div className="user-icon">
                     <p className="name-initials">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</p>
                 </div>
@@ -73,9 +77,6 @@ function SidebarUserComponent(props) {
             })
             }
             </div>
-
-
-
         </div>
     )
 }
