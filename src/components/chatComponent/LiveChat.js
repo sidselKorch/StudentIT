@@ -89,15 +89,15 @@ export const LiveChat = (props) => {
                 key={result.id}
                 className={
                   result.get("sender").id === props.senderNameId
-                    ? "message_sent"
-                    : "message_received"
+                    ? "message message_sent"
+                    : "message message_received"
                 }
               >
-                <p className="message_name">
+                <p className="message_name message_metadata">
                   {result.get("sender").get("firstName")}
                 </p>
                 <p className="message_bubble">{result.get("text")}</p>
-                <p className="message_time">
+                <p className="message_time message_metadata">
                   {formatDateToTime(result.get("createdAt"))}
                 </p>
               </div>
