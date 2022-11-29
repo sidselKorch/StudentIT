@@ -4,13 +4,15 @@
     overflow-y: scroll;
     padding-right: 10px;
     margin-right: -10px;
+    flex-direction: column-reverse;
+    display: flex;
 }
 
 .message_sent {
     position: relative;
     width: 50%;
     margin-left: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
     text-overflow:ellipsis;
     word-break:normal;
 }
@@ -31,7 +33,7 @@
 
 .message_sent .message_bubble {
     background-color: var(--tertiary-color);
-    color: var(--primary-color);
+    color: var(--primary-gray);
 }
 
 .message_time {

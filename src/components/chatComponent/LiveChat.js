@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 import "./liveChat.css"
+import { useEffect } from "react";
 
 export const LiveChat = (props) => {
   // State variable to hold message text input
@@ -27,7 +28,7 @@ export const LiveChat = (props) => {
     props.receiverNameId,
   ]);
   // Set results ordering
-  parseQuery.ascending("createdAt");
+  parseQuery.descending("createdAt");
 
   // Include name fields, to enable name getting on list
   parseQuery.includeAll();
@@ -48,6 +49,7 @@ export const LiveChat = (props) => {
       const senderNameObjectQuery = new Parse.Query("User");
       senderNameObjectQuery.equalTo("objectId", currentUser.id);
       let senderNameObject = await senderNameObjectQuery.first();
+      
       const receiverNameObjectQuery = new Parse.Query("User");
       receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
       let receiverNameObject = await receiverNameObjectQuery.first();
@@ -58,7 +60,7 @@ export const LiveChat = (props) => {
       Message.set("sender", senderNameObject);
       Message.set("receiver", receiverNameObject);
       Message.save();
-      console.log(senderNameObject, receiverNameObject, 'What is')
+      // console.log(senderNameObject, receiverNameObject, 'What is')
       
 
       // Clear input
@@ -68,11 +70,13 @@ export const LiveChat = (props) => {
     }
   };
 
+
   // Helper to format createdAt value on Message
   const formatDateToTime = (date) => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${date.getHours()}:${minutes}`;
   };
+  
 
   return (
     <div className="message_container">
@@ -101,23 +105,18 @@ export const LiveChat = (props) => {
         </div>
       )}
 
-
       <div className="new_message">
-        
         <div className="input-field">
-            <input autofocus type="text" placeholder="Type message here..."  value={messageInput}
+            <input autoFocus type="text" placeholder="Type message here..."  value={messageInput}
             onChange={(event) => setMessageInput(event.target.value)}></input>
         </div>
-
-          <button
-            type="primary"
-            className="btn"
-            onClick={sendMessage}
-          >
-            <FontAwesomeIcon icon={faPaperPlane} />
-          </button>
+        <button type="primary" className="btn" onClick={sendMessage}>
+          <FontAwesomeIcon icon={faPaperPlane} />
+        </button>
       </div>
+
       {/* <div>
+      
         {isLoading && <p>{"Loading…"}</p>}
         {isSyncing && <p>{"Syncing…"}</p>}
         {isLive ? <p>{"Status: Live"}</p> : <p>{"Status: Offline"}</p>}

@@ -3,7 +3,6 @@ import Parse from 'parse/dist/parse.min.js';
 
 
 import "./sidebarUserComponent.css"
-import { ChatSetup } from "../chatComponent/ChatSetup";
 
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
@@ -41,7 +40,7 @@ function SidebarUserComponent(props) {
     useEffect(() => {
         fetchUserData()
     },[])
-    
+
     console.log(userData)
     function resetReceiverId(){
         setReceiverId("")
@@ -65,7 +64,6 @@ function SidebarUserComponent(props) {
                     return val
                 }
             }).map((val) => {
-                // return <div className={`sidebar-user ${clickedId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setClickedId(val.id)}>
                 return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
                 <div className="user-icon">
                     <p className="name-initials">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</p>
