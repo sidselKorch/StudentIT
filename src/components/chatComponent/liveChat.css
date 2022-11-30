@@ -1,4 +1,6 @@
-
+.messages_container{
+    max-width: 360px;
+}
 .messages{
     height: 50vh;
     overflow-y: scroll;
@@ -9,7 +11,7 @@
 }
 
 .message{
-    margin: 20px 0;
+    margin: 7px 0;
 }
 
 .message_sent {

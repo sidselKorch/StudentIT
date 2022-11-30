@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // CSS
@@ -19,6 +19,12 @@ function AccountSettings() {
   // // Function that will return current user and also update current username
   const { currentUser, getCurrentUser } = useCurrentUserHook()
 
+
+  useEffect(() => {
+    setFirstName(currentUser.get("firstName"))
+    setLastName(currentUser.get("lastName"))
+    setEmail(currentUser.getEmail())
+  },[])
 
   // Handling the first name change
   const handleFirstName = (e) => {

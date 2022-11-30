@@ -79,7 +79,7 @@ export const LiveChat = (props) => {
   
 
   return (
-    <div className="message_container">
+    <div className="messages_container">
       {results && (
         <div className="messages">
           {results
