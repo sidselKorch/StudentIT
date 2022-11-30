@@ -41,16 +41,6 @@ function AccountSettings() {
     setEmail(e.target.value);
   };
 
-  // Handling the password change
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  // Handling the repeat password change
-  const handleRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
   const handleUpdateUser = () => {
     currentUser.set("firstName", firstName)
     currentUser.set("lastName", lastName)
@@ -95,16 +85,6 @@ function AccountSettings() {
           <div className="input-container">
             <h3>Email</h3>
             <input onChange={handleEmail} defaultValue={currentUser.getEmail()}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>Password</h3>
-            <input placeholder="Hmm, fiqure this out" onChange={handlePassword} type="password" value={password}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>Repeat password</h3>
-            <input placeholder="Hmm, fiqure this out" onChange={handleRepeatPassword} type="password" value={repeatPassword}></input>
           </div>
 
         </div>
