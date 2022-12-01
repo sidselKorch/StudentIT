@@ -74,17 +74,17 @@ function AccountSettings() {
 
           <div className="input-container">
             <h3>First Name</h3>
-            <input onChange={handleFirstName} defaultValue={currentUser.get("firstName")}></input>
+            <input onChange={handleFirstName} placeholder="First Name" defaultValue={currentUser.get("firstName")}></input>
           </div>
 
           <div className="input-container">
             <h3>Last Name</h3>
-            <input onChange={handleLastName} defaultValue={currentUser.get("lastName")}></input>
+            <input onChange={handleLastName} placeholder="Last Name" defaultValue={currentUser.get("lastName")}></input>
           </div>
 
           <div className="input-container">
             <h3>Email</h3>
-            <input onChange={handleEmail} defaultValue={currentUser.getEmail()}></input>
+            <input onChange={handleEmail} placeholder="Email" defaultValue={currentUser.getEmail()}></input>
           </div>
 
         </div>
