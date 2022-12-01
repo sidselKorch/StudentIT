@@ -13,8 +13,6 @@ function AccountSettings() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
   
   // // Function that will return current user and also update current username
   const { currentUser, getCurrentUser } = useCurrentUserHook()
