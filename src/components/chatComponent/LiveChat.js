@@ -16,8 +16,12 @@ export const LiveChat = (props) => {
   const [messageInput, setMessageInput] = useState("");
   const { currentUser, getCurrentUser } = useCurrentUserHook();
 
+
+  const [ numberOfMessages, setNumberOfMessages ] = useState(20)
+
+
   // Create parse query for live querying using useParseQuery hook
-  const parseQuery = new Parse.Query("Message");
+  const parseQuery = new Parse.Query("Message").limit(numberOfMessages)
   // Get messages that involve both names
   parseQuery.containedIn("sender", [
     props.senderNameId,
@@ -27,6 +31,11 @@ export const LiveChat = (props) => {
     props.senderNameId,
     props.receiverNameId,
   ]);
+
+  function fetchMoreMessages(){
+    setNumberOfMessages(prevCount => prevCount + 10)
+  }
+
   // Set results ordering
   parseQuery.descending("createdAt");
 
@@ -39,6 +48,7 @@ export const LiveChat = (props) => {
       enableLocalDatastore: true, // Enables cache in local datastore (default: true)
       enableLiveQuery: true, // Enables live query for real-time update (default: true)
     });
+
 
   // Message sender handler
   const sendMessage = async () => {
@@ -83,7 +93,7 @@ export const LiveChat = (props) => {
       {results && (
         <div className="messages">
           {results
-            .sort((a, b) => a.get("createdAt") > b.get("createdAt"))
+            .sort((a, b) => a.get("createdAt") < b.get("createdAt"))
             .map((result) => (
               <div
                 key={result.id}
@@ -102,6 +112,7 @@ export const LiveChat = (props) => {
                 </p>
               </div>
             ))}
+            <button onClick={() => fetchMoreMessages()}>More messages</button>
         </div>
       )}
 
