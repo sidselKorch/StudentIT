@@ -69,9 +69,7 @@ export const LiveChat = (props) => {
       Message.set("text", messageText);
       Message.set("sender", senderNameObject);
       Message.set("receiver", receiverNameObject);
-      Message.save();
-      // console.log(senderNameObject, receiverNameObject, 'What is')
-      
+      Message.save();      
 
       // Clear input
       setMessageInput("");

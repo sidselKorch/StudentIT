@@ -51,7 +51,7 @@ function NavigationComponent() {
         }
         
         if (count.current === 1){
-            fetchCourses();
+            fetchCourses();  
         }
         count.current = count.current + 1;
     },[]);
