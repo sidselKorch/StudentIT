@@ -301,10 +301,6 @@ input[type="radio"]{
     outline: none;
 }
 
-.input-field input:focus{
-
-}
-
 .anonymous{
     display: flex;
     align-items: center;

@@ -20,7 +20,8 @@ function SidebarUserComponent(props) {
             setUserdata(results)
         })
     }
-
+    
+// STILL MISSING - TO GET A TEXT PREVIEW
     async function getText(name){
         const PublisherAQuery = new Parse.Query('Nickname');
         PublisherAQuery.equalTo('name', name);

@@ -8,3 +8,15 @@
     height: 200px;
     overflow-y: scroll;
 }
+
+.checkbox-element{
+    padding: 5px 0 ;
+}
+
+.checkbox-element:nth-child(odd){
+    background-color: var(--tertiary-color);
+}
+
+.checkbox-element label{
+    font-size: 15px;;
+}
