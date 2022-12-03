@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // CSS
@@ -13,12 +13,16 @@ function AccountSettings() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
   
   // // Function that will return current user and also update current username
   const { currentUser, getCurrentUser } = useCurrentUserHook()
 
+
+  useEffect(() => {
+    setFirstName(currentUser.get("firstName"))
+    setLastName(currentUser.get("lastName"))
+    setEmail(currentUser.getEmail())
+  },[])
 
   // Handling the first name change
   const handleFirstName = (e) => {
@@ -33,16 +37,6 @@ function AccountSettings() {
   // Handling the email change
   const handleEmail = (e) => {
     setEmail(e.target.value);
-  };
-
-  // Handling the password change
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  // Handling the repeat password change
-  const handleRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
   };
 
   const handleUpdateUser = () => {
@@ -78,27 +72,17 @@ function AccountSettings() {
 
           <div className="input-container">
             <h3>First Name</h3>
-            <input onChange={handleFirstName} defaultValue={currentUser.get("firstName")}></input>
+            <input onChange={handleFirstName} placeholder="First Name" defaultValue={currentUser.get("firstName")}></input>
           </div>
 
           <div className="input-container">
             <h3>Last Name</h3>
-            <input onChange={handleLastName} defaultValue={currentUser.get("lastName")}></input>
+            <input onChange={handleLastName} placeholder="Last Name" defaultValue={currentUser.get("lastName")}></input>
           </div>
 
           <div className="input-container">
             <h3>Email</h3>
-            <input onChange={handleEmail} defaultValue={currentUser.getEmail()}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>Password</h3>
-            <input placeholder="Hmm, fiqure this out" onChange={handlePassword} type="password" value={password}></input>
-          </div>
-
-          <div className="input-container">
-            <h3>Repeat password</h3>
-            <input placeholder="Hmm, fiqure this out" onChange={handleRepeatPassword} type="password" value={repeatPassword}></input>
+            <input onChange={handleEmail} placeholder="Email" defaultValue={currentUser.getEmail()}></input>
           </div>
 
         </div>
