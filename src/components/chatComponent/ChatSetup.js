@@ -61,7 +61,7 @@ export const ChatSetup = () => {
     // Set name objects ids, so live chat component is instantiated
     setSenderNameId(senderNameObject.id);
     setReceiverNameId(receiverNameObject.id);
-    console.log(senderNameObject.id, receiverNameObject.id);
+    // console.log(senderNameObject.id, receiverNameObject.id);
     return true;
   };
 

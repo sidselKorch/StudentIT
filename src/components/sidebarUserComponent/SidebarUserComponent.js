@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext} from 'react';
 import Parse from 'parse/dist/parse.min.js';
 
-
 import "./sidebarUserComponent.css"
 
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
@@ -16,32 +15,39 @@ function SidebarUserComponent(props) {
         var query = new Parse.Query(props.first);
         query.ascending(props.second);
         query.find().then((results) => {
-            setUserdata(results)
+            setUserdata([])
+            for (let i = 0; i < results.length; i++) {
+                if(!results[i].isCurrent()){
+                    setUserdata(current => [...current, results[i]]);
+                } else{
+                    console.log(i,results[i].isCurrent())
+
+                }
+            }
         })
     }
 
-    async function getText(name){
-        const PublisherAQuery = new Parse.Query('Nickname');
-        PublisherAQuery.equalTo('name', name);
-        const PublisherA = await PublisherAQuery.first();
+    // async function getText(name){
+    //     const PublisherAQuery = new Parse.Query('Nickname');
+    //     PublisherAQuery.equalTo('name', name);
+    //     const PublisherA = await PublisherAQuery.first();
 
-        // Query Books with PublisherA
-        const bookQuery = new Parse.Query('Message');
-        bookQuery.equalTo('sender', PublisherA);
-        let queryResults = await bookQuery.find();
+    //     // Query Books with PublisherA
+    //     const bookQuery = new Parse.Query('Message');
+    //     bookQuery.equalTo('sender', PublisherA);
+    //     let queryResults = await bookQuery.find();
 
-        // Let's show the results
-        for (let result of queryResults) {
-            // You access `Parse.Objects` attributes by using `.get`
-            console.log(result.get('text'));
-        };
-    }
+    //     // Let's show the results
+    //     for (let result of queryResults) {
+    //         // You access `Parse.Objects` attributes by using `.get`
+    //         // console.log(result.get('text'));
+    //     };
+    // }
 
     useEffect(() => {
         fetchUserData()
     },[])
 
-    console.log(userData)
     function resetReceiverId(){
         setReceiverId("")
     }
