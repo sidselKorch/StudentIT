@@ -9,6 +9,7 @@ import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 function SidebarUserComponent(props) {
     const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
 
+
     const [ userData, setUserdata ] = useState([])
     const [ searchTerm, setSearchTerm ] = useState("");
 
@@ -20,28 +21,29 @@ function SidebarUserComponent(props) {
         })
     }
 
-    async function getText(name){
-        const PublisherAQuery = new Parse.Query('Nickname');
-        PublisherAQuery.equalTo('name', name);
-        const PublisherA = await PublisherAQuery.first();
+    // async function getText(name){
+    //     const PublisherAQuery = new Parse.Query('Nickname');
+    //     PublisherAQuery.equalTo('name', name);
+    //     const PublisherA = await PublisherAQuery.first();
 
-        // Query Books with PublisherA
-        const bookQuery = new Parse.Query('Message');
-        bookQuery.equalTo('sender', PublisherA);
-        let queryResults = await bookQuery.find();
+    //     // Query Books with PublisherA
+    //     const bookQuery = new Parse.Query('Message');
+    //     bookQuery.equalTo('sender', PublisherA);
+    //     let queryResults = await bookQuery.find();
 
-        // Let's show the results
-        for (let result of queryResults) {
-            // You access `Parse.Objects` attributes by using `.get`
-            console.log(result.get('text'));
-        };
-    }
+    //     // Let's show the results
+    //     for (let result of queryResults) {
+    //         // You access `Parse.Objects` attributes by using `.get`
+    //         console.log(result.get('text'));
+    //     };
+    // }
 
     useEffect(() => {
         fetchUserData()
     },[])
 
-    console.log(userData)
+
+    //console.log(userData)
     function resetReceiverId(){
         setReceiverId("")
     }
@@ -64,9 +66,12 @@ function SidebarUserComponent(props) {
                     return val
                 }
             }).map((val) => {
-                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
+                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId([val.id, props.first])}>
+                    {console.log("What is the receiverClass?", ReceiverId[0])}
                 <div className="user-icon">
-                    <p className="name-initials">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</p>
+                    {props.first === "User" 
+                    ? <p className="name-initials">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</p> 
+                    : <p className="name-initials">{String(val.get(props.second)).substring(0, 2)}</p>}
                 </div>
                 <div className="sidebar-user-info">
                     <p>{val.get(props.second)} {val.get(props.third)}</p>

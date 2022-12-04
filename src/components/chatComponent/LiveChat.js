@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./chatcomponent.css";
 import Parse from "parse";
 import { useParseQuery } from "@parse/react";
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,6 +16,9 @@ export const LiveChat = (props) => {
   // State variable to hold message text input
   const [messageInput, setMessageInput] = useState("");
   const { currentUser, getCurrentUser } = useCurrentUserHook();
+  const [ ReceiverId, setReceiverId ] = useContext(ReceiverIdContext)
+  const [receiverUser, setReceiverUser] = useState("");
+  
 
 
   const [ numberOfMessages, setNumberOfMessages ] = useState(20)
@@ -60,16 +64,24 @@ export const LiveChat = (props) => {
       senderNameObjectQuery.equalTo("objectId", currentUser.id);
       let senderNameObject = await senderNameObjectQuery.first();
       
-      const receiverNameObjectQuery = new Parse.Query("User");
-      receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
-      let receiverNameObject = await receiverNameObjectQuery.first();
+      const receiverUserNameObjectQuery = new Parse.Query(ReceiverId[1]);
+      receiverUserNameObjectQuery.equalTo("objectId", ReceiverId[0]);
+      let receiverNameObject = await receiverUserNameObjectQuery.first();
+
+      if(ReceiverId[1] === "Groups"){
+      const groupQuery = new Parse.Query("User");
+      groupQuery.equalTo("group", ReceiverId[0])
+      const GroupQueryResult = await groupQuery.first()
+      setReceiverUser(GroupQueryResult.get("objectId"))
+      }
 
       // Create new Message object and save it
       let Message = new Parse.Object("Message");
       Message.set("text", messageText);
       Message.set("sender", senderNameObject);
       Message.set("receiver", receiverNameObject);
-      Message.save();      
+      Message.set("groupReceiver", receiverUser)
+      Message.save();    
 
       // Clear input
       setMessageInput("");

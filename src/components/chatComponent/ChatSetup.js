@@ -39,10 +39,9 @@ export const ChatSetup = () => {
     // Check if receiver name already exists, if not create new parse object
     let receiverNameObject = null;
     try {
-      const receiverParseQuery = new Parse.Query("User");
-      receiverParseQuery.equalTo("objectId", ReceiverId);
+      const receiverParseQuery = new Parse.Query(ReceiverId[1]);
+      receiverParseQuery.equalTo("objectId", ReceiverId[0]);
       const receiverParseQueryResult = await receiverParseQuery.first();
-      console.log(currentUser.id)
       if (
         receiverParseQueryResult !== undefined &&
         receiverParseQueryResult !== null
@@ -50,7 +49,7 @@ export const ChatSetup = () => {
         receiverNameObject = receiverParseQueryResult;
       } else {
         receiverNameObject = new Parse.Object("User");
-        receiverNameObject.set("objectId", ReceiverId);
+        receiverNameObject.set("objectId", receiverNameObject.id);
         receiverNameObject = await receiverNameObject.save();
       }
     } catch (error) {
@@ -59,8 +58,10 @@ export const ChatSetup = () => {
     }
 
     // Set name objects ids, so live chat component is instantiated
+
     setSenderNameId(senderNameObject.id);
     setReceiverNameId(receiverNameObject.id);
+    
     console.log(senderNameObject.id, receiverNameObject.id);
     return true;
   };
