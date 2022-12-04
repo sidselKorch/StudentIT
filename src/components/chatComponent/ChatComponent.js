@@ -15,13 +15,15 @@ function ChatComponent(props) {
   const [ receiverInitials, setReceiverInitials ] = useState("")
 
   async function getReceiverName(){
-    const UserQuery = new Parse.Query('User');
-    UserQuery.equalTo('objectId', ReceiverId);
+    const UserQuery = new Parse.Query(ReceiverId[1]);
+    UserQuery.equalTo('objectId', ReceiverId[0]);
     const UserQueryResult = await UserQuery.first();
-    console.log(UserQueryResult.get('firstName'))
+    if(ReceiverId[0] === "User"){
     setReceiverName(UserQueryResult.get('firstName') + " " + UserQueryResult.get('lastName'))
-    setReceiverInitials(UserQueryResult.get('firstName').substring(0,1) + UserQueryResult.get('lastName').substring(0,1))
-
+    setReceiverInitials(UserQueryResult.get('firstName').substring(0,1) + UserQueryResult.get('lastName').substring(0,1))} 
+    else {
+      setReceiverName(UserQueryResult.get('CourseTitle'))
+    setReceiverInitials(UserQueryResult.get('CourseTitle').substring(0,2))}
   }
 
   useEffect(() => {
