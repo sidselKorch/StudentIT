@@ -96,21 +96,21 @@ function NavigationComponent() {
         <nav className="nav">
             <div className='tab-container'>
                 <div>
-                    <li><h4 className="tab tab-blue">Loading...</h4></li>
+                    <li><h3 className="tab tab-blue">Loading...</h3></li>
                 </div>
                 <div>
-                    <li><h4 className="tab tab-red">Loading...</h4></li>
+                    <li><h3 className="tab tab-red">Loading...</h3></li>
                 </div>
                 <div>
-                    <li><h4 className="tab tab-green">Loading...</h4></li>
+                    <li><h3 className="tab tab-green">Loading...</h3></li>
                 </div>
             </div>
             <div className='profile'>
                 <Link to="/account-settings">
                     <div className="user-profile">
-                        <p>{currentUser.get("firstName") + " " + currentUser.get("lastName")}</p>
+                        <h3>{currentUser.get("firstName") + " " + currentUser.get("lastName")}</h3>
                         <div className="user-icon">
-                            <p className="name-initials" id="name_initials">{initials}</p>
+                            <h3 className="user-icon-text" id="name_initials">{initials}</h3>
                         </div>
                     </div>
                 </Link>
@@ -131,9 +131,9 @@ function NavigationComponent() {
                 <div className='profile'>
                     <Link to="/account-settings">
                         <div className="user-profile">
-                            <p>{currentUser.get("firstName") + " " + currentUser.get("lastName")}</p>
+                            <h3>{currentUser.get("firstName") + " " + currentUser.get("lastName")}</h3>
                             <div className="user-icon">
-                                <p className="name-initials" id="name_initials">{initials}</p>
+                                <h3 className="user-icon-text" id="name_initials">{initials}</h3>
                             </div>
                         </div>
                     </Link>

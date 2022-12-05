@@ -66,10 +66,10 @@ function SidebarUserComponent(props) {
             }).map((val) => {
                 return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
                 <div className="user-icon">
-                    <p className="name-initials">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</p>
+                    <h3 className="user-icon-text">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</h3>
                 </div>
                 <div className="sidebar-user-info">
-                    <p>{val.get(props.second)} {val.get(props.third)}</p>
+                    <h3>{val.get(props.second)} {val.get(props.third)}</h3>
                     <p>Here goes a text message that was sent by the sender</p>
                 </div>
                 {}

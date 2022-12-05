@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 // CSS
 import './loginpage.css';
+import "../signUpPage/signuppage.css"
 
 // COSTUM HOOKS
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
@@ -55,7 +56,7 @@ export function Login() {
             </div>
 
             <div className="input-wrapper">
-                <h1 className="input-header">Login to account</h1>
+                <h2 className="input-header">Login to account</h2>
 
                 <div className="login-container">
                     <div className="input-container">
@@ -71,14 +72,13 @@ export function Login() {
                 </div>
 
                 <div className="sign-up-btns">
-                    <button type="submit" onClick={() => doUserLogIn()} className="btn margin-0-auto">Login</button>
+                    <button type="submit" onClick={() => doUserLogIn()} className="btn btn-login">Login</button>
                     <Link to="/signup" className='sign-in-btn'>Sign Up</Link>
                 </div>
 
             </div>
-            <div className="bottom-text">
+            <div className="page-footer-links">
                 <Link to="/forgot-password">Forgot password</Link>
-                <Link to="#">Privacy policy</Link>
                 <Link to="#">© StudentIT 2022</Link>
             </div>
         </div>

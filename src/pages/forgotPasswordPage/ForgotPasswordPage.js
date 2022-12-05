@@ -4,6 +4,7 @@ import Parse from 'parse/dist/parse.min.js';
 
 
 import '../../common.css';
+import "../signUpPage/signuppage.css"
 
 function ForgotPassword() {
   // State variables
@@ -33,7 +34,7 @@ function ForgotPassword() {
       </div>
 
       <div className='input-wrapper'>
-        <h1 className="input-header">Reset my password</h1>
+        <h2 className="input-header">Reset my password</h2>
         <div className="input-container">
           <h3>Email address</h3>
           {/* <input type="text" placeholder="Type here..." id="fname" name="fname"></input> */}
@@ -46,9 +47,8 @@ function ForgotPassword() {
         </div>
       </div>
 
-      <div className="bottom-text">
+      <div className="page-footer-links">
         <li><Link to="/">Welcome page</Link></li>
-        <li><Link to="#">Privacy policy</Link></li>
         <li><Link to="#">© StudentIT 2022</Link></li>
       </div>
       

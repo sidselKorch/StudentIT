@@ -23,3 +23,53 @@
 .chat-header-container h2{
     color:#fff;
 }
+
+
+/* ––––––––––––––––––––––- FOR LATER USE ––––––––––––––––––––––- */ 
+/* .dot{
+    width: 5px;
+    height: 5px;
+    border-radius: 100px;
+}
+
+.dot-chat-notification{
+    background-color: var(--primary-color);
+}
+
+.dot-course-notification{
+    background-color: var(--primary-red);
+}
+
+.dot-settings{
+    background-color: var(--secondary-gray);
+} */
+
+/* DROP DOWN */
+/* .dropdown{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.dropdown .top-bar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.dropdown ul{
+    color: var(--primary-gray);
+}
+
+.dropdown li:hover{
+    color: var(--primary-color);
+    font-weight: 700;
+    cursor: pointer;
+} */
+
+/* SETTINGS ICON */
+/* .settings-icon{
+    display: flex;
+    gap: 3px;
+} */
