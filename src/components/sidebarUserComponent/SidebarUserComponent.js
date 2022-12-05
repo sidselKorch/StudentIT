@@ -15,15 +15,16 @@ function SidebarUserComponent(props) {
         var query = new Parse.Query(props.first);
         query.ascending(props.second);
         query.find().then((results) => {
-            setUserdata([])
-            for (let i = 0; i < results.length; i++) {
-                if(!results[i].isCurrent()){
-                    setUserdata(current => [...current, results[i]]);
-                } else{
-                    console.log(i,results[i].isCurrent())
+            // setUserdata([])
+            setUserdata(results);
+            // for (let i = 0; i < results.length; i++) {
+            //     if(!results[i].isCurrent()){
+            //         setUserdata(current => [...current, results[i]]);
+            //     } else{
+            //         console.log(i,results[i].isCurrent())
 
-                }
-            }
+            //     }
+            // }
         })
     }
 
@@ -78,7 +79,6 @@ function SidebarUserComponent(props) {
                     <p>{val.get(props.second)} {val.get(props.third)}</p>
                     <p>Here goes a text message that was sent by the sender</p>
                 </div>
-                {}
             </div>
             })
             }

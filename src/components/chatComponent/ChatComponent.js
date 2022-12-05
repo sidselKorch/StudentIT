@@ -18,6 +18,7 @@ function ChatComponent(props) {
     const UserQuery = new Parse.Query('User');
     UserQuery.equalTo('objectId', ReceiverId);
     const UserQueryResult = await UserQuery.first();
+    console.log("UserQueryResult:", UserQueryResult)
     if(UserQueryResult != undefined){
       setReceiverName(UserQueryResult.get('firstName') + " " + UserQueryResult.get('lastName'))
       setReceiverInitials(UserQueryResult.get('firstName').substring(0,1) + UserQueryResult.get('lastName').substring(0,1))
@@ -40,7 +41,6 @@ function ChatComponent(props) {
         </div>
         <h2>{receiverName}</h2>
       </div>
-      {/* <h3 style={{color: "var(--primary-" + props.color + ")"}}>{props.color}</h3> */}
       <ChatSetup />
     </div>
   )
