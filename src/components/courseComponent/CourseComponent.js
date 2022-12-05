@@ -10,7 +10,7 @@ import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
     return (
       <div className="course-component">
         <h1>{props.courseTitle}'s <br></br>CourseComponent</h1>
-        <h2>{ReceiverId}</h2>
+        <h2>{ReceiverId[0]}</h2>
       </div>
     )
 }

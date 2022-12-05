@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./chatcomponent.css";
 import Parse from "parse";
 import { useParseQuery } from "@parse/react";
@@ -7,14 +7,15 @@ import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
 import "./liveChat.css"
-import { useEffect } from "react";
 
 export const LiveChat = (props) => {
   // State variable to hold message text input
   const [messageInput, setMessageInput] = useState("");
   const { currentUser, getCurrentUser } = useCurrentUserHook();
+  const [ ReceiverId ] = useContext(ReceiverIdContext)
 
 
   const [ numberOfMessages, setNumberOfMessages ] = useState(20)
@@ -28,6 +29,10 @@ export const LiveChat = (props) => {
     props.receiverNameId,
   ]);
   parseQuery.containedIn("receiver", [
+    props.senderNameId,
+    props.receiverNameId,
+  ]);
+  parseQuery.containedIn("groupReciever", [
     props.senderNameId,
     props.receiverNameId,
   ]);
@@ -61,14 +66,24 @@ export const LiveChat = (props) => {
       let senderNameObject = await senderNameObjectQuery.first();
       
       const receiverNameObjectQuery = new Parse.Query("User");
-      receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
+      if(ReceiverId[1] === "User"){
+      receiverNameObjectQuery.equalTo("objectId", ReceiverId[0]);}
+      else{
+        receiverNameObjectQuery.equalTo("group", ReceiverId[0])
+      }
       let receiverNameObject = await receiverNameObjectQuery.first();
+      console.log("What is the object here?", receiverNameObject)
+     
 
       // Create new Message object and save it
       let Message = new Parse.Object("Message");
       Message.set("text", messageText);
       Message.set("sender", senderNameObject);
-      Message.set("receiver", receiverNameObject);
+      if(ReceiverId[1] === "User"){
+      Message.set("receiver", receiverNameObject);}
+      else{
+        Message.set("groupReciever", receiverNameObject.get("objectId"))
+      }
       Message.save();      
 
       // Clear input
