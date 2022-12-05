@@ -32,11 +32,10 @@ function ChatComponent(props) {
     <div className="chat-component">
       <div className="chat-header-container">
         <div className = "user-icon">
-          <p className="name-initials" >{receiverInitials} </p>
+          <h3 className="user-icon-text" >{receiverInitials} </h3>
         </div>
         <h2>{receiverName}</h2>
       </div>
-      <h3 style={{color: "var(--primary-" + props.color + ")"}}>{props.color}</h3>
       <ChatSetup />
     </div>
   )

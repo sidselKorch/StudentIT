@@ -1,20 +1,3 @@
-.hero-text{
-    color: var(--primary-color);
-}
-
-.hero-text h1{
-    font-size: 35px;
-}
-
-.hero-text h3{
-    font-size: 20px;
-    font-weight: 200;
-}
-
-a{
-    color: var(--primary-color);
-}
-
 .login-container{
     display: grid;
     gap: 20px;
@@ -23,4 +6,8 @@ a{
 .sign-up-btns{
     display: grid;
     gap: 10px;
+}
+
+.btn-login{
+    margin: 0 auto;
 }
