@@ -65,7 +65,7 @@ const renderErrorMessage = () =>(
 );
 
   return (
-    <div className="content-container">
+    <div className="page-container">
       <div className="hero-text">
           <h3>Sign up to</h3>
           <h1>StudentIT</h1>
@@ -74,35 +74,35 @@ const renderErrorMessage = () =>(
 
       <div className="input-wrapper">
         <h2 className="input-header">Create account</h2>
-        
+        <form action="/action_page.php">
         <div className="box-input-container sign-up-container">
-
+        
           <div className="input-container">
-            <h3>First Name</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName"></input>
+          <label for="firstname"><h3>First Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
             
           </div>
 
           <div className="input-container">
-            <h3>Last Name</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName"></input>
+          <label for="lastname"><h3>Last Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Email</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email"></input>
+          <label for="email"><h3>Email</h3></label>
+            <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Password</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.password} name="password" label="password"></input>
+          <label for="password"><h3>Password</h3></label>
+            <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.password} name="password" label="password" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Repeat password</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.repeatPassword} name="repeatPassword" label="repeatPassword"></input>
+          <label for="repeat password"><h3>Repeat password</h3></label>
+            <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.repeatPassword} name="repeatPassword" label="repeatPassword" required></input>
           </div>
-
+          
         </div>
 
         <div className="input-btn">
@@ -110,7 +110,7 @@ const renderErrorMessage = () =>(
           <button className="btn" type="submit" onClick={() => handleSignup()} >Create Account</button>
         </div>
   
-
+        </form>
       </div>
 
       <div className="page-footer-links">
