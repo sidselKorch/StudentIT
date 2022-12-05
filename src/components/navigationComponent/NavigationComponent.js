@@ -23,7 +23,7 @@ function NavigationComponent() {
     const { currentUser, getCurrentUser } = useCurrentUserHook()
     const { initials } = useInitialsHook(currentUser)
 
-    const doUserLogOut = async function () {
+    const doUserLogOut = async function () { 
         try {
             await Parse.User.logOut();
             // Update state variable holding current user
