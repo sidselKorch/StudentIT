@@ -56,7 +56,7 @@ function AccountSettings() {
 
       <div className="input-wrapper">
         <h2 className="input-header">Account settings</h2>
-        <form action="/action_page.php">
+        <form>
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
