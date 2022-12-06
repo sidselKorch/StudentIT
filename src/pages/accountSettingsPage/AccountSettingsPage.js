@@ -3,46 +3,35 @@ import { Link } from "react-router-dom";
 
 // CSS
 import "../../common.css"
+import "../signUpPage/signuppage.css"
 
 // COSTUM HOOKS
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 function AccountSettings() {
-  
-  // States for registration
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  
   // // Function that will return current user and also update current username
   const { currentUser, getCurrentUser } = useCurrentUserHook()
 
-
-  useEffect(() => {
-    setFirstName(currentUser.get("firstName"))
-    setLastName(currentUser.get("lastName"))
-    setEmail(currentUser.getEmail())
-  },[])
-
-  // Handling the first name change
-  const handleFirstName = (e) => {
-    setFirstName(e.target.value);
+  const initialValues = {
+    firstName: currentUser.get("firstName"),
+    lastName: currentUser.get("lastName"),
+    email: currentUser.getEmail(),
   };
+  
+  const [values, setValues] = useState(initialValues);
 
-  // Handling the last name change
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
-  };
-
-  // Handling the email change
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
   };
 
   const handleUpdateUser = () => {
-    currentUser.set("firstName", firstName)
-    currentUser.set("lastName", lastName)
-    currentUser.set("email", email)
+    currentUser.set("firstName", values.firstName)
+    currentUser.set("lastName", values.lastName)
+    currentUser.set("email", values.email)
     currentUser.save();
   }
 
@@ -59,30 +48,31 @@ function AccountSettings() {
   };
 
   return (
-    <div className="content-container">
+    <div className="page-container">
       <div className="hero-text">
           <h1>StudentIT</h1>
           <h3>Edit your account</h3>
       </div>
 
       <div className="input-wrapper">
-        <h1 className="input-header">Account settings</h1>
-
+        <h2 className="input-header">Account settings</h2>
+        <form>
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-            <h3>First Name</h3>
-            <input onChange={handleFirstName} placeholder="First Name" defaultValue={currentUser.get("firstName")}></input>
+          <label for="firstname"><h3>First Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
+
           </div>
 
           <div className="input-container">
-            <h3>Last Name</h3>
-            <input onChange={handleLastName} placeholder="Last Name" defaultValue={currentUser.get("lastName")}></input>
+          <label for="lastname"><h3>Last Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Email</h3>
-            <input onChange={handleEmail} placeholder="Email" defaultValue={currentUser.getEmail()}></input>
+          <label for="email"><h3>Email</h3></label>
+            <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
         </div>
@@ -92,12 +82,11 @@ function AccountSettings() {
           <button className="btn btn-delete" type="submit" onClick={() => handleDeleteUser()} >Delete User</button>
           <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
         </div>
-
+      </form>
       </div>
 
-      <div className="bottom-text">
+      <div className="page-footer-links">
           <Link to="/" replace>Welcome page</Link>
-          <Link to="#">Privacy policy</Link>
           <Link to="#">© StudentIT 2022</Link>
       </div>
     </div>

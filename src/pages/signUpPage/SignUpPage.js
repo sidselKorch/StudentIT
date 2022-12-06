@@ -9,68 +9,43 @@ import "../../common.css"
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 function SignUp() {
-  // States for registration
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-
   const [ errorMessage, setErrorMessages ] = useState("");
 
   const { getCurrentUser } = useCurrentUserHook()
 
-
-  // Handling the first name change
-  const handleFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-  
-  // Handling the last name change
-  const handleLastName = (e) => {
-    setLastName(e.target.value);
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
   };
 
-  // Handling the email change
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const [values, setValues] = useState(initialValues);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
   };
 
-  // Handling the password change
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  // Handling the repeat password change
-  const handleRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
-
-  // Functions used by the screen components
+  // // Functions used by the screen components
   const handleSignup = async function () {
-    // Note that these values come from state variables that we've declared before
-    const usernameValue = email;
-    const passwordValue = password;
     
     try {
       // Since the signUp method returns a Promise, we need to call it using await
-      if (password === repeatPassword){
+      if (values.password === values.repeatPassword){
         // Creates user in database
-        const createdUser = await Parse.User.signUp(usernameValue, passwordValue);
+        const createdUser = await Parse.User.signUp(values.email, values.password);
         
         // Fill out data for user
-        createdUser.set("firstName", firstName)
-        createdUser.set("lastName", lastName)
-        createdUser.set("email", email)
+        createdUser.set("firstName", values.firstName)
+        createdUser.set("lastName", values.lastName)
+        createdUser.set("email", values.email)
         await createdUser.save();
 
-        // Reset forms
-        setFirstName("")
-        setLastName("")
-        setEmail("")
-        setPassword("")
-        setRepeatPassword("")
         getCurrentUser()
         return true;
       } else {
@@ -90,7 +65,7 @@ const renderErrorMessage = () =>(
 );
 
   return (
-    <div className="content-container">
+    <div className="page-container">
       <div className="hero-text">
           <h3>Sign up to</h3>
           <h1>StudentIT</h1>
@@ -98,35 +73,36 @@ const renderErrorMessage = () =>(
       </div>
 
       <div className="input-wrapper">
-        <h1 className="input-header">Create account</h1>
-        
+        <h2 className="input-header">Create account</h2>
+        <form>
         <div className="box-input-container sign-up-container">
-
+        
           <div className="input-container">
-            <h3>First Name</h3>
-            <input placeholder="Type here..." onChange={handleFirstName} value={firstName}></input>
+          <label for="firstname"><h3>First Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
+            
           </div>
 
           <div className="input-container">
-            <h3>Last Name</h3>
-            <input placeholder="Type here..." onChange={handleLastName} value={lastName}></input>
+          <label for="lastname"><h3>Last Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Email</h3>
-            <input placeholder="Type here..." onChange={handleEmail} value={email}></input>
+          <label for="email"><h3>Email</h3></label>
+            <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Password</h3>
-            <input placeholder="Type here..." onChange={handlePassword} type="password" value={password}></input>
+          <label for="password"><h3>Password</h3></label>
+            <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.password} name="password" label="password" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Repeat password</h3>
-            <input placeholder="Type here..." onChange={handleRepeatPassword} type="password" value={repeatPassword}></input>
+          <label for="repeat password"><h3>Repeat password</h3></label>
+            <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.repeatPassword} name="repeatPassword" label="repeatPassword" required></input>
           </div>
-
+          
         </div>
 
         <div className="input-btn">
@@ -134,12 +110,11 @@ const renderErrorMessage = () =>(
           <button className="btn" type="submit" onClick={() => handleSignup()} >Create Account</button>
         </div>
   
-
+        </form>
       </div>
 
-      <div className="bottom-text">
+      <div className="page-footer-links">
           <Link to="/" replace>Welcome page</Link>
-          <Link to="#">Privacy policy</Link>
           <Link to="#">© StudentIT 2022</Link>
       </div>
     </div>

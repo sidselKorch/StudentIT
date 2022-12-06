@@ -1,5 +1,76 @@
+/* HERO TEXT */
+.hero-text{
+    color: var(--primary-color);
+}
+
+a{
+    color: var(--primary-color);
+}
+
+
 .sign-up-container{
     display: grid;    
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+}
+
+/* INPUT CONTAINER */
+.input-header{
+    text-align: left;
+    color: var(--primary-color);
+    width: max-content;
+}
+
+.input-wrapper{
+    box-shadow: var(--box-shadow);
+    padding: 40px 30px;
+    border-radius: 10px;
+    display: grid;
+    row-gap: 40px;
+    width: min-content;
+    margin: 0 auto;
+}
+
+.input-container{
+    display: grid;
+    text-align: left;
+}
+
+.input-container h3{
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.input-container input{
+    border: 1px solid var(--tertiary-gray);
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-btn{
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+/* PAGE FOOTER */
+.page-footer-links{
+    display: flex;
+    gap: 50px;
+    left:0;
+    right:0;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+/* CONTENT CONTAINER  */
+.page-container{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    text-align: center;
+    row-gap: 50px;
 }

@@ -116,13 +116,13 @@ export const LiveChat = (props) => {
                     : "message message_received"
                 }
               >
-                <p className="message_name message_metadata">
+                <h3 className="message_name message_metadata">
                   {result.get("sender").get("firstName")}
-                </p>
+                </h3>
                 <p className="message_bubble">{result.get("text")}</p>
-                <p className="message_time message_metadata">
+                <h3 className="message_time message_metadata">
                   {formatDateToTime(result.get("createdAt"))}
-                </p>
+                </h3>
               </div>
             ))}
             <button onClick={() => fetchMoreMessages()}>More messages</button>
