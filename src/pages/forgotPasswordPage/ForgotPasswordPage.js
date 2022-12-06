@@ -26,7 +26,7 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="content-container">
+    <div className="page-container">
       <div className="hero-text">
           <h3>Welcome to</h3>
           <h1>StudentIT</h1>
@@ -35,18 +35,18 @@ function ForgotPassword() {
 
       <div className='input-wrapper'>
         <h2 className="input-header">Reset my password</h2>
+        <form>
         <div className="input-container">
-          <h3>Email address</h3>
-          {/* <input type="text" placeholder="Type here..." id="fname" name="fname"></input> */}
-          <input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Your account email"
-          />
+          <label for="email"><h3>Email address</h3></label>
+          <input type= "text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Your account email"
+          required />
         </div>
         <div className="input-btn">
           <Link to="/" >Back</Link>
           <button type="submit" className="btn" onClick={() => doRequestPasswordReset()}>Send</button>
         </div>
+        </form>
       </div>
-
       <div className="page-footer-links">
         <li><Link to="/">Welcome page</Link></li>
         <li><Link to="#">© StudentIT 2022</Link></li>

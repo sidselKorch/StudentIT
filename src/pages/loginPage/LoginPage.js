@@ -48,7 +48,7 @@ export function Login() {
     );
 
     return (
-        <div className="content-container">
+        <div className="page-container">
             <div className="hero-text">
                 <h3>Welcome to</h3>
                 <h1>StudentIT</h1>

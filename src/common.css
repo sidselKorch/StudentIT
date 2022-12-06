@@ -209,13 +209,3 @@ input[type="radio"]{
 .input-field input:focus{
     outline: none;
 }
-
-/* CONTENT CONTAINER */
-.content-container{
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    height: 100vh;
-    text-align: center;
-    row-gap: 50px;
-}

@@ -48,7 +48,7 @@ function AccountSettings() {
   };
 
   return (
-    <div className="content-container">
+    <div className="page-container">
       <div className="hero-text">
           <h1>StudentIT</h1>
           <h3>Edit your account</h3>
@@ -56,23 +56,23 @@ function AccountSettings() {
 
       <div className="input-wrapper">
         <h2 className="input-header">Account settings</h2>
-
+        <form>
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-            <h3>First Name</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName"></input>
+          <label for="firstname"><h3>First Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
 
           </div>
 
           <div className="input-container">
-            <h3>Last Name</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName"></input>
+          <label for="lastname"><h3>Last Name</h3></label>
+            <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-            <h3>Email</h3>
-            <input placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email"></input>
+          <label for="email"><h3>Email</h3></label>
+            <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
         </div>
@@ -82,7 +82,7 @@ function AccountSettings() {
           <button className="btn btn-delete" type="submit" onClick={() => handleDeleteUser()} >Delete User</button>
           <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
         </div>
-
+      </form>
       </div>
 
       <div className="page-footer-links">

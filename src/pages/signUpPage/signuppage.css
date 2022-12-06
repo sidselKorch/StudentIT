@@ -64,3 +64,13 @@ a{
     margin: 0 auto;
     width: fit-content;
 }
+
+/* CONTENT CONTAINER  */
+.page-container{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+    text-align: center;
+    row-gap: 50px;
+}
