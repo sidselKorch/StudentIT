@@ -11,27 +11,42 @@
 
 .chat-header-container{
     display: flex;
-    gap: 10px;
-    align-items: center;
-    background-color: var(--primary-color);
-    padding: 10px 50px 10px 10px;
-    border-radius: 10px 10px 100px 10px;
-    width: max-content;
     margin: -30px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .chat-header-container h2{
     color:#fff;
 }
 
+.chat-header-info{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 10px 50px 10px 10px;
+    border-radius: 10px 10px 100px 10px;
+    width: max-content;
+}
+
 
 /* ––––––––––––––––––––––- FOR LATER USE ––––––––––––––––––––––- */ 
-/* .dot{
+.dot-settings{
+    display: flex;
+    gap: 5px;
+    margin-right: 20px;
+}
+
+.dot{
     width: 5px;
     height: 5px;
     border-radius: 100px;
+    background-color: var(--secondary-gray);
 }
 
+
+/*
 .dot-chat-notification{
     background-color: var(--primary-color);
 }
@@ -39,10 +54,7 @@
 .dot-course-notification{
     background-color: var(--primary-red);
 }
-
-.dot-settings{
-    background-color: var(--secondary-gray);
-} */
+ */
 
 /* DROP DOWN */
 /* .dropdown{
