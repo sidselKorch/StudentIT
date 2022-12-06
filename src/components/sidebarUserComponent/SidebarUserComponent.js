@@ -41,7 +41,7 @@ function SidebarUserComponent(props) {
         fetchUserData()
     },[])
 
-    console.log(userData)
+    // console.log("hej", Parse.User.current())
     function resetReceiverId(){
         setReceiverId("")
     }
@@ -58,10 +58,12 @@ function SidebarUserComponent(props) {
 
             <div className="sidebar-user-container">
             {userData.filter((val) => {
-                if (searchTerm === "") {
-                    return val
-                } else if (val.get(props.second).toLowerCase().includes(searchTerm.toLocaleLowerCase())){
-                    return val
+                if(val.id !== Parse.User.current().id){
+                    if (searchTerm === "") {
+                        return val
+                    } else if (val.get(props.second).toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                        return val
+                    }
                 }
             }).map((val) => {
                 return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
