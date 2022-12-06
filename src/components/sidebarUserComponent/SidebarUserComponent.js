@@ -41,17 +41,9 @@ function SidebarUserComponent(props) {
         fetchUserData()
     },[])
 
-    // console.log("hej", Parse.User.current())
-    function resetReceiverId(){
-        setReceiverId("")
-    }
-
     return (
         <div className="sidebar-user-component">
-            {/* <ChatSetup /> */}
             <h2>{props.title}</h2>
-            <p>Clicked Element's ID: {ReceiverId}</p>
-            <button className="btn" onClick={() => resetReceiverId()}>Close Chat</button>
             <div className="input-field">
                 <input type="text" placeholder="Search..." onChange={(event) => {setSearchTerm(event.target.value)}}></input>
             </div>

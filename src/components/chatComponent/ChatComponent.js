@@ -18,18 +18,24 @@ function ChatComponent(props) {
     const UserQuery = new Parse.Query('User');
     UserQuery.equalTo('objectId', ReceiverId);
     const UserQueryResult = await UserQuery.first();
-    console.log(UserQueryResult.get('firstName'))
-    setReceiverName(UserQueryResult.get('firstName') + " " + UserQueryResult.get('lastName'))
-    setReceiverInitials(UserQueryResult.get('firstName').substring(0,1) + UserQueryResult.get('lastName').substring(0,1))
+    console.log("UserQueryResult:", UserQueryResult)
+    if(UserQueryResult != undefined){
+      setReceiverName(UserQueryResult.get('firstName') + " " + UserQueryResult.get('lastName'))
+      setReceiverInitials(UserQueryResult.get('firstName').substring(0,1) + UserQueryResult.get('lastName').substring(0,1))
+    } else{
+      setReceiverName("")
+      setReceiverInitials("")
+    }
+
   }
 
   useEffect(() => {
     getReceiverName()
   });
 
-  // function resetReceiverId(){
-  //   setReceiverId("")
-  // }
+  function resetReceiverId(){
+    setReceiverId("")
+  }
 
   return (
     <div className="chat-component">
@@ -40,13 +46,7 @@ function ChatComponent(props) {
           </div>
           <h2>{receiverName}</h2>
         </div>
-        {/* <button className="btn" onClick={() => resetReceiverId()}>Close Chat</button> */}
-
-        <div className="dot-settings">
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-        </div>
+        <button className="btn" onClick={() => resetReceiverId()}>X</button>
       </div>
       <ChatSetup />
     </div>
