@@ -25,9 +25,8 @@
     cursor: pointer;
 }
 
-.sidebar-user-info p:first-child{
-    font-weight: 400;
-    font-size: 15px;
+.sidebar-user-info{
+    color: var(--primary-color)
 }
 
 .sidebar-user-info p:nth-child(2){

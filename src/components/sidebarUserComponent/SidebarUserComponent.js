@@ -41,27 +41,21 @@ function SidebarUserComponent(props) {
         fetchUserData()
     },[])
 
-    console.log(userData)
-    function resetReceiverId(){
-        setReceiverId("")
-    }
-
     return (
         <div className="sidebar-user-component">
-            {/* <ChatSetup /> */}
             <h2>{props.title}</h2>
-            <p>Clicked Element's ID: {ReceiverId}</p>
-            <button className="btn" onClick={() => resetReceiverId()}>Close Chat</button>
             <div className="input-field">
                 <input type="text" placeholder="Search..." onChange={(event) => {setSearchTerm(event.target.value)}}></input>
             </div>
 
             <div className="sidebar-user-container">
             {userData.filter((val) => {
-                if (searchTerm === "") {
-                    return val
-                } else if (val.get(props.second).toLowerCase().includes(searchTerm.toLocaleLowerCase())){
-                    return val
+                if(val.id !== Parse.User.current().id){
+                    if (searchTerm === "") {
+                        return val
+                    } else if (val.get(props.second).toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                        return val
+                    }
                 }
             }).map((val) => {
                 return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>

@@ -8,7 +8,6 @@ import CourseComponent from '../../components/courseComponent/CourseComponent';
 
 import "./homepage.css"
 
-
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
 
@@ -22,7 +21,7 @@ function Home() {
             <ReceiverIdContext.Provider value={[ReceiverId, setReceiverId]}>
                 <SidebarComponent courseTitle={courseTitle}/>
                 <NavigationComponent />
-                <ChatComponent courseTitle={courseTitle} />
+                {ReceiverId != "" ? <ChatComponent courseTitle={courseTitle} /> : ""}
                 <CourseComponent courseTitle={courseTitle}/>
             </ReceiverIdContext.Provider>
         </div>
