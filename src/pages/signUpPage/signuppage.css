@@ -26,9 +26,14 @@ a{
     padding: 40px 30px;
     border-radius: 10px;
     display: grid;
-    row-gap: 40px;
+    row-gap: 20px;
     width: min-content;
     margin: 0 auto;
+}
+
+.input-wrapper form{
+    display: grid;
+    row-gap: 20px;
 }
 
 .input-container{
