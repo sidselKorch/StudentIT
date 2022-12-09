@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 // CSS
 import "../../common.css"
 import "../signUpPage/signuppage.css"
+import "./accountsetttingspage.css"
 
 // COSTUM HOOKS
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+import DeleteUserModalComponent from "../../components/deleteUserModalComponent/DeleteUserModalComponent";
 
 function AccountSettings() {
   // // Function that will return current user and also update current username
-  const { currentUser, getCurrentUser } = useCurrentUserHook()
+  const { currentUser } = useCurrentUserHook()
+  const [trigger, setTrigger ] = useState(false)
 
   const initialValues = {
     firstName: currentUser.get("firstName"),
@@ -35,19 +38,9 @@ function AccountSettings() {
     currentUser.save();
   }
 
-  const handleDeleteUser = async function () {
-    try {
-      await currentUser.destroy();
-      getCurrentUser()
-      return true;
-    } catch (error) {
-      // Error can be caused by lack of Internet connection
-      alert(`Error ${error.message}`);
-      return false;
-    };
-  };
-
   return (
+    <>
+    {trigger ? <DeleteUserModalComponent trigger={trigger}/> : ""}
     <div className="page-container">
       <div className="hero-text">
           <h1>StudentIT</h1>
@@ -60,18 +53,18 @@ function AccountSettings() {
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-          <label for="firstname"><h3>First Name</h3></label>
+          <label htmlFor="firstname"><h3>First Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
 
           </div>
 
           <div className="input-container">
-          <label for="lastname"><h3>Last Name</h3></label>
+          <label htmlFor="lastname"><h3>Last Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-          <label for="email"><h3>Email</h3></label>
+          <label htmlFor="email"><h3>Email</h3></label>
             <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
@@ -79,7 +72,8 @@ function AccountSettings() {
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
-          <button className="btn btn-delete" type="submit" onClick={() => handleDeleteUser()} >Delete User</button>
+          {/* <button className="btn btn-delete" type="submit" onClick={() => handleDeleteUser()} >Delete User</button> */}
+          <div className="btn btn-delete" onClick={() => setTrigger(true)} >Delete User</div>
           <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
         </div>
       </form>
@@ -90,6 +84,7 @@ function AccountSettings() {
           <Link to="#">© StudentIT 2022</Link>
       </div>
     </div>
+    </>
   );
 }
 export default AccountSettings;
