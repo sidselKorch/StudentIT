@@ -5,6 +5,7 @@ import SidebarComponent from '../../components/sidebarComponent/SidebarComponent
 import NavigationComponent from '../../components/navigationComponent/NavigationComponent';
 import ChatComponent from '../../components/chatComponent/ChatComponent';
 import CourseComponent from '../../components/courseComponent/CourseComponent';
+import { createChatList } from "../../api/Api"
 
 import "./homepage.css"
 
@@ -15,6 +16,13 @@ function Home() {
     const { courseTitle } = useParams();
 
     const [ReceiverId, setReceiverId] = useState("")
+
+    const success = createChatList(Parse.User.current.firstname, Parse.User.current.lastname, Parse.User.current.email, "big data management") //figure out how to get these values
+    if (success) {
+      console.log(values.email + "was added to chatlist")//same here
+    } else {
+      console.log("Something went wrong")
+    }
 
     return (
         <div className="landing-page-wrapper">

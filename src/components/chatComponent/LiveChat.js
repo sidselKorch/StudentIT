@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./chatcomponent.css";
 import Parse from "parse";
 import { useParseQuery } from "@parse/react";
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,7 +17,7 @@ export const LiveChat = (props) => {
   const [messageInput, setMessageInput] = useState("");
   const { currentUser, getCurrentUser } = useCurrentUserHook();
 
-
+  const [ReceiverId] = useContext(ReceiverIdContext)
   const [ numberOfMessages, setNumberOfMessages ] = useState(20)
 
 
@@ -27,6 +28,7 @@ export const LiveChat = (props) => {
     props.senderNameId,
     props.receiverNameId,
   ]);
+
   parseQuery.containedIn("receiver", [
     props.senderNameId,
     props.receiverNameId,
@@ -52,6 +54,9 @@ export const LiveChat = (props) => {
 
   // Message sender handler
   const sendMessage = async () => {
+    let receiverGroupObject = null;
+    let receiverNameObject = null;
+
     try {
       const messageText = messageInput;
 
@@ -59,17 +64,18 @@ export const LiveChat = (props) => {
       const senderNameObjectQuery = new Parse.Query("User");
       senderNameObjectQuery.equalTo("objectId", currentUser.id);
       let senderNameObject = await senderNameObjectQuery.first();
-      
-      const receiverNameObjectQuery = new Parse.Query("User");
-      receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
-      let receiverNameObject = await receiverNameObjectQuery.first();
+    
+        const receiverNameObjectQuery = new Parse.Query("User");
+        receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
+        receiverNameObject = await receiverNameObjectQuery.first(); 
+
 
       // Create new Message object and save it
       let Message = new Parse.Object("Message");
       Message.set("text", messageText);
       Message.set("sender", senderNameObject);
       Message.set("receiver", receiverNameObject);
-      Message.save();      
+      Message.save(); 
 
       // Clear input
       setMessageInput("");

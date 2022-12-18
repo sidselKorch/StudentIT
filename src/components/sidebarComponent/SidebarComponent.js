@@ -8,9 +8,8 @@ function Sidebar(props) {
     <div className='sidebar'>
       <h1>StudentIT</h1>
       <div className="sidebar-chat-container">
-        <SidebarUserComponent title={"Students"} first={"User"} second={"firstName"} third={"lastName"}/>
-        {/* <SidebarUserComponent title={"Nicknames"} first={"Message"} second={"text"} third={"lastName"}/> */}
-        {/* <SidebarUserComponent title={"Message"} first={"Message"} second={"text"} third={"lastName"}/> */}
+        <SidebarUserComponent title={"Group"} queryName={"Groups"} attribute1={"CourseTitle"} attribute2={""}/>
+        <SidebarUserComponent title={"Students"} queryName={"User"} attribute1={"firstName"} attribute2={"lastName"}/>
       </div>
     </div>
   )

@@ -3,28 +3,43 @@ import "./chatcomponent.css"
 import { ChatSetup } from "./ChatSetup";
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 import Parse from 'parse/dist/parse.min.js';
+import { createChatList } from "../../api/Api.js"
 
 function ChatComponent(props) {
   
   const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
-  
-  const [ userData, setUserdata ] = useState([])
   
   const [ receiverName, setReceiverName ] = useState("")
   
   const [ receiverInitials, setReceiverInitials ] = useState("")
 
   async function getReceiverName(){
-    const UserQuery = new Parse.Query('User');
-    UserQuery.equalTo('objectId', ReceiverId);
+    const UserQuery = new Parse.Query("Chat");
+    UserQuery.equalTo('objectId', ReceiverId[0]);
     const UserQueryResult = await UserQuery.first();
-    console.log("UserQueryResult:", UserQueryResult)
     if(UserQueryResult != undefined){
-      setReceiverName(UserQueryResult.get('firstName') + " " + UserQueryResult.get('lastName'))
-      setReceiverInitials(UserQueryResult.get('firstName').substring(0,1) + UserQueryResult.get('lastName').substring(0,1))
+      if(ReceiverId[1] == "User"){
+        setReceiverName(
+          UserQueryResult.get("firstName") + " " + UserQueryResult.get("lastName")
+        );
+        setReceiverInitials(
+          UserQueryResult.get("firstName").substring(0, 1) +
+            UserQueryResult.get("lastName").substring(0, 1)
+        );
+        } else {
+          setReceiverName(UserQueryResult.get("courseTitle"))
+          setReceiverInitials(UserQueryResult.get("courseTitle").substring(0,2))
+        }
     } else{
       setReceiverName("")
       setReceiverInitials("")
+    }
+
+    const success = createChatList(UserQueryResult.get("firstName"), UserQueryResult.get("lastName"), UserQueryResult.get("email"), UserQueryResult.get("courseTitle"))
+    if (success) {
+      console.log(UserQueryResult.get("email") + "was added to chatlist")
+    } else {
+      console.log("Something went wrong")
     }
 
   }

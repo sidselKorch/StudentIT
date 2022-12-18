@@ -7,6 +7,7 @@ import "../../common.css"
 
 // COSTUM HOOKS
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
+import { faVanShuttle } from "@fortawesome/free-solid-svg-icons";
 
 function SignUp() {
   const [ errorMessage, setErrorMessages ] = useState("");
