@@ -13,28 +13,11 @@ function SidebarUserComponent(props) {
     const [ searchTerm, setSearchTerm ] = useState("");
 
     function fetchUserData () {
-        var query = new Parse.Query(props.first);
-        query.ascending(props.second);
+        var query = new Parse.Query(props.queryName);
+        query.ascending(props.attribute1);
         query.find().then((results) => {
             setUserdata(results)
         })
-    }
-
-    async function getText(name){
-        const PublisherAQuery = new Parse.Query('Nickname');
-        PublisherAQuery.equalTo('name', name);
-        const PublisherA = await PublisherAQuery.first();
-
-        // Query Books with PublisherA
-        const bookQuery = new Parse.Query('Message');
-        bookQuery.equalTo('sender', PublisherA);
-        let queryResults = await bookQuery.find();
-
-        // Let's show the results
-        for (let result of queryResults) {
-            // You access `Parse.Objects` attributes by using `.get`
-            console.log(result.get('text'));
-        };
     }
 
     useEffect(() => {
@@ -53,17 +36,17 @@ function SidebarUserComponent(props) {
                 if(val.id !== Parse.User.current().id){
                     if (searchTerm === "") {
                         return val
-                    } else if (val.get(props.second).toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                    } else if (val.get(props.attribute1).toLowerCase().includes(searchTerm.toLocaleLowerCase())){
                         return val
                     }
                 }
             }).map((val) => {
                 return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
                 <div className="user-icon">
-                    <h3 className="user-icon-text">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</h3>
+                    <h3 className="user-icon-text">{String(val.get(props.attribute1)).substring(0, 1)}{String(val.get(props.attribute2)).substring(0, 1)}</h3>
                 </div>
                 <div className="sidebar-user-info">
-                    <h3>{val.get(props.second)} {val.get(props.third)}</h3>
+                    <h3>{val.get(props.attribute1)} {val.get(props.attribute2)}</h3>
                     <p>Here goes a text message that was sent by the sender</p>
                 </div>
                 {}

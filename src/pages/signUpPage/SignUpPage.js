@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Parse from 'parse/dist/parse.min.js';
 
+import { createChatList, addUserToList, getListObject } from "../../Api/Api";
+
 import "./signuppage.css";
 import "../../common.css"
 
@@ -33,7 +35,7 @@ function SignUp() {
 
   // // Functions used by the screen components
   const handleSignup = async function () {
-    
+
     try {
       // Since the signUp method returns a Promise, we need to call it using await
       if (values.password === values.repeatPassword){
@@ -47,6 +49,17 @@ function SignUp() {
         await createdUser.save();
 
         getCurrentUser()
+        
+        // TO CREATE A NEW CHAT FOR THE COURSE
+        const success = createChatList(values.email)
+        if (success) {
+          alert(Parse.User.current().getEmail() + "was added to chatlist")//same here
+        } else {
+          alert("Something went wrong")
+        }
+
+        addUserToList(Parse.User.current().getUsername(), "sJZa09qjA2")
+
         return true;
       } else {
         alert("Need same password")
@@ -58,6 +71,9 @@ function SignUp() {
       return false;
     }
   };
+
+
+
 
 
 const renderErrorMessage = () =>(
@@ -74,32 +90,32 @@ const renderErrorMessage = () =>(
 
       <div className="input-wrapper">
         <h2 className="input-header">Create account</h2>
-        <form>
+        {/* <form> */}
         <div className="box-input-container sign-up-container">
         
           <div className="input-container">
-          <label for="firstname"><h3>First Name</h3></label>
+          <label htmlFor="firstname"><h3>First Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
             
           </div>
 
           <div className="input-container">
-          <label for="lastname"><h3>Last Name</h3></label>
+          <label htmlFor="lastname"><h3>Last Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-          <label for="email"><h3>Email</h3></label>
+          <label htmlFor="email"><h3>Email</h3></label>
             <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
           <div className="input-container">
-          <label for="password"><h3>Password</h3></label>
+          <label htmlFor="password"><h3>Password</h3></label>
             <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.password} name="password" label="password" required></input>
           </div>
 
           <div className="input-container">
-          <label for="repeat password"><h3>Repeat password</h3></label>
+          <label htmlFor="repeat password"><h3>Repeat password</h3></label>
             <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.repeatPassword} name="repeatPassword" label="repeatPassword" required></input>
           </div>
           
@@ -110,7 +126,7 @@ const renderErrorMessage = () =>(
           <button className="btn" type="submit" onClick={() => handleSignup()} >Create Account</button>
         </div>
   
-        </form>
+        {/* </form> */}
       </div>
 
       <div className="page-footer-links">

@@ -2,21 +2,20 @@ import React,  { useState, useEffect, useContext} from 'react';
 import "./chatcomponent.css"
 import { ChatSetup } from "./ChatSetup";
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
+
+import { createChatList } from '../../Api/Api';
+
 import Parse from 'parse/dist/parse.min.js';
 
-function ChatComponent(props) {
+function ChatComponent() {
   
   const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
-  
-  const [ userData, setUserdata ] = useState([])
-  
   const [ receiverName, setReceiverName ] = useState("")
-  
   const [ receiverInitials, setReceiverInitials ] = useState("")
 
   async function getReceiverName(){
-    const UserQuery = new Parse.Query('User');
-    UserQuery.equalTo('objectId', ReceiverId);
+    const UserQuery = new Parse.Query('Chat');
+    UserQuery.equalTo('objectId', ReceiverId[0]);
     const UserQueryResult = await UserQuery.first();
     console.log("UserQueryResult:", UserQueryResult)
     if(UserQueryResult != undefined){
