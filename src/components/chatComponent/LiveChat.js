@@ -84,6 +84,11 @@ export const LiveChat = (props) => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${date.getHours()}:${minutes}`;
   };
+
+  function handleSubmit(event){
+    event.preventDefault()
+    sendMessage()
+  }
   
 
   return (
@@ -114,15 +119,14 @@ export const LiveChat = (props) => {
         </div>
       )}
 
-      <div className="new_message">
+      <form onSubmit={handleSubmit}className="new_message">
         <div className="input-field">
             <input autoFocus type="text" placeholder="Type message here..."  value={messageInput}
             onChange={(event) => setMessageInput(event.target.value)}></input>
         </div>
-        <button type="primary" className="btn" onClick={sendMessage}>
-          <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
-      </div>
+        <input type="submit" className="btn" value="Send"/>
+        {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
+      </form>
 
       {/* <div>
       
