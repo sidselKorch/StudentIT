@@ -3,9 +3,7 @@ import "./chatcomponent.css"
 import { ChatSetup } from "./ChatSetup";
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 
-import { createChatList } from '../../Api/Api';
-
-import Parse from 'parse/dist/parse.min.js';
+import Parse from 'parse';
 
 function ChatComponent() {
   
@@ -14,8 +12,8 @@ function ChatComponent() {
   const [ receiverInitials, setReceiverInitials ] = useState("")
 
   async function getReceiverName(){
-    const UserQuery = new Parse.Query('Chat');
-    UserQuery.equalTo('objectId', ReceiverId[0]);
+    const UserQuery = new Parse.Query('User');
+    UserQuery.equalTo('objectId', ReceiverId);
     const UserQueryResult = await UserQuery.first();
     console.log("UserQueryResult:", UserQueryResult)
     if(UserQueryResult != undefined){

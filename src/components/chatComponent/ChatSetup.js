@@ -5,18 +5,20 @@ import { LiveChat } from "./LiveChat";
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
+import { ChatIdContext } from "../../contexts/ChatIdContext";
 
 export const ChatSetup = () => {
   // State variables holding input values and results
   const [senderNameId, setSenderNameId] = useState(null);
   const [receiverNameId, setReceiverNameId] = useState(null);
   const { currentUser, getCurrentUser } = useCurrentUserHook();
-  const [ ReceiverId ] = useContext(ReceiverIdContext)
+  const [ ReceiverId ] = useContext(ReceiverIdContext);
 
   // Create or retrieve User name objects and start LiveChat component
   const startLiveChat = async () => {
     // Check if sender name already exists, if not create new parse object
     let senderNameObject = null;
+    
     try {
       const senderParseQuery = new Parse.Query("User");
       senderParseQuery.equalTo("objectId", currentUser.id);
@@ -27,16 +29,15 @@ export const ChatSetup = () => {
       ) {
         senderNameObject = senderParseQueryResult;
       } else {
-        senderNameObject = new Parse.Object("User");
-        senderNameObject.set("objectId", currentUser.id);
-        senderNameObject = await senderNameObject.save();
+        // senderNameObject = new Parse.Object("User");
+        // senderNameObject.set("objectId", currentUser.id);
+        // senderNameObject = await senderNameObject.save();
       }
     } catch (error) {
       alert(error);
       return false;
     }
 
-    // Check if receiver name already exists, if not create new parse object
     let receiverNameObject = null;
     try {
       const receiverParseQuery = new Parse.Query("User");
@@ -49,9 +50,9 @@ export const ChatSetup = () => {
       ) {
         receiverNameObject = receiverParseQueryResult;
       } else {
-        receiverNameObject = new Parse.Object("User");
-        receiverNameObject.set("objectId", ReceiverId);
-        receiverNameObject = await receiverNameObject.save();
+        // receiverNameObject = new Parse.Object("User");
+        // receiverNameObject.set("objectId", ReceiverId);
+        // receiverNameObject = await receiverNameObject.save();
       }
     } catch (error) {
       alert(error);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Parse from 'parse/dist/parse.min.js';
 
-import { createChatList, addUserToList, getListObject } from "../../Api/Api";
+import { addUserToList } from "../../Api/Api";
 
 import "./signuppage.css";
 import "../../common.css"
@@ -49,14 +49,6 @@ function SignUp() {
         await createdUser.save();
 
         getCurrentUser()
-        
-        // TO CREATE A NEW CHAT FOR THE COURSE
-        const success = createChatList(values.email)
-        if (success) {
-          alert(Parse.User.current().getEmail() + "was added to chatlist")//same here
-        } else {
-          alert("Something went wrong")
-        }
 
         addUserToList(Parse.User.current().getUsername(), "sJZa09qjA2")
 
@@ -71,11 +63,7 @@ function SignUp() {
       return false;
     }
   };
-
-
-
-
-
+  
 const renderErrorMessage = () =>(
     <div className="error">{errorMessage}</div>
 );

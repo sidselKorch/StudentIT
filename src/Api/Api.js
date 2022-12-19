@@ -23,17 +23,17 @@ export async function createChatList(email, coursetitle) {
 }
 
 
-async function getUser(username) {
-    const query = new Parse.Query("User")
-    query.equalTo("username", username)
-    try {
-        const user = await query.first()
-        console.log("getUser():", user)
-        return user
-    } catch (error) {
-        console.log("getUser(): ",error)
-    }
-}
+// async function getUser(username) {
+//     const query = new Parse.Query("User")
+//     query.equalTo("username", username)
+//     try {
+//         const user = await query.first()
+//         console.log("getUser():", user)
+//         return user
+//     } catch (error) {
+//         console.log("getUser(): ",error)
+//     }
+// }
 
 // export async function getListObject(listId) {
 //     const listQuery = new Parse.Query("Chat")
@@ -63,5 +63,65 @@ export async function addUserToList(username, listId) {
         console.log("addUserToList(): ",savedList)
     } catch (error) {
         console.log("addUserToList(): ",error)
+    }
+}
+
+export async function getUser(userId) {
+    console.log("user id: ", userId)
+    const query = new Parse.Query("User")
+    query.equalTo("ObjectID", userId)
+    console.log("query: ", query)
+    try {
+        const user = await query.first()
+        console.log("getUser():", user)
+        return user
+    } catch (error) {
+        console.log("getUser(): ",error)
+    }
+}
+
+export async function getUserEmail(user) {
+    console.log("user id: ", user)
+    const query = new Parse.Query("User")
+    console.log("query2", query)
+
+    //query.equalTo("ObjectID", userId)
+    query.equalTo("username", "Test@user.dk")
+    try {
+        const user = await query.first()
+        console.log("getUser():", user)
+        return user.getEmail()
+    } catch (error) {
+        console.log("getUser(): ",error)
+    }
+}
+
+export async function getChatObject(userName, CourseTitle) {
+    console.log("parsing in ", userName, CourseTitle)
+    const query = new Parse.Query("Chat")
+    if(userName === ""){
+    query.equalTo("CourseTitle", CourseTitle)
+    } else {
+        query.equalTo("email", userName)
+    }
+    try{
+        const chat = await query.first()
+        console.log("chat", chat)
+        console.log("getChatId():", chat)
+        return chat
+    } catch (error) {
+        console.log("getChatId: ", error)
+    }
+}
+
+export async function getCourse(course) {
+    const query = new Parse.Query("Courses")
+    query.equalTo("ObjectID", course)
+    try {
+        const course = await query.first()
+        console.log("getCourse():", course)
+        return course
+    } catch (error) {
+        console.log("getCourse(): ",error)
     }
 }
