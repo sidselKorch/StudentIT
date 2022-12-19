@@ -14,13 +14,13 @@ import "./App.css";
 import "./common.css"
 
 // Your Parse initialization configuration goes here
-const PARSE_APPLICATION_ID = 'SdXFoGj5bqBlkIoppkDvKvFXD30UPSnLKuln3c2w';
+const PARSE_APPLICATION_ID = 'TtmPeu1NHDy4U0yDpCcGPQ3YuzYaPXI2SfWskF7O';
 const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
-const PARSE_JAVASCRIPT_KEY = 'EFwT6nfGKmEjFyfeGdwimXED1kc44EAP0oj1razX';
+const PARSE_JAVASCRIPT_KEY = '0nMy0y4KN5b4I8kaRu1WjYOOeMN1ZMoOrB9PcHNi';
 Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
 Parse.serverURL = PARSE_HOST_URL;
 
-const BACK_4_APP_SUBDOMAIN = "https://das.b4a.io"
+const BACK_4_APP_SUBDOMAIN = "https://StudentItFinal1.b4a.io"
   initializeParse(BACK_4_APP_SUBDOMAIN, PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY)
 
 function App() {

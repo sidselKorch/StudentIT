@@ -9,7 +9,7 @@ import "../../common.css"
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 function SignUp() {
-  const [ errorMessage, setErrorMessages ] = useState("");
+  // const [ errorMessage, setErrorMessages ] = useState("");
 
   const { getCurrentUser } = useCurrentUserHook()
 
@@ -54,15 +54,15 @@ function SignUp() {
     } catch (error) {
       // signUp can fail if any parameter is blank or failed an uniqueness check on the server
       alert(`Error! ${error}`);
-      setErrorMessages(error.message)
+      // setErrorMessages(error.message)
       return false;
     }
   };
 
 
-const renderErrorMessage = () =>(
-    <div className="error">{errorMessage}</div>
-);
+// const renderErrorMessage = () =>(
+//     <div className="error">{errorMessage}</div>
+// );
 
   return (
     <div className="page-container">
@@ -74,7 +74,6 @@ const renderErrorMessage = () =>(
 
       <div className="input-wrapper">
         <h2 className="input-header">Create account</h2>
-        <form>
         <div className="box-input-container sign-up-container">
         
           <div className="input-container">
@@ -109,8 +108,6 @@ const renderErrorMessage = () =>(
           <Link to="/" >Back</Link>
           <button className="btn" type="submit" onClick={() => handleSignup()} >Create Account</button>
         </div>
-  
-        </form>
       </div>
 
       <div className="page-footer-links">

@@ -56,22 +56,22 @@ function AccountSettings() {
 
       <div className="input-wrapper">
         <h2 className="input-header">Account settings</h2>
-        <form>
+        {/* <form> */}
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-          <label for="firstname"><h3>First Name</h3></label>
+          <label htmlFor="firstname"><h3>First Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
 
           </div>
 
           <div className="input-container">
-          <label for="lastname"><h3>Last Name</h3></label>
+          <label htmlFor="lastname"><h3>Last Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-          <label for="email"><h3>Email</h3></label>
+          <label htmlFor="email"><h3>Email</h3></label>
             <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
@@ -79,10 +79,10 @@ function AccountSettings() {
 
         <div className="input-btn">
           <Link to="/" >Back</Link>
-          <button className="btn btn-delete" type="submit" onClick={() => handleDeleteUser()} >Delete User</button>
-          <button className="btn" type="submit" onClick={() => handleUpdateUser()} >Save changes</button>
+          <button className="btn btn-delete" type="submit" onClick={handleDeleteUser} >Delete User</button>
+          <button className="btn" type="submit" onClick={handleUpdateUser} >Save changes</button>
         </div>
-      </form>
+      {/* </form> */}
       </div>
 
       <div className="page-footer-links">
