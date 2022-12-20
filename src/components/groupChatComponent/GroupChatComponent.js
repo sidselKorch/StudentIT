@@ -18,8 +18,8 @@ function GroupChatComponent() {
       const UserQueryResult = await UserQuery.first();
       console.log("UserQueryResult:", UserQueryResult)
       if(UserQueryResult != undefined){
-        setCourseName("big data management")
-        setCourseInitials("BM")
+        setCourseName(UserQueryResult.get("group"))
+        setCourseInitials(UserQueryResult.get("group").substring(0,2))
       } else{
         setCourseName("")
         setCourseInitials("")
