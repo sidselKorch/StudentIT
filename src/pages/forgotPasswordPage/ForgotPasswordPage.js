@@ -31,7 +31,7 @@ function ForgotPassword() {
 
       <div className='input-wrapper'>
         <h2 className="input-header">Reset my password</h2>
-        <form>
+        {/* <form> */}
           <div className="input-container">
             <label for="email"><h3>Email address</h3></label>
             <input type="text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Your account email"
@@ -41,7 +41,7 @@ function ForgotPassword() {
             <Link to="/" >Back</Link>
             <button type="submit" className="btn" onClick={() => doRequestPasswordReset()}>Send</button>
           </div>
-        </form>
+        {/* </form> */}
       </div>
       <div className="page-footer-links">
         <li><Link to="/">Welcome page</Link></li>

@@ -48,7 +48,6 @@ export const GroupChatSetup = () => {
 
     setSenderNameObject(senderNameObject.id);
     setChatObject(chatObject.id);
-    console.log("senderNameObject.id", senderNameObject, "chatObject", chatObject);
     return true;
   };
 

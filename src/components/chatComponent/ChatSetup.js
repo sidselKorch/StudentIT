@@ -34,7 +34,6 @@ export const ChatSetup = () => {
       const receiverParseQuery = new Parse.Query("User");
       receiverParseQuery.equalTo("objectId", ReceiverId);
       const receiverParseQueryResult = await receiverParseQuery.first();
-      console.log(currentUser.id)
       if (
         receiverParseQueryResult !== undefined &&
         receiverParseQueryResult !== null
@@ -48,7 +47,6 @@ export const ChatSetup = () => {
 
     setSenderNameId(senderNameObject.id);
     setReceiverNameId(receiverNameObject.id);
-    console.log(senderNameObject.id, receiverNameObject.id);
     return true;
   };
 

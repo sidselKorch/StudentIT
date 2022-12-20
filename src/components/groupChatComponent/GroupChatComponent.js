@@ -13,7 +13,6 @@ function GroupChatComponent() {
     const UserQuery = new Parse.Query('Chat');
     UserQuery.equalTo('objectId', ChatId);
     const UserQueryResult = await UserQuery.first();
-    console.log("UserQueryResult:", UserQueryResult)
     if (UserQueryResult !== undefined) {
       setCourseName(UserQueryResult.get("group"))
       setCourseInitials(UserQueryResult.get("group").substring(0, 2))
