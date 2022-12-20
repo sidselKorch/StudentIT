@@ -2,7 +2,7 @@ import React,  { useState, useEffect, useContext} from 'react';
 import "./chatcomponent.css"
 import { ChatSetup } from "./ChatSetup";
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
-import Parse from 'parse/dist/parse.min.js';
+import Parse from 'parse';
 
 function ChatComponent(props) {
   

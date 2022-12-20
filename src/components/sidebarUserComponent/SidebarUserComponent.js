@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext} from 'react';
-import Parse from 'parse/dist/parse.min.js';
+import Parse from 'parse';
 
 
 import "./sidebarUserComponent.css"
@@ -58,7 +58,7 @@ function SidebarUserComponent(props) {
                     }
                 }
             }).map((val) => {
-                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
+                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => (val.id)}>
                 <div className="user-icon">
                     <h3 className="user-icon-text">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</h3>
                 </div>

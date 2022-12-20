@@ -12,6 +12,7 @@ import AccountSettings from "./pages/accountSettingsPage/AccountSettingsPage";
 
 import "./App.css";
 import "./common.css"
+import GroupChatComponent from './components/groupChatComponent/GroupChatComponent';
 
 // Your Parse initialization configuration goes here
 const PARSE_APPLICATION_ID = 'TtmPeu1NHDy4U0yDpCcGPQ3YuzYaPXI2SfWskF7O';

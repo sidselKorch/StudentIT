@@ -27,9 +27,9 @@ export const ChatSetup = () => {
       ) {
         senderNameObject = senderParseQueryResult;
       } else {
-        senderNameObject = new Parse.Object("User");
-        senderNameObject.set("objectId", currentUser.id);
-        senderNameObject = await senderNameObject.save();
+        // senderNameObject = new Parse.Object("User");
+        // senderNameObject.set("objectId", currentUser.id);
+        // senderNameObject = await senderNameObject.save();
       }
     } catch (error) {
       alert(error);
@@ -49,9 +49,9 @@ export const ChatSetup = () => {
       ) {
         receiverNameObject = receiverParseQueryResult;
       } else {
-        receiverNameObject = new Parse.Object("User");
-        receiverNameObject.set("objectId", ReceiverId);
-        receiverNameObject = await receiverNameObject.save();
+        // receiverNameObject = new Parse.Object("User");
+        // receiverNameObject.set("objectId", ReceiverId);
+        // receiverNameObject = await receiverNameObject.save();
       }
     } catch (error) {
       alert(error);
