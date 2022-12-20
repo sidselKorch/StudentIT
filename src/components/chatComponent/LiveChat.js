@@ -3,26 +3,14 @@ import "./chatcomponent.css";
 import Parse from "parse";
 import { useParseQuery } from "@parse/react";
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
-
-// ICONS
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-
 import "./liveChat.css"
-import { useEffect } from "react";
 
 export const LiveChat = (props) => {
-  // State variable to hold message text input
   const [messageInput, setMessageInput] = useState("");
   const { currentUser, getCurrentUser } = useCurrentUserHook();
+  const [numberOfMessages, setNumberOfMessages] = useState(20)
 
-
-  const [ numberOfMessages, setNumberOfMessages ] = useState(20)
-
-
-  // Create parse query for live querying using useParseQuery hook
   const parseQuery = new Parse.Query("Message").limit(numberOfMessages)
-  // Get messages that involve both names
   parseQuery.containedIn("sender", [
     props.senderNameId,
     props.receiverNameId,
@@ -32,64 +20,50 @@ export const LiveChat = (props) => {
     props.receiverNameId,
   ]);
 
-  function fetchMoreMessages(){
+  function fetchMoreMessages() {
     setNumberOfMessages(prevCount => prevCount + 10)
   }
-
-  // Set results ordering
+  
   parseQuery.descending("createdAt");
-
-  // Include name fields, to enable name getting on list
   parseQuery.includeAll();
 
-  // Declare hook and variables to hold hook responses
-  const { isLive, isLoading, isSyncing, results, count, error, reload } =
+  const { results } =
     useParseQuery(parseQuery, {
-      enableLocalDatastore: true, // Enables cache in local datastore (default: true)
-      enableLiveQuery: true, // Enables live query for real-time update (default: true)
+      enableLocalDatastore: true,
+      enableLiveQuery: true,
     });
 
-
-  // Message sender handler
   const sendMessage = async () => {
     try {
       const messageText = messageInput;
-
-      // Get sender and receiver name Parse objects
       const senderNameObjectQuery = new Parse.Query("User");
       senderNameObjectQuery.equalTo("objectId", currentUser.id);
       let senderNameObject = await senderNameObjectQuery.first();
-      
+
       const receiverNameObjectQuery = new Parse.Query("User");
       receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
       let receiverNameObject = await receiverNameObjectQuery.first();
-
-      // Create new Message object and save it
       let Message = new Parse.Object("Message");
+      
       Message.set("text", messageText);
       Message.set("sender", senderNameObject);
       Message.set("receiver", receiverNameObject);
-      Message.save();      
-
-      // Clear input
+      Message.save();
       setMessageInput("");
     } catch (error) {
       alert(error);
     }
   };
 
-
-  // Helper to format createdAt value on Message
   const formatDateToTime = (date) => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${date.getHours()}:${minutes}`;
   };
 
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault()
     sendMessage()
   }
-  
 
   return (
     <div className="messages_container">
@@ -115,27 +89,17 @@ export const LiveChat = (props) => {
                 </h3>
               </div>
             ))}
-            <button onClick={() => fetchMoreMessages()}>More messages</button>
+          <button onClick={() => fetchMoreMessages()}>More messages</button>
         </div>
       )}
 
-      <form onSubmit={handleSubmit}className="new_message">
+      <form onSubmit={handleSubmit} className="new_message">
         <div className="input-field">
-            <input autoFocus type="text" placeholder="Type message here..."  value={messageInput}
+          <input autoFocus type="text" placeholder="Type message here..." value={messageInput}
             onChange={(event) => setMessageInput(event.target.value)}></input>
         </div>
-        <input type="submit" className="btn" value="Send"/>
-        {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
+        <input type="submit" className="btn" value="Send" />
       </form>
-
-      {/* <div>
-      
-        {isLoading && <p>{"Loading…"}</p>}
-        {isSyncing && <p>{"Syncing…"}</p>}
-        {isLive ? <p>{"Status: Live"}</p> : <p>{"Status: Offline"}</p>}
-        {error && <p>{error.message}</p>}
-        {count && <p>{`Count: ${count}`}</p>}
-      </div> */}
     </div>
   );
 };

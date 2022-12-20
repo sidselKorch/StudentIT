@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import { React, useState } from 'react';
 import { useParams } from "react-router-dom";
 
 import SidebarComponent from '../../components/sidebarComponent/SidebarComponent';
@@ -12,7 +12,6 @@ import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 import GroupChatComponent from '../../components/groupChatComponent/GroupChatComponent';
 import { ChatIdContext } from '../../contexts/ChatContext';
 
-
 function Home() {
     const { courseTitle } = useParams();
 
@@ -22,13 +21,13 @@ function Home() {
     return (
         <div className="landing-page-wrapper">
             <ReceiverIdContext.Provider value={[ReceiverId, setReceiverId]}>
-            <ChatIdContext.Provider value={[ChatId, setChatId]}>
-                <SidebarComponent/>
-                <NavigationComponent />
-                {ReceiverId != "" ? <ChatComponent/> : ""}
-                {ChatId != "" ? <GroupChatComponent/> : ""}
-                <CourseComponent courseTitle={courseTitle}/>
-            </ChatIdContext.Provider>
+                <ChatIdContext.Provider value={[ChatId, setChatId]}>
+                    <SidebarComponent />
+                    <NavigationComponent />
+                    {ReceiverId !== "" ? <ChatComponent /> : ""}
+                    {ChatId !== "" ? <GroupChatComponent /> : ""}
+                    <CourseComponent courseTitle={courseTitle} />
+                </ChatIdContext.Provider>
             </ReceiverIdContext.Provider>
         </div>
     )

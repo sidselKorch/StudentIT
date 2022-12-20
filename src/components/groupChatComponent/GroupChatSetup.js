@@ -7,15 +7,12 @@ import { ChatIdContext } from "../../contexts/ChatContext";
 
 
 export const GroupChatSetup = () => {
-  // State variables holding input values and results
   const [senderNameObject, setSenderNameObject] = useState(null);
   const [chatObject, setChatObject] = useState(null);
   const [ChatId] = useContext(ChatIdContext);
   const { currentUser } = useCurrentUserHook();
 
-  // Create or retrieve User name objects and start LiveChat component
   const startLiveChat = async () => {
-    // Check if sender name already exists, if not create new parse object
     let senderNameObject = null;
     try {
       const senderParseQuery = new Parse.Query("User");
@@ -26,10 +23,6 @@ export const GroupChatSetup = () => {
         senderParseQueryResult !== null
       ) {
         senderNameObject = senderParseQueryResult;
-      } else {
-        // senderNameObject = new Parse.Object("User");
-        // senderNameObject.set("objectId", currentUser.id);
-        // senderNameObject = await senderNameObject.save();
       }
     } catch (error) {
       alert(error);
@@ -53,8 +46,6 @@ export const GroupChatSetup = () => {
       return false;
     }
 
-    // Set name objects ids, so live chat component is instantiated
-    
     setSenderNameObject(senderNameObject.id);
     setChatObject(chatObject.id);
     console.log("senderNameObject.id", senderNameObject, "chatObject", chatObject);
@@ -67,11 +58,12 @@ export const GroupChatSetup = () => {
 
   return (
     <>
-        {senderNameObject !== null && (
-          <LiveGroupChat
-            senderNameObject={senderNameObject}
-            chat={chatObject}
-          />
-        )}
+      {senderNameObject !== null && (
+        <LiveGroupChat
+          senderNameObject={senderNameObject}
+          chat={chatObject}
+        />
+      )}
     </>
-)};
+  )
+};

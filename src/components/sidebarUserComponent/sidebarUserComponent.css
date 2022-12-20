@@ -1,45 +1,43 @@
-.sidebar-user-component{
+.sidebar-user-component {
     margin-bottom: 30px;
     display: grid;
     gap: 10px;
 }
 
-.sidebar-user-container{
+.sidebar-user-container {
     display: grid;
     max-height: 33vh;
     overflow-y: scroll;
 }
 
-.sidebar-user{
+.sidebar-user {
     display: flex;
     gap: 10px;
     align-items: center;
-    /* background-color: var(--tertiary-color); */
     padding: 10px 5px;
     border-radius: 10px;
-
 }
 
-.sidebar-user:hover{
+.sidebar-user:hover {
     background-color: var(--tertiary-color);
     cursor: pointer;
 }
 
-.sidebar-user-info{
+.sidebar-user-info {
     color: var(--primary-color)
 }
 
-.sidebar-user-info p:nth-child(2){
+.sidebar-user-info p:nth-child(2) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 160px;
 }
 
-.sidebar-user > .user-icon{
+.sidebar-user>.user-icon {
     --size: 30px;
 }
 
-.clicked{
+.clicked {
     background-color: var(--tertiary-color);
 }

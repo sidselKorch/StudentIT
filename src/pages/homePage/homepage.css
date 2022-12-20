@@ -1,10 +1,8 @@
-.landing-page-wrapper{
+.landing-page-wrapper {
     display: grid;
     grid-template:
         "sidebar navigationbar navigationbar"
-        "sidebar chat-component course-component" 
-        
+        "sidebar chat-component course-component"
         1fr / auto 1fr 1fr;
-
     background-color: var(--tertiary-color);
 }

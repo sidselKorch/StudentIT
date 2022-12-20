@@ -1,45 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
-*{
+* {
     font-family: 'Nunito', sans-serif;
-    margin: 0px 0px; 
+    margin: 0px 0px;
     padding: 0px 0px;
     box-sizing: border-box;
 }
 
 /* COLORS */
-:root{
+:root {
     --primary-color: hsl(215, 65%, 38%);
     --secondary-color: hsl(214, 85%, 81%);
     --tertiary-color: hsl(206, 80%, 96%);
 }
 
-:root:has(#blue:checked){
+:root:has(#blue:checked) {
     --primary-color: hsl(215, 65%, 38%);
     --secondary-color: hsl(214, 85%, 81%);
     --tertiary-color: hsl(206, 80%, 96%);
 }
 
-:root:has(#green:checked){
+:root:has(#green:checked) {
     --primary-color: hsl(152, 21%, 34%);
     --secondary-color: hsl(150, 10%, 65%);
     --tertiary-color: hsl(156, 10%, 90%);
 }
 
-:root:has(#red:checked){
+:root:has(#red:checked) {
     --primary-color: hsl(350, 71%, 43%);
     --secondary-color: hsl(349, 55%, 80%);
     --tertiary-color: hsl(351, 47%, 97%);
 }
 
-:root:has(#yellow:checked){
+:root:has(#yellow:checked) {
     --primary-color: hsl(35, 90%, 63%);
-    --secondary-color:hsl(35, 89%, 86%);
+    --secondary-color: hsl(35, 89%, 86%);
     --tertiary-color: hsl(37, 80%, 98%);
 }
 
-:root{
+:root {
     /* GRAYS */
     --primary-gray: hsl(0, 0%, 20%);
     --secondary-gray: hsl(0, 0%, 70%);
@@ -50,7 +50,7 @@
     --primary-red: hsl(350, 71%, 43%);
     --primary-green: hwb(153 27% 59%);
     --primary-blue: hsl(215, 65%, 38%);
-    
+
     --tertiary-yellow: hsl(37, 80%, 98%);
     --tertiary-red: hsl(351, 47%, 97%);
     --tertiary-green: hsl(156, 10%, 90%);
@@ -62,62 +62,65 @@
 }
 
 /* GENERAL */
-h1, h2, h3, h4{
+h1,
+h2,
+h3,
+h4 {
     font-weight: 700;
 }
 
-h1{
+h1 {
     font-size: 35px;
 }
 
-h2{
+h2 {
     font-size: 20px;
     color: var(--primary-color);
 }
 
-h3{
+h3 {
     font-size: 16px;
     /* font-weight: 400; */
 }
 
-p{
+p {
     font-family: 'Lato', sans-serif;
     font-size: 15px;
     font-weight: 300;
 }
 
-li{
+li {
     padding: 0;
     margin: 0;
     text-decoration: none;
     list-style: none;
 }
 
-a{
+a {
     font-size: 15px;
     color: var(--primary-color);
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
     font-weight: 700;
 }
 
-a > p:hover{
+a>p:hover {
     font-weight: 700;
 }
 
-.error{
+.error {
     color: var(--primary-red);
 }
 
-input[type="radio"]{
+input[type="radio"] {
     display: none;
 }
 
 /* BUTTONS */
-.btn{
+.btn {
     border: none;
     text-align: center;
     text-decoration: none;
@@ -131,24 +134,24 @@ input[type="radio"]{
     border-radius: 10px;
 }
 
-.btn:hover{
+.btn:hover {
     cursor: pointer;
 }
 
-.btn-close{
+.btn-close {
     background: none;
     color: var(--primary-gray);
     padding: 0;
 }
 
-.btn-delete{
+.btn-delete {
     background: none;
     color: var(--primary-red);
     font-weight: 400;
 }
 
 /* USER ICONS */
-.user-icon{
+.user-icon {
     /* USER ICON SIZE */
     --size: 25px;
 
@@ -158,7 +161,7 @@ input[type="radio"]{
     line-height: var(--size);
 
     background-color: var(--tertiary-gray);
-    
+
     border-radius: 10000px;
     text-align: center;
 }
@@ -173,23 +176,23 @@ input[type="radio"]{
 /* SCROLL */
 ::-webkit-scrollbar {
     width: 5px;
-  }
+}
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--secondary-gray); 
+    background: var(--secondary-gray);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-gray); 
+    background: var(--primary-gray);
 }
 
 
 /* INPUT FIELDS */
-.input-field{
+.input-field {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -199,13 +202,11 @@ input[type="radio"]{
     justify-content: space-between;
 }
 
-.input-field input[type="text"]{
+.input-field input[type="text"] {
     border: none;
     line-height: 3;
-    /* font-size: 15px; */
-    /* color: var(--primary-color); */
 }
 
-.input-field input:focus{
+.input-field input:focus {
     outline: none;
 }

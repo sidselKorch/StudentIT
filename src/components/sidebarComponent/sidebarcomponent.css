@@ -1,26 +1,20 @@
-.sidebar{
+.sidebar {
     grid-area: sidebar;
     width: 250px;
     height: 100vh;
-    
+
     background-color: #fff;
     z-index: 1;
 }
 
-.sidebar h1{
+.sidebar h1 {
     text-align: center;
     margin-top: 20px;
     color: var(--primary-color);
 }
 
-.sidebar-chat-container{
+.sidebar-chat-container {
     display: grid;
     margin: 35px 10px 0 10px;
-    /* display: flex;
-    flex-direction: column; */
     row-gap: 10px;
-    /* overflow: scroll; */
-    /* flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: 0%; */
 }
