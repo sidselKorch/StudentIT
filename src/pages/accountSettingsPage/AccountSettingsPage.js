@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Parse from "parse";
 
 import "../../common.css"
 import "../signUpPage/signuppage.css"
@@ -34,6 +35,17 @@ function AccountSettings() {
 
   const handleDeleteUser = async function () {
     try {
+      const GroupMessageQuery = new Parse.Query("GroupMessage")
+      GroupMessageQuery.equalTo("sender", Parse.User.current().toPointer())
+      const userMessages = await GroupMessageQuery.find()
+
+      console.log(Parse.User.current())
+      console.log(userMessages)
+      for(let message of userMessages){
+        console.log(message)
+        message.destroy();
+      }
+
       await currentUser.destroy();
       getCurrentUser()
       return true;
