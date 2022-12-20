@@ -1,0 +1,10 @@
+.course-component {
+    grid-area: course-component;
+    background-color: #fff;
+    width: fit-content;
+    height: fit-content;
+    padding: 70px;
+    margin: auto auto;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}

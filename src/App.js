@@ -1,30 +1,76 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import Parse from 'parse/dist/parse.min.js';
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { LoginContext } from "./contexts/LoginContext";
+import { initializeParse } from '@parse/react';
 
-import Login from './pages/login/Login';
-import LoginChecker from "./pages/loginchecker/LoginChecker";
-import SignUp from './pages/signup/SignUp';
-import Home from './pages/home/Home';
-import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
-import Course1 from "./pages/courses/Course1";
-import AccountSettings from "./pages/accountsettings/AccountSettings";
+import Home from './pages/homePage/HomePage';
+import { Login } from "./pages/loginPage/LoginPage";
+import SignUp from "./pages/signUpPage/SignUpPage";
+import ForgotPassword from "./pages/forgotPasswordPage/ForgotPasswordPage";
+import AccountSettings from "./pages/accountSettingsPage/AccountSettingsPage";
+
+import "./App.css";
+import "./common.css"
+
+const PARSE_APPLICATION_ID = 'TtmPeu1NHDy4U0yDpCcGPQ3YuzYaPXI2SfWskF7O';
+const PARSE_HOST_URL = 'https://parseapi.back4app.com/';
+const PARSE_JAVASCRIPT_KEY = '0nMy0y4KN5b4I8kaRu1WjYOOeMN1ZMoOrB9PcHNi';
+Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
+Parse.serverURL = PARSE_HOST_URL;
+
+const BACK_4_APP_SUBDOMAIN = "https://StudentItFinal1.b4a.io"
+initializeParse(BACK_4_APP_SUBDOMAIN, PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY)
 
 function App() {
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route index path="/" element={<LoginChecker />}/>
-        <Route path="login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/course1" element={<Course1 />} />
-        <Route exact path="/forgot-password" element={<ForgotPassword />}/>
-        <Route path="/accountsettings" element={<AccountSettings />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const checkCurrentUser = async () => {
+      try {
+        const user = await Parse.User.currentAsync();
+        if (user === null && window.location.pathname !== "/") {
+          window.location.pathname = "/"
+        } else {
+          if (currentUser === null) {
+            setCurrentUser(user);
+          }
+        }
+        return true;
+      } catch (_error) { }
+      return false;
+    };
+    checkCurrentUser();
+  });
+
+  if (currentUser != null) {
+    return (
+      <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:courseTitle" element={<Home />} />
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/signup" element={<Navigate to="/" />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
+          </Routes>
+        </BrowserRouter>
+      </LoginContext.Provider>
+    )
+  } else {
+    return (
+      <LoginContext.Provider value={{ currentUser, setCurrentUser }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          </Routes>
+        </BrowserRouter>
+      </LoginContext.Provider>
+    )
+  }
 }
 
 export default App;

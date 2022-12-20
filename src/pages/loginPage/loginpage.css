@@ -1,0 +1,13 @@
+.login-container {
+    display: grid;
+    gap: 20px;
+}
+
+.sign-up-btns {
+    display: grid;
+    gap: 10px;
+}
+
+.btn-login {
+    margin: 0 auto;
+}
