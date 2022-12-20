@@ -1,29 +1,28 @@
-import React, { useState } from "react";
-import "./chatcomponent.css";
+import React, { useState, useContext } from "react";
+import "../chatComponent/chatcomponent.css";
 import Parse from "parse";
 import { useParseQuery } from "@parse/react";
 import useCurrentUserHook from '../../hooks/useCurrentUserHook';
-import "./liveChat.css"
+import { ChatIdContext } from "../../contexts/ChatContext";
 
-export const LiveChat = (props) => {
+import "../chatComponent/liveChat.css"
+
+export const LiveGroupChat = (props) => {
   const [messageInput, setMessageInput] = useState("");
-  const { currentUser, getCurrentUser } = useCurrentUserHook();
-  const [numberOfMessages, setNumberOfMessages] = useState(20)
+  const { currentUser } = useCurrentUserHook();
 
-  const parseQuery = new Parse.Query("Message").limit(numberOfMessages)
-  parseQuery.containedIn("sender", [
-    props.senderNameId,
-    props.receiverNameId,
-  ]);
-  parseQuery.containedIn("receiver", [
-    props.senderNameId,
-    props.receiverNameId,
-  ]);
+  const [numberOfMessages, setNumberOfMessages] = useState(20)
+  const [ChatId, setChatId] = useContext(ChatIdContext)
+
+  const parseQuery = new Parse.Query("GroupMessage").limit(numberOfMessages)
+  parseQuery.containedIn("chat", [
+    props.chat
+  ])
 
   function fetchMoreMessages() {
     setNumberOfMessages(prevCount => prevCount + 10)
   }
-  
+
   parseQuery.descending("createdAt");
   parseQuery.includeAll();
 
@@ -40,15 +39,16 @@ export const LiveChat = (props) => {
       senderNameObjectQuery.equalTo("objectId", currentUser.id);
       let senderNameObject = await senderNameObjectQuery.first();
 
-      const receiverNameObjectQuery = new Parse.Query("User");
-      receiverNameObjectQuery.equalTo("objectId", props.receiverNameId);
-      let receiverNameObject = await receiverNameObjectQuery.first();
-      let Message = new Parse.Object("Message");
-      
+      const chatObjectQuery = new Parse.Query("Chat");
+      chatObjectQuery.equalTo("objectId", ChatId);
+      let chatObject = await chatObjectQuery.first();
+
+      let Message = new Parse.Object("GroupMessage");
       Message.set("text", messageText);
-      Message.set("sender", senderNameObject);
-      Message.set("receiver", receiverNameObject);
+      Message.set("sender", senderNameObject.toPointer());
+      Message.set("chat", chatObject);
       Message.save();
+
       setMessageInput("");
     } catch (error) {
       alert(error);
@@ -75,7 +75,7 @@ export const LiveChat = (props) => {
               <div
                 key={result.id}
                 className={
-                  result.get("sender").id === props.senderNameId
+                  result.get("sender").id === currentUser.id
                     ? "message message_sent"
                     : "message message_received"
                 }

@@ -1,4 +1,4 @@
-.nav{
+.nav {
     grid-area: navigationbar;
     display: flex;
     justify-content: space-between;
@@ -9,12 +9,12 @@
 }
 
 /* TABS */
-.tab-container{
+.tab-container {
     display: flex;
     flex-direction: row-reverse;
 }
 
-.tab{
+.tab {
     margin-left: -80px;
     padding: 10px 40px 10px 100px;
     font-weight: 400;
@@ -24,38 +24,41 @@
     width: fit-content;
 }
 
-.tab:hover{
+.tab:hover {
     cursor: pointer;
     padding: 10px 60px 10px 120px;
     font-weight: 700;
 }
 
-.tab-blue{
+.tab-blue {
     background-color: var(--tertiary-blue);
     color: var(--primary-blue);
 }
-.tab-red{
+
+.tab-red {
     background-color: var(--tertiary-red);
     color: var(--primary-red);
 }
-.tab-yellow{
+
+.tab-yellow {
     background-color: var(--tertiary-yellow);
     color: var(--primary-yellow);
 }
-.tab-green{
+
+.tab-green {
     background-color: var(--tertiary-green);
     color: var(--primary-green);
 }
 
 /* PROFILE */
-.profile{
+.profile {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-right: 10px;
 }
 
-.user-profile{
+.user-profile {
     display: flex;
     place-items: center;
     gap: 10px;
@@ -63,17 +66,17 @@
     padding: 0 8px;
 }
 
-.user-profile:hover{
+.user-profile:hover {
     background-color: var(--tertiary-color);
 }
 
 /* LOGOUT */
-.logout-btn{
+.logout-btn {
     background-color: transparent !important;
     color: var(--primary-color) !important;
 }
 
-.logout-btn:hover{
+.logout-btn:hover {
     background-color: var(--primary-color) !important;
     color: #fff !important;
 }

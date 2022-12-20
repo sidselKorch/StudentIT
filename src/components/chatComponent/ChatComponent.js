@@ -1,39 +1,32 @@
-import React,  { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import "./chatcomponent.css"
 import { ChatSetup } from "./ChatSetup";
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
-import Parse from 'parse/dist/parse.min.js';
+import Parse from 'parse';
 
-function ChatComponent(props) {
-  
+function ChatComponent() {
   const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
-  
-  const [ userData, setUserdata ] = useState([])
-  
-  const [ receiverName, setReceiverName ] = useState("")
-  
-  const [ receiverInitials, setReceiverInitials ] = useState("")
+  const [receiverName, setReceiverName] = useState("")
+  const [receiverInitials, setReceiverInitials] = useState("")
 
-  async function getReceiverName(){
+  async function getReceiverName() {
     const UserQuery = new Parse.Query('User');
     UserQuery.equalTo('objectId', ReceiverId);
     const UserQueryResult = await UserQuery.first();
-    console.log("UserQueryResult:", UserQueryResult)
-    if(UserQueryResult != undefined){
+    if (UserQueryResult !== undefined) {
       setReceiverName(UserQueryResult.get('firstName') + " " + UserQueryResult.get('lastName'))
-      setReceiverInitials(UserQueryResult.get('firstName').substring(0,1) + UserQueryResult.get('lastName').substring(0,1))
-    } else{
+      setReceiverInitials(UserQueryResult.get('firstName').substring(0, 1) + UserQueryResult.get('lastName').substring(0, 1))
+    } else {
       setReceiverName("")
       setReceiverInitials("")
     }
-
   }
 
   useEffect(() => {
     getReceiverName()
   });
 
-  function resetReceiverId(){
+  function resetReceiverId() {
     setReceiverId("")
   }
 
@@ -41,7 +34,7 @@ function ChatComponent(props) {
     <div className="chat-component">
       <div className="chat-header-container">
         <div className="chat-header-info">
-          <div className = "user-icon">
+          <div className="user-icon">
             <h3 className="user-icon-text" >{receiverInitials} </h3>
           </div>
           <h2>{receiverName}</h2>
