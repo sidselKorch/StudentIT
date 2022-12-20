@@ -5,9 +5,11 @@ import Parse from 'parse';
 import "./sidebarUserComponent.css"
 
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
+import { ChatIdContext } from '../../contexts/ChatContext';
 
 function SidebarUserComponent(props) {
     const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
+    const [ChatId, setChatId] = useContext(ChatIdContext)
 
     const [ userData, setUserdata ] = useState([])
     const [ searchTerm, setSearchTerm ] = useState("");
@@ -23,6 +25,11 @@ function SidebarUserComponent(props) {
     useEffect(() => {
         fetchUserData()
     },[])
+
+    function handleSetIds(val){
+        setChatId("");
+        setReceiverId(val);
+    }
 
     return (
         <div className="sidebar-user-component">
@@ -41,7 +48,7 @@ function SidebarUserComponent(props) {
                     }
                 }
             }).map((val) => {
-                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
+                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => handleSetIds(val.id)}>
                 <div className="user-icon">
                     <h3 className="user-icon-text">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</h3>
                 </div>

@@ -22,16 +22,14 @@ function Home() {
     return (
         <div className="landing-page-wrapper">
             <ReceiverIdContext.Provider value={[ReceiverId, setReceiverId]}>
-                <SidebarComponent courseTitle={courseTitle}/>
+            <ChatIdContext.Provider value={[ChatId, setChatId]}>
+                <SidebarComponent/>
                 <NavigationComponent />
-                {ReceiverId != "" ? <ChatComponent courseTitle={courseTitle} /> : ""}
+                {ReceiverId != "" ? <ChatComponent/> : ""}
+                {ChatId != "" ? <GroupChatComponent/> : ""}
                 <CourseComponent courseTitle={courseTitle}/>
+            </ChatIdContext.Provider>
             </ReceiverIdContext.Provider>
-            {/* <ChatIdContext.Provider value={[ChatId, setChatId]}>
-                <SidebarComponent courseTitle={courseTitle}/>
-                <NavigationComponent />
-                {ChatId != "" ? <GroupChatComponent courseTitle={courseTitle} /> : ""}
-            </ChatIdContext.Provider> */}
         </div>
     )
 }

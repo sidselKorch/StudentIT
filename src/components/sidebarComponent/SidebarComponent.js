@@ -8,9 +8,10 @@ import { ChatIdContext } from '../../contexts/ChatContext';
 
 function Sidebar() {
   const [ChatId, setChatId] = useContext(ChatIdContext)
-  // const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
+  const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
 
   function handleChat(){
+    setReceiverId("")
     setChatId("sJZa09qjA2")
   }
 
