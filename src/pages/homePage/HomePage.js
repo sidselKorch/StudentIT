@@ -27,11 +27,11 @@ function Home() {
                 {ReceiverId != "" ? <ChatComponent courseTitle={courseTitle} /> : ""}
                 <CourseComponent courseTitle={courseTitle}/>
             </ReceiverIdContext.Provider>
-            <ChatIdContext.Provider value={[ChatId, setChatId]}>
+            {/* <ChatIdContext.Provider value={[ChatId, setChatId]}>
                 <SidebarComponent courseTitle={courseTitle}/>
                 <NavigationComponent />
                 {ChatId != "" ? <GroupChatComponent courseTitle={courseTitle} /> : ""}
-            </ChatIdContext.Provider>
+            </ChatIdContext.Provider> */}
         </div>
     )
 }

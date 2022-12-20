@@ -20,23 +20,6 @@ function SidebarUserComponent(props) {
         })
     }
 
-    async function getText(name){
-        const PublisherAQuery = new Parse.Query('Nickname');
-        PublisherAQuery.equalTo('name', name);
-        const PublisherA = await PublisherAQuery.first();
-
-        // Query Books with PublisherA
-        const bookQuery = new Parse.Query('Message');
-        bookQuery.equalTo('sender', PublisherA);
-        let queryResults = await bookQuery.find();
-
-        // Let's show the results
-        for (let result of queryResults) {
-            // You access `Parse.Objects` attributes by using `.get`
-            console.log(result.get('text'));
-        };
-    }
-
     useEffect(() => {
         fetchUserData()
     },[])
@@ -58,7 +41,7 @@ function SidebarUserComponent(props) {
                     }
                 }
             }).map((val) => {
-                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => (val.id)}>
+                return <div className={`sidebar-user ${ReceiverId === val.id ? "clicked" : ""}`}  key={val.id} onClick={() => setReceiverId(val.id)}>
                 <div className="user-icon">
                     <h3 className="user-icon-text">{String(val.get(props.second)).substring(0, 1)}{String(val.get(props.third)).substring(0, 1)}</h3>
                 </div>

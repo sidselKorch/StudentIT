@@ -72,7 +72,6 @@ function NavigationComponent() {
     function parseItemtoComponent (item, index){
         const pathItem = "/" + item.courseTitle.split(" ").join("-").toLowerCase()
         const color = "tab tab-" + item.courseColor;
-        console.log("PathItem", pathItem)
         if(pathItem === location.pathname){
             return <div key={index}>
                         <Link to={pathItem}><h4 className={color} onClick={() => checkRadioButton(item.courseColor)}>{item.courseTitle}</h4></Link>
