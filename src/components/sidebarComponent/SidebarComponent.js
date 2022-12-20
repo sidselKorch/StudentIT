@@ -19,9 +19,12 @@ function Sidebar() {
     <div className='sidebar'>
       <h1>StudentIT</h1>
       <div className="sidebar-chat-container">
-        <div className={`sidebar-user ${ChatId === "sJZa09qjA2" ? "clicked" : ""}`}  key={"sJZa09qjA2"} onClick={() => handleChat()}>
-          <h3 className="user-icon-text">{String("Group ")}{String("Chat")}</h3>
-      </div>
+      <div className="sidebar-user-component">
+          <h2>Groups</h2>
+          <div className={`sidebar-user ${ChatId === "sJZa09qjA2" ? "clicked" : ""}`}  key={"sJZa09qjA2"} onClick={() => handleChat()}>
+            <h3 className="sidebar-user-info">Group chat</h3>
+          </div>
+        </div>
         <SidebarUserComponent title={"Students"} first={"User"} second={"firstName"} third={"lastName"}/>
       </div>
     </div>
