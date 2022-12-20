@@ -5,10 +5,13 @@ import "./sidebarUserComponent.css"
 
 import { ReceiverIdContext } from '../../contexts/ReceiverIdContext';
 import { ChatIdContext } from '../../contexts/ChatContext';
+import useCurrentUserHook from '../../hooks/useCurrentUserHook';
 
 function SidebarUserComponent(props) {
     const [ReceiverId, setReceiverId] = useContext(ReceiverIdContext)
     const [ChatId, setChatId] = useContext(ChatIdContext)
+
+    const { currentUser, getCurrentUser } = useCurrentUserHook();
 
     const [userData, setUserdata] = useState([])
     const [searchTerm, setSearchTerm] = useState("");
@@ -39,7 +42,7 @@ function SidebarUserComponent(props) {
 
             <div className="sidebar-user-container">
                 {userData.filter((val) => {
-                    if (val.id !== Parse.User.current().id) {
+                    if (val.id !== currentUser.id) {
                         if (searchTerm === "") {
                             return val
                         } else if (val.get(props.second).toLowerCase().includes(searchTerm.toLocaleLowerCase())) {
