@@ -97,7 +97,7 @@ export const LiveGroupChat = (props) => {
               <div
                 key={result.id}
                 className={
-                  result.get("sender").id === props.senderNameObject.id
+                  result.get("sender").id === currentUser.id
                     ? "message message_sent"
                     : "message message_received"
                 }
