@@ -62,28 +62,28 @@ function SignUp() {
         <div className="box-input-container sign-up-container">
 
           <div className="input-container">
-            <label for="firstname"><h3>First Name</h3></label>
+            <label htmlFor="firstname"><h3>First Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.firstName} name="firstName" label="firstName" required></input>
 
           </div>
 
           <div className="input-container">
-            <label for="lastname"><h3>Last Name</h3></label>
+            <label htmlFor="lastname"><h3>Last Name</h3></label>
             <input type="text" placeholder="Type here..." onChange={handleInputChange} value={values.lastName} name="lastName" label="lastName" required></input>
           </div>
 
           <div className="input-container">
-            <label for="email"><h3>Email</h3></label>
+            <label htmlFor="email"><h3>Email</h3></label>
             <input type="email" placeholder="Type here..." onChange={handleInputChange} value={values.email} name="email" label="email" required></input>
           </div>
 
           <div className="input-container">
-            <label for="password"><h3>Password</h3></label>
+            <label htmlFor="password"><h3>Password</h3></label>
             <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.password} name="password" label="password" required></input>
           </div>
 
           <div className="input-container">
-            <label for="repeat password"><h3>Repeat password</h3></label>
+            <label htmlFor="repeat password"><h3>Repeat password</h3></label>
             <input placeholder="Type here..." onChange={handleInputChange} type="password" value={values.repeatPassword} name="repeatPassword" label="repeatPassword" required></input>
           </div>
 
